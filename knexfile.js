@@ -4,11 +4,9 @@ module.exports = {
 
   development: {
     // our DBMS driver
-    client: 'sqlite3',
+    client: 'pg',
     // the location of our db
-    connection: {
-      filename: './data/database_file.db3',
-    },
+    connection: process.env.DB_URL,
     // necessary when using sqlite3
     useNullAsDefault: true,
     // generates migration files in a data/migrations/ folder
@@ -18,8 +16,32 @@ module.exports = {
     seeds: {
       directory: './data/seeds'
   }
-  }
+  },
+  testing: {
+    client: 'pg',
+    connection: process.env.DB_URL,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: { directory: './data/seeds' },
+  },
+
+  production: {
+    client: 'pg',
+    connection: process.env.DB_URL,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: { directory: './data/seeds' },
+  },
 };
+
+//sqlite settings for connection
+// connection: {
+//   filename: './data/database_file.db3',
+// },
+
+// default knex file set up below vvvvv
 
 // module.exports = {
 
