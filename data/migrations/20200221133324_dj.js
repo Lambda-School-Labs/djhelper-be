@@ -15,3 +15,5 @@ exports.down = function(knex) {
     return knex.schema
     .dropTableIfExists('dj-login')
 };
+
+//DB_URL=postgres://postgres:password@localhost:5432/postgres
