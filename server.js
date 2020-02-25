@@ -13,14 +13,14 @@ server.use(morgan('tiny'));
 server.use(cors());
 
 //imports from codebase
-const router = require('./data/router/router.js')
+const publicRouter = require('./data/router/publicRouter.js')
 
 // Routes
 server.get('/', (req, res) => {
   res.status(200).json({ message: 'Welcome to the DJ Helper backend.'});
 })
 
-server.use('/api/', router);
+server.use('/api/', publicRouter);
 
 
 // Exports

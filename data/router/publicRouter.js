@@ -28,7 +28,7 @@ router.get('/DJs/:id', (req, res) => {
     })
 })
 
-//POST add a DJ-- WORKS BUT READING 500 ERROR <---
+//POST add a DJ-- !!WORKS BUT READING 500 ERROR <---!!
 router.post('/register/DJ', (req, res) => {
     const body = req.body;
     db.addDJ(body)
@@ -54,7 +54,7 @@ router.post('/login/DJ', (req, res) => {
     })
   });
 
-  //Update DJ data -- WORKS BUT READING 500 ERROR <---
+  //Update DJ data -- !!WORKS BUT READING 500 ERROR <---!!
 router.put('/updateDJ/:id', (req, res) => {
     const id = req.params.id;
     //const {description, notes} = req.body;
