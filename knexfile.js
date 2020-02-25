@@ -1,87 +1,44 @@
-// Update with your config settings.
-//Following this guide
-//https://dev.to/easybuoy/setting-up-a-node-api-with-postgres-and-knex-588f
-
-/* 
-Testing:
-
-const pgUser = process.env.PG_USER || 'postgres';
-const pgDb = process.env.PG_DB || 'postgres'
-const connection = `postgres://${pgUser}@localhost/${pgDb}`;
-
-*/
-
+require("dotenv").config();
 
 module.exports = {
-
   development: {
-    client: 'pg',
+    client: "pg",
     connection: {
-      host: 'localhost',
-      port: 5432,
-      user: 'postgres',
-      password: 'password',
-      database: 'test'
+      host: process.env.HOSTNAME,
+      port: process.env.PG_PORT,
+      user: process.env.PG_USER,
+      password: process.env.PG_PASSWORD,
+      database: process.env.PG_DATABASE_NAME
     },
+    // generates migration files in a data/migrations/ folder
     migrations: {
-      directory: './data/migrations'
+      directory: "./data/migrations"
     },
     seeds: {
-      directory: './data/seeds'
+      directory: "./data/seeds"
     },
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     }
+  },
+  testing: {
+    // TODO: Add testing configuration details
+    client: "pg",
+    connection: process.env.DB_URL,
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: { directory: "./data/seeds" }
+  },
 
-}};
-
-//sqlite settings for connection
-// connection: {
-//   filename: './data/database_file.db3',
-// },
-
-// default knex file set up below vvvvv
-
-// module.exports = {
-
-//   development: {
-//     client: 'sqlite3',
-//     connection: {
-//       filename: './dev.sqlite3'
-//     }
-//   },
-
-//   staging: {
-//     client: 'postgresql',
-//     connection: {
-//       database: 'my_db',
-//       user:     'username',
-//       password: 'password'
-//     },
-//     pool: {
-//       min: 2,
-//       max: 10
-//     },
-//     migrations: {
-//       tableName: 'knex_migrations'
-//     }
-//   },
-
-//   production: {
-//     client: 'postgresql',
-//     connection: {
-//       database: 'my_db',
-//       user:     'username',
-//       password: 'password'
-//     },
-//     pool: {
-//       min: 2,
-//       max: 10
-//     },
-//     migrations: {
-//       tableName: 'knex_migrations'
-//     }
-//   }
-
-// };
+  production: {
+    // TODO: Add production configuration details
+    client: "pg",
+    connection: process.env.DB_URL,
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: { directory: "./data/seeds" }
+  }
+};
