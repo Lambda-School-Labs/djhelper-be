@@ -1,10 +1,14 @@
 const db = require('../db-config');
 
 module.exports = {
-    getAllDJ,
+    getAllDJs,
+    getDJsByID
 }
 
-function getAllDJ(){
+function getAllDJs(){
     return db('dj-login')
 }
 
+function getDJsByID(id){
+    return db('dj-login').where({ id });
+}
