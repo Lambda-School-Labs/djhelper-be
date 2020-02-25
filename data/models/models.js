@@ -2,7 +2,8 @@ const db = require('../db-config');
 
 module.exports = {
     getAllDJs,
-    getDJsByID
+    getDJsByID,
+    addDJ
 }
 
 function getAllDJs(){
@@ -12,3 +13,10 @@ function getAllDJs(){
 function getDJsByID(id){
     return db('dj-login').where({ id });
 }
+
+//Add DJ
+function addDJ(info) {
+    return db('dj-login')
+      .insert(info)
+      .then(([id]) => this.get(id));
+  }

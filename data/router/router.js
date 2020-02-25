@@ -4,6 +4,7 @@ const db = require('../models/models.js')
 
 const router = express.Router();
 
+//-----!!UN AUTHENTICATED ROUTES BELOW!!-----\\
 //Get ALL DJs -- WORKS
 router.get('/DJs', (req, res) => {
     db.getAllDJs()
@@ -26,6 +27,20 @@ router.get('/DJs/:id', (req, res) => {
         res.status(500).json(err)
     })
 })
+
+//POST add a DJ-- WORKS
+router.post('/register/DJ', (req, res) => {
+    const body = req.body;
+    db.addDJ(body)
+    .then(info => {
+        res.status(200).json(info)
+    })
+    .catch(ress => {
+        res.status(500).json({error: "POST ERROR: You are not registering a DJ properly"})
+    })
+})
+
+//-----!!AUTHENTICATED ROUTES BELOW!!-----\\
 
 
 module.exports = router;
