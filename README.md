@@ -4,7 +4,7 @@
 
 # API Documentation
 
-#### TODO Backend delpoyed at [AWS]() <br>
+#### TODO Backend deployed at [AWS]() <br>
 
 ## Getting started
 
@@ -15,9 +15,12 @@ To get the server running locally:
 - `npm server` to start the local server
 - `npm test` to start server using testing environment
 
+The server requires a PostgreSQL database to be running and configured in a `.env` file.
+
 ### Backend framework goes here
 
 🚫 Why did you choose this framework?
+(npm, NodeJS, express, PostgreSQL...)?
 
 - Point One
 - Point Two
@@ -47,15 +50,13 @@ These routes do **_not_** require a JSON token in the header.
 
 #### DJ Routes
 
-| Method | Endpoint         | Access Control      | Description                            |
-| ------ | ---------------- | ------------------- | -------------------------------------- |
-| GET    | `/auth/dj/:djId` | all users           | Returns info for the logged in DJ.     |
-| PUT    | `/auth/dj/:djId` | owners, supervisors | Returns all users for an organization. |
-| DELETE | `/auth/dj/:djId` | owners, supervisors | Returns info for a single user.        |
+| Method | Endpoint       | Access Control      | Description                            |
+| ------ | -------------- | ------------------- | -------------------------------------- |
+| GET    | `/auth/dj/:id` | all users           | Returns info for the logged in DJ.     |
+| PUT    | `/auth/dj/:id` | owners, supervisors | Returns all users for an organization. |
+| DELETE | `/auth/dj/:id` | owners, supervisors | Returns info for a single user.        |
 
 # Data Model
-
-🚫This is just an example. Replace this with your data model
 
 #### DJs
 
@@ -66,6 +67,7 @@ These routes do **_not_** require a JSON token in the header.
   id: INTEGER
   username: STRING
   password: STRING
+  name: STRING
   email: STRING
   phone: STRING
   website: STRING
@@ -89,7 +91,7 @@ These routes do **_not_** require a JSON token in the header.
 
 #### Events
 
-TODO: Complete this section
+TODO: Update this section
 
 ---
 
@@ -144,10 +146,10 @@ create a .env file that includes the following:
 PORT - optional port number for this app. Defaults to 6000.
 
 DB_HOSTNAME - e.g. "localhost"
-PG_DATABASE_NAME - Name of the database
-PG_PORT
-PG_USER
-PG_PASSWORD
+PG_DATABASE_NAME - Name of the database.
+PG_PORT - Postgres port number. Defaults to 5432.
+PG_USER - Postgres database username.
+PG_PASSWORD - Postgres database user's password.
 
 TODO:
 
