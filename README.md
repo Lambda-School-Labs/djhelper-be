@@ -4,7 +4,9 @@
 
 # API Documentation
 
-#### TODO Backend deployed at [AWS]() <br>
+#### Backend deployed at [AWS]() <br>
+
+TODO: Update link above
 
 ## Getting started
 
@@ -141,15 +143,17 @@ TODO: Update this section
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
-create a .env file that includes the following:
+create a `.env` file that includes the following:
 
+```
 PORT - optional port number for this app. Defaults to 6000.
 
-DB_HOSTNAME - e.g. "localhost"
+DB_HOSTNAME - e.g. "localhost".
 PG_DATABASE_NAME - Name of the database.
 PG_PORT - Postgres port number. Defaults to 5432.
 PG_USER - Postgres database username.
 PG_PASSWORD - Postgres database user's password.
+```
 
 TODO:
 
