@@ -1,92 +1,115 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
+🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be completed by. Make sure to delete the numbers by the end of Labs.
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
+🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### Backend deployed at [AWS]() <br>
 
-## 1️⃣ Getting started
+TODO: Update link above
+
+## Getting started
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
-
 - Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+- `npm i` to install all required dependencies
+- `npm server` to start the local server
+- `npm test` to start server using testing environment
+
+The server requires a PostgreSQL database to be running and configured in a `.env` file.
 
 ### Backend framework goes here
 
 🚫 Why did you choose this framework?
+(npm, NodeJS, express, PostgreSQL...)?
 
--    Point One
--    Point Two
--    Point Three
--    Point Four
+- Point One
+- Point Two
+- Point Three
+- Point Four
 
 ## 2️⃣ Endpoints
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
+#### Onboarding Routes
 
-#### Organization Routes
+These routes do **_not_** require a JSON token in the header.
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| Method | Endpoint          | Access Control | Description                  |
+| ------ | ----------------- | -------------- | ---------------------------- |
+| POST   | `/login/dj`       | none           | Login for an existing DJ.    |
+| POST   | `/login/guest`    | none           | Login for an existing guest. |
+| POST   | `/register/dj`    | none           | Create a new DJ.             |
+| POST   | `/register/guest` | none           | Create a new guest.          |
 
-#### User Routes
+#### Public Information Routes
 
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+These routes do **_not_** require a JSON token in the header.
+| Method | Endpoint | Access Control | Description |
+| ------ | ------------ | -------------- | ------------------------------- |
+| GET | `/dj/:id` | none | Get information about a DJ. |
+| GET | `/event/:id` | none | Get information about an event. |
+
+#### DJ Routes
+
+| Method | Endpoint       | Access Control      | Description                            |
+| ------ | -------------- | ------------------- | -------------------------------------- |
+| GET    | `/auth/dj/:id` | all users           | Returns info for the logged in DJ.     |
+| PUT    | `/auth/dj/:id` | owners, supervisors | Returns all users for an organization. |
+| DELETE | `/auth/dj/:id` | owners, supervisors | Returns info for a single user.        |
 
 # Data Model
 
-🚫This is just an example. Replace this with your data model
-
-#### 2️⃣ ORGANIZATIONS
+#### DJs
 
 ---
 
 ```
 {
-  id: UUID
+  id: INTEGER
+  username: STRING
+  password: STRING
   name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
+  email: STRING
+  phone: STRING
+  website: STRING
+  bio: STRING
+  profile_pic_url: STRING
 }
 ```
 
-#### USERS
+#### Guests
 
 ---
 
 ```
 {
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
+  id: INTEGER
+  username: STRING
+  password: STRING
+  email: STRING
+}
+```
+
+#### Events
+
+TODO: Update this section
+
+---
+
+```
+{
+  id: INTEGER
+  dj: INTEGER
+  event_name: STRING
+  address: STRING
   email: STRING
   phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+  map_url: STRING
+  start_time: DATETIME (or int)
+  end_time: DATETIME (or int)
+  venue_url: STRING
+  venue_phone: STRING
 }
 ```
 
@@ -120,16 +143,25 @@ To get the server running locally:
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
-create a .env file that includes the following:
+create a `.env` file that includes the following:
 
-🚫 These are just examples, replace them with the specifics for your app
-    
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
-    *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
-    
+```
+PORT - optional port number for this app. Defaults to 6000.
+
+DB_HOSTNAME - e.g. "localhost".
+PG_DATABASE_NAME - Name of the database.
+PG_PORT - Postgres port number. Defaults to 5432.
+PG_USER - Postgres database username.
+PG_PASSWORD - Postgres database user's password.
+```
+
+TODO:
+
+- Separate variables for development, staging, test, and production.
+- Add these fields:
+  _ NODE_ENV - set to "development" until ready for "production"
+  _ JWT*SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-\_=+)') for i in range(50)])
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -138,11 +170,12 @@ Please note we have a [code of conduct](./code_of_conduct.md). Please follow it 
 
 ### Issue/Bug Request
 
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -168,5 +201,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/djhelper-fe) for details on the frontend of this project.

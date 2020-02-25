@@ -1,87 +1,44 @@
-// Update with your config settings.
+require("dotenv").config();
 
 module.exports = {
-
   development: {
-    // our DBMS driver
-    client: 'pg',
-    // the location of our db
-    connection: process.env.DB_URL,
-    // necessary when using sqlite3
-    useNullAsDefault: true,
+    client: "pg",
+    connection: {
+      host: process.env.DB_HOSTNAME,//'localhost',
+      port: process.env.PG_PORT,//5432,
+      user: process.env.PG_USER,//'postgres',
+      password: process.env.PG_PASSWORD,
+      database: process.env.PG_DATABASE_NAME//'test'
+    },
     // generates migration files in a data/migrations/ folder
     migrations: {
-      directory: './data/migrations'
+      directory: "./data/migrations"
     },
     seeds: {
-      directory: './data/seeds'
-  }
+      directory: "./data/seeds"
+    },
+    pool: {
+      min: 2,
+      max: 10
+    }
   },
   testing: {
-    client: 'pg',
+    // TODO: Add testing configuration details
+    client: "pg",
     connection: process.env.DB_URL,
     migrations: {
-      directory: './data/migrations',
+      directory: "./data/migrations"
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: "./data/seeds" }
   },
 
   production: {
-    client: 'pg',
+    // TODO: Add production configuration details
+    client: "pg",
     connection: process.env.DB_URL,
     migrations: {
-      directory: './data/migrations',
+      directory: "./data/migrations"
     },
-    seeds: { directory: './data/seeds' },
-  },
+    seeds: { directory: "./data/seeds" }
+  }
 };
-
-//sqlite settings for connection
-// connection: {
-//   filename: './data/database_file.db3',
-// },
-
-// default knex file set up below vvvvv
-
-// module.exports = {
-
-//   development: {
-//     client: 'sqlite3',
-//     connection: {
-//       filename: './dev.sqlite3'
-//     }
-//   },
-
-//   staging: {
-//     client: 'postgresql',
-//     connection: {
-//       database: 'my_db',
-//       user:     'username',
-//       password: 'password'
-//     },
-//     pool: {
-//       min: 2,
-//       max: 10
-//     },
-//     migrations: {
-//       tableName: 'knex_migrations'
-//     }
-//   },
-
-//   production: {
-//     client: 'postgresql',
-//     connection: {
-//       database: 'my_db',
-//       user:     'username',
-//       password: 'password'
-//     },
-//     pool: {
-//       min: 2,
-//       max: 10
-//     },
-//     migrations: {
-//       tableName: 'knex_migrations'
-//     }
-//   }
-
-// };
