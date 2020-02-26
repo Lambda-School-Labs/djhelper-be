@@ -72,7 +72,7 @@ router.delete("/delete-dj/:id", (req, res) => {
   const body = req.body;
   db.removeDJ(id)
     .then(info => {
-      res.status(200).json({ message: `${info} removed` });
+      res.status(200).json({ message: `${info} DJ(s) removed` });
     })
     .catch(res => {
       res

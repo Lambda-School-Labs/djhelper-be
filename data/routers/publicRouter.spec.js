@@ -2,7 +2,7 @@ const server = require("../../server.js");
 const request = require("supertest");
 const db = require("../db-config.js");
 
-const publicRouter = "./publicRouter.js"; // TODO: require()?
+const publicRouter = "./publicRouter.js"; 
 
 describe("publicRouter", function() {
     test("should test that true === true", async function() {
@@ -29,9 +29,9 @@ describe("Tests to see if GET dj by id route is running (get /dj/1)", function()
     });
   });
 
-  //--------POST routes--------\\ READING 500 but works
-//--Tests to see if a DJ can POST to our backend
-//NOTE BELOW
+  //--------POST routes--------\\ 
+//--Tests to see if a DJ can POST to our backend *READING 500 but works
+//***NOTE BELOW READ BEFORE TESTING***
 /*IF YOU RUN THIS TEST TWICE IN A ROW WITHOUT DELETING ID # 100 IN YOUR BACKEND TEST WILL FAIL */
 describe('Post Endpoint for a DJ', () => {
     it('Should create a new DJ ', async function() {
@@ -56,6 +56,7 @@ describe('Post Endpoint for a DJ', () => {
 
   //--------PUT routes--------\\ READING 500 but works
   //--Tests to see if a DJ can PUT to our backend
+  //--Test works when you check endpoint 100 and see these values below.
 describe('PUT Endpoint for a DJ', () => {
     it('Should update an existing DJ', async function() {
       const res = await request(server)
@@ -78,7 +79,7 @@ describe('PUT Endpoint for a DJ', () => {
   })
 
   //--------DELETE routes--------\\
-  //--Tests to see if a DJ can be DELETED from our backend
+  //--Tests to see if a DJ can be DELETED from our backend -- reading as intended
   describe('Post Endpoint for a DJ', () => {
     it('Should DELETE an existing DJ', async function() {
       const res = await request(server)
