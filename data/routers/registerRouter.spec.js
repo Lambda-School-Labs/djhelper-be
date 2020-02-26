@@ -26,4 +26,40 @@ describe("registerRouter", function() {
       expect(res.type).toMatch(/json/i);
     });
   });
+
+  // --------------- DJ Registrations --------------------
+  describe("DJ registrations are working", function() {
+    test("valid registration returns status 201", async function() {
+      const res = await request(server)
+        .post("/api/register/dj")
+        .send({
+          username: "vanilla",
+          password: "iceicebaby",
+          email: "vanilla@ice.com",
+          name: "Vanilla Ice"
+        });
+      expect(res.status).toBe(201);
+    });
+
+    test("attempt to register without required fields fails with status 400", async function() {
+      const res = await request(server)
+        .post("/api/register/dj")
+        .send({
+          username: "just_a_username"
+        });
+      expect(res.status).toBe(400);
+    });
+
+    test("attempt to register an existing user fails with status 409", async function() {
+      const res = await request(server)
+        .post("/api/register/dj")
+        .send({
+          username: "joe3",
+          password: "joe3",
+          email: "joe3@gmail.com",
+          name: "Joe vs. Volcano"
+        });
+      expect(res.status).toBe(409); // Conflict
+    });
+  }); // describe DJ registrations
 });

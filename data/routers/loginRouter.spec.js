@@ -29,7 +29,7 @@ describe("loginRouter", function() {
 
   // --------------- DJ Logins --------------------
   describe("DJ logins are working", function() {
-    test("valid login returns status 201 and token", async function() {
+    test("valid login returns status 200 and token", async function() {
       const res = await request(server)
         .post("/api/login/dj")
         .send({
