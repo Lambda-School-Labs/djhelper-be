@@ -1,7 +1,4 @@
 const router = require("express").Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../config/secrets");
 
 router.get("/", (req, res) => {
   res.status(200).json({ message: "Auth router is functioning." });

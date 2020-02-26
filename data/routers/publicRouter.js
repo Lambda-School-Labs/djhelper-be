@@ -3,8 +3,21 @@ const db = require("../models/models.js");
 
 const router = express.Router();
 
+/************************************************************
+  publicRouter
+  -----------------------------------------------------------
+  This file serves informational routes that
+  are not protected and serves information that
+  is available to the general public.
+  -----------------------------------------------------------
+  It is primarily for advertising of DJs and events.
+  -----------------------------------------------------------
+  The private versions of these routes are located
+  under the authRouter endpoints.
+  ******************************************************** */
+
 // Get ALL DJs -- WORKS
-router.get("/DJs", (req, res) => {
+router.get("/djs", (req, res) => {
   db.getAllDJs()
     .then(info => {
       res.status(200).json(info);
@@ -14,8 +27,8 @@ router.get("/DJs", (req, res) => {
     });
 });
 
-// Get DJs by ID -- WORKS
-router.get("/DJs/:id", (req, res) => {
+// Get DJ by ID -- WORKS
+router.get("/dj/:id", (req, res) => {
   const id = req.params.id;
   db.getDJsByID(id)
     .then(info => {
@@ -26,36 +39,8 @@ router.get("/DJs/:id", (req, res) => {
     });
 });
 
-// POST add a DJ-- WORKS BUT READING 500 ERROR <---
-router.post("/register/DJ", (req, res) => {
-  const body = req.body;
-  db.addDJ(body)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(ress => {
-      res
-        .status(500)
-        .json({ error: "POST ERROR: You are not registering a DJ properly" });
-    });
-});
-
-// POST to Login -- I THINK WORKS!
-router.post("/login/DJ", (req, res) => {
-  // implement login
-  let { username, password } = req.body;
-  db.findBy({ username })
-    .first()
-    .then(user => {
-      res.status(200).json({ message: `Welcome ${db.username}` });
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
 // FIXME: Update DJ data -- WORKS BUT READING 500 ERROR <---
-router.put("/updateDJ/:id", (req, res) => {
+router.put("/update-dj/:id", (req, res) => {
   const id = req.params.id;
   //const {description, notes} = req.body;
   const body = req.body;
@@ -71,7 +56,10 @@ router.put("/updateDJ/:id", (req, res) => {
 });
 
 // DELETE -- WORKS (Currently has 1 removed)
-router.delete("/deleteDJ/:id", (req, res) => {
+// FIXME: 1. Why is there a variable named "story"?
+// 2. Why are we referencing description and notes in the message body?
+// 3. Is "res" misspelled as "ress" in catch block?
+router.delete("/delete-dj/:id", (req, res) => {
   const id = req.params.id;
   const { description, notes } = req.body;
   db.removeDJ(id)
