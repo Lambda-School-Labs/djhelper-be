@@ -1,15 +1,15 @@
 const server = require("../../server.js");
 const request = require("supertest");
 const db = require("../db-config.js");
-
+ 
 const publicRouter = "./publicRouter.js"; 
-
+ 
 describe("publicRouter", function() {
     test("should test that true === true", async function() {
       await expect(true).toBe(true);
     });
 });
-
+ 
 //--------GET routes--------\\
 //--Tests to see if /djs route is running 
 describe("Tests to see if GET dj route is running (get /dj)", function() {
@@ -19,7 +19,7 @@ describe("Tests to see if GET dj route is running (get /dj)", function() {
       expect(res.type).toMatch(/json/i);
     });
   });
-
+ 
   //--Tests to see if /djs route is running 
 describe("Tests to see if GET dj by id route is running (get /dj/1)", function() {
     test("should return 200 OK", async function() {
@@ -28,7 +28,7 @@ describe("Tests to see if GET dj by id route is running (get /dj/1)", function()
       expect(res.type).toMatch(/json/i);
     });
   });
-
+ 
   //--------POST routes--------\\ 
 //--Tests to see if a DJ can POST to our backend *READING 500 but works
 //***NOTE BELOW READ BEFORE TESTING***
@@ -53,7 +53,7 @@ describe('Post Endpoint for a DJ', () => {
       expect(res.body).toBeDefined;
     })
   })
-
+ 
   //--------PUT routes--------\\  
   //--Tests to see if a DJ can PUT to our backend
   //--Test works when you check endpoint 100 and see these values below.
@@ -77,7 +77,7 @@ describe('PUT Endpoint for a DJ', () => {
       expect(res.body).toBeDefined;
     })
   })
-
+ 
   //--------DELETE routes--------\\
   //--Tests to see if a DJ can be DELETED from our backend -- reading as intended for now
   describe('Post Endpoint for a DJ', () => {
