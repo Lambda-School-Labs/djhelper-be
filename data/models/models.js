@@ -4,6 +4,7 @@ module.exports = {
   getAllDJs,
   getDJsByID,
   addDJ,
+  findById,
   findBy,
   updateDJ,
   removeDJ
@@ -17,6 +18,14 @@ function getAllDJs() {
 //Get a specific DJ by their id
 function getDJsByID(id) {
   return db("dj-login").where({ id });
+}
+ 
+// TODO: This function duplicates the features of the
+// function above. Choose one or the other.
+async function findById(id) {
+  return await db("dj-login")
+    .where({ id })
+    .first();
 }
  
 async function addDJ(info) {
