@@ -54,7 +54,6 @@ router.post('/register/dj', (req, res, next) => {
 // FIXME: Update DJ data -- WORKS BUT READING 500 ERROR <---
 router.put("/update-dj/:id", (req, res) => {
   const id = req.params.id;
-  //const {description, notes} = req.body;
   const body = req.body;
   db.updateDJ(id, body)
     .then(info => {
@@ -67,10 +66,7 @@ router.put("/update-dj/:id", (req, res) => {
     });
 });
 
-// DELETE -- WORKS (Currently has 1 removed)
-
-// 2. Why are we referencing description and notes in the message body?
-
+// DELETE -- WORKS 
 router.delete("/delete-dj/:id", (req, res) => {
   const id = req.params.id;
   const body = req.body;
