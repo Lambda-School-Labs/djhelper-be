@@ -39,7 +39,7 @@ router.get("/dj/:id", (req, res) => {
     });
 });
 
-// FIXME: POST add a DJ -- WORKS
+//POST add a DJ -- WORKS
 router.post('/register/dj', (req, res, next) => {
   const body = req.body;
   db.addDJ(body)
@@ -57,13 +57,13 @@ router.put("/update-dj/:id", (req, res) => {
   //const {description, notes} = req.body;
   const body = req.body;
   db.updateDJ(id, body)
-    .then(story => {
-      res.status(200).json(story);
+    .then(info => {
+      res.status(200).json(info);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ error: "UPDATE ERROR: You are not getting DJ data back" });
+        .json(err);
     });
 });
 
