@@ -19,14 +19,6 @@ function getDJsByID(id) {
   return db("dj-login").where({ id });
 }
  
-// TODO: This function duplicates the features of the
-// function above. Choose one or the other.
-async function findById(id) {
-  return await db("dj-login")
-    .where({ id })
-    .first();
-}
- 
 async function addDJ(info) {
   console.log("Storing info:", info);
   const [id] = await db("dj-login")

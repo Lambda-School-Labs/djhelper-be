@@ -30,7 +30,7 @@ describe("Tests to see if GET dj by id route is running (get /dj/1)", function()
   });
  
   //--------POST routes--------\\ 
-//--Tests to see if a DJ can POST to our backend *READING 500 but works
+//--Tests to see if a DJ can POST to our backend
 //***NOTE BELOW READ BEFORE TESTING***
 /*IF YOU RUN THIS TEST TWICE IN A ROW WITHOUT DELETING ID # 100 IN YOUR BACKEND TEST WILL FAIL */
 describe('Post Endpoint for a DJ', () => {
