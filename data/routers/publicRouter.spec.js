@@ -31,6 +31,8 @@ describe("Tests to see if GET dj by id route is running (get /dj/1)", function()
 
   //--------POST routes--------\\ READING 500 but works
 //--Tests to see if a DJ can POST to our backend
+//NOTE BELOW
+/*IF YOU RUN THIS TEST TWICE IN A ROW WITHOUT DELETING ID # 100 IN YOUR BACKEND TEST WILL FAIL */
 describe('Post Endpoint for a DJ', () => {
     it('Should create a new DJ ', async function() {
       const res = await request(server)
@@ -46,7 +48,7 @@ describe('Post Endpoint for a DJ', () => {
           bio: "I am a tested dj",
           profile_pic_url: "cutestcattestcat.com/cat/cat"
         })
-      expect(res.status).toEqual(500)
+      expect(res.status).toEqual(200)
       //expect(res.body).toHaveProperty('post')
       expect(res.body).toBeDefined;
     })
