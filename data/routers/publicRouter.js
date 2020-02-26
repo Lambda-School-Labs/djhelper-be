@@ -51,7 +51,7 @@ router.post('/register/dj', (req, res, next) => {
   })
 })
 
-// FIXME: Update DJ data -- WORKS BUT READING 500 ERROR <---
+// FIXME: Update DJ data -- WORKS --> BUT READING 500 ERROR DUE TO POSTGRESQL <---
 router.put("/update-dj/:id", (req, res) => {
   const id = req.params.id;
   const body = req.body;

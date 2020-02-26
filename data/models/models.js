@@ -41,12 +41,14 @@ function findBy(filter) {
   return db("dj-login").where(filter);
 }
 
-//Update a DJs info they used at registration
-function updateDJ(id, changes) {
-  return db("dj-login")
-    .where("id", id)
-    .update(changes)
-    .then(count => (count > 0 ? this.get(id) : null));
+//Post Route
+function updateDJ(id, updatedUser) {
+    return db("dj-login")
+        .where({id})
+        .update(updatedUser)
+        .then( () => {
+            return getDJsByID(id);
+        })
 }
 
 //completely remove a DJ

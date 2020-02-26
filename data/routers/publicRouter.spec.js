@@ -54,7 +54,7 @@ describe('Post Endpoint for a DJ', () => {
     })
   })
 
-  //--------PUT routes--------\\ READING 500 but works
+  //--------PUT routes--------\\  
   //--Tests to see if a DJ can PUT to our backend
   //--Test works when you check endpoint 100 and see these values below.
 describe('PUT Endpoint for a DJ', () => {
@@ -72,14 +72,14 @@ describe('PUT Endpoint for a DJ', () => {
           bio: "I am a tested d_update_j",
           profile_pic_url: "cutestcattestcat.com/cat/update_cat"
         })
-      expect(res.status).toEqual(500)
+      expect(res.status).toEqual(200)
       //expect(res.body).toHaveProperty('post')
       expect(res.body).toBeDefined;
     })
   })
 
   //--------DELETE routes--------\\
-  //--Tests to see if a DJ can be DELETED from our backend -- reading as intended
+  //--Tests to see if a DJ can be DELETED from our backend -- reading as intended for now
   describe('Post Endpoint for a DJ', () => {
     it('Should DELETE an existing DJ', async function() {
       const res = await request(server)
