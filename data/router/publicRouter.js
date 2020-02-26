@@ -35,8 +35,8 @@ router.post('/register/DJ', (req, res) => {
     .then(info => {
         res.status(200).json(info)
     })
-    .catch(ress => {
-        res.status(500).json({error: "POST ERROR: You are not registering a DJ properly"})
+    .catch(res => {
+        res.status(500).json(res)
     })
 })
 

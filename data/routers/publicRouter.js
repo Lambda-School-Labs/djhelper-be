@@ -39,6 +39,18 @@ router.get("/dj/:id", (req, res) => {
     });
 });
 
+// FIXME: POST add a DJ -- WORKS
+router.post('/register/dj', (req, res, next) => {
+  const body = req.body;
+  db.addDJ(body)
+  .then(info => {
+      res.status(200).json(info)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
 // FIXME: Update DJ data -- WORKS BUT READING 500 ERROR <---
 router.put("/update-dj/:id", (req, res) => {
   const id = req.params.id;
@@ -56,17 +68,17 @@ router.put("/update-dj/:id", (req, res) => {
 });
 
 // DELETE -- WORKS (Currently has 1 removed)
-// FIXME: 1. Why is there a variable named "story"?
+
 // 2. Why are we referencing description and notes in the message body?
-// 3. Is "res" misspelled as "ress" in catch block?
+
 router.delete("/delete-dj/:id", (req, res) => {
   const id = req.params.id;
   const { description, notes } = req.body;
   db.removeDJ(id)
-    .then(story => {
-      res.status(200).json({ message: `${story} removed` });
+    .then(info => {
+      res.status(200).json({ message: `${info} removed` });
     })
-    .catch(ress => {
+    .catch(res => {
       res
         .status(500)
         .json({ error: "DELETE ERROR: You are not getting any DJ data back" });
