@@ -2,7 +2,7 @@ const server = require("../../server.js");
 const request = require("supertest");
 const db = require("../db-config.js");
 
-const registerRouter = "./registerRouter.js"; // TODO: require()?
+const registerRouter = "./registerRouter.js";
 
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
@@ -29,6 +29,15 @@ describe("registerRouter", function() {
 
   // --------------- DJ Registrations --------------------
   describe("DJ registrations are working", function() {
+    // FIXME: The following statement resets the database
+    // between runs so "knex:seed run" isn't necessary.
+    // However, it causes POST requests to sometimes act
+    // like PUT requests.
+    // beforeEach(async () => {
+    //   // Reset database between runs
+    //   await db("dj-login").truncate();
+    // });
+
     test("valid registration returns status 201", async function() {
       const res = await request(server)
         .post("/api/register/dj")
@@ -54,8 +63,8 @@ describe("registerRouter", function() {
       const res = await request(server)
         .post("/api/register/dj")
         .send({
-          username: "joe3",
-          password: "joe3",
+          username: "vanilla",
+          password: "hotlava",
           email: "joe3@gmail.com",
           name: "Joe vs. Volcano"
         });

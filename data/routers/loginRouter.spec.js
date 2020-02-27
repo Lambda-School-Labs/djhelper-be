@@ -2,7 +2,7 @@ const server = require("../../server.js");
 const request = require("supertest");
 const db = require("../db-config.js");
 
-const loginRouter = "./loginRouter.js"; // TODO: require()?
+const loginRouter = "./loginRouter.js";
 
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");

@@ -40,18 +40,19 @@ router.get("/dj/:id", (req, res) => {
 });
 
 // DELETE -- WORKS
-router.delete("/delete-dj/:id", (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
-  db.removeDJ(id)
-    .then(info => {
-      res.status(200).json({ message: `${info} DJ(s) removed` });
-    })
-    .catch(res => {
-      res
-        .status(500)
-        .json({ error: "DELETE ERROR: You are not getting any DJ data back" });
-    });
-});
+// TODO: Remove (Function moved to authRouter)
+// router.delete("/delete-dj/:id", (req, res) => {
+//   const id = req.params.id;
+//   const body = req.body;
+//   db.removeDJ(id)
+//     .then(info => {
+//       res.status(200).json({ message: `${info} DJ(s) removed` });
+//     })
+//     .catch(res => {
+//       res
+//         .status(500)
+//         .json({ error: "DELETE ERROR: You are not getting any DJ data back" });
+//     });
+// });
 
 module.exports = router;
