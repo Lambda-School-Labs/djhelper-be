@@ -4,12 +4,6 @@ const db = require("../db-config.js");
 
 const authRouter = "./authRouter.js";
 
-// TODO: All routes in this file are authenticated;
-// The following may be necessary:
-// const jwt = require("jsonwebtoken");
-// const { jwtSecret } = require("../config/secrets");
-// const authenticate = require("../../middleware/auth-jest.js");
-
 describe("authRouter", function() {
   test("runs the tests", async function() {
     await expect(true).toBe(true);
@@ -27,6 +21,7 @@ describe("authRouter", function() {
     });
   });
 
+  // TODO:
   // ------------ PUT tests -------------
   // 1. Modify fields for an existing user.
   // 2. Try to modify fields for a user that doesn't exist.

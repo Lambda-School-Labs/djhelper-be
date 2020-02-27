@@ -21,6 +21,7 @@ function getAllDJs() {
 // Both have external dependencies!
 // Choose one based on desired behavior and update deps.
 // ----------------------------------------------------
+//
 // Dan
 function getDJsByID(id) {
   return db("dj-login").where({ id });
@@ -51,7 +52,8 @@ function findBy(filter) {
 // Update DJ
 // --------------------------------------------------------
 //TODO: Choose one of the following 2 functions based
-// on desired behavior.
+// on desired behavior.:
+//
 // Andrew:
 // async function updateDJ(id, djData) {
 //   return await db("dj-login")

@@ -24,11 +24,10 @@ server.get("/", (req, res) => {
 });
 
 // Routes
-// FIXME: Uncomment "authenticate" before pull request.
 server.use("/api", publicRouter);
 server.use("/api/login", loginRouter);
 server.use("/api/register", registerRouter);
-server.use("/api/auth", /* authenticate, */ authRouter);
+server.use("/api/auth", authenticate, authRouter);
 
 // Exports
 module.exports = server;
