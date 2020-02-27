@@ -10,27 +10,24 @@ describe("publicRouter", function() {
   });
 });
 
-//--------GET routes--------\\
-//--Tests to see if /djs route is running
-describe("Tests to see if GET dj route is running (get /dj)", function() {
-  test("should return 200 OK", async function() {
+//-------- GET routes --------\\
+//-- Tests to see if /djs route is running
+describe("Public Router tests", function() {
+  test("get /api/djs should return all djs", async function() {
     const res = await request(server).get("/api/djs");
     expect(res.status).toBe(200);
     expect(res.type).toMatch(/json/i);
   });
-});
 
-//--Tests to see if /djs route is running
-describe("Tests to see if GET dj by id route is running (get /dj/1)", function() {
-  test("should return 200 OK", async function() {
+  test("get /api/dj/1 should return dj with ID 1", async function() {
     const res = await request(server).get("/api/dj/1");
     expect(res.status).toBe(200);
     expect(res.type).toMatch(/json/i);
   });
 });
 
-//--------POST routes--------\\
-//--Tests to see if a DJ can POST to our backend *READING 500 but works
+//-------- POST routes --------\\
+//--Tests to see if a DJ can POST to our backend
 //***NOTE BELOW READ BEFORE TESTING***
 /*IF YOU RUN THIS TEST TWICE IN A ROW WITHOUT DELETING ID # 100 IN YOUR BACKEND TEST WILL FAIL */
 // describe('Post Endpoint for a DJ', () => {
@@ -38,7 +35,7 @@ describe("Tests to see if GET dj by id route is running (get /dj/1)", function()
 //       const res = await request(server)
 //         .post('/api/register/dj')
 //         .send({
-//           id: 100, // TODO: Test to see if the breaks.
+//           id: 100,
 //           username: 'test_dj',
 //           password: 'djpassword1',
 //           name: "tested_dj",
@@ -54,38 +51,38 @@ describe("Tests to see if GET dj by id route is running (get /dj/1)", function()
 //     })
 //   })
 
-//--------PUT routes--------\\ READING 500 but works
-//--Tests to see if a DJ can PUT to our backend
-//--Test works when you check endpoint 100 and see these values below.
-describe("PUT Endpoint for a DJ", () => {
-  it("Should update an existing DJ", async function() {
-    const res = await request(server)
-      .put("/api/update-dj/100")
-      .send({
-        id: 100,
-        username: "test_update_dj_username",
-        password: "djpassword1_update",
-        name: "tested_dj_update",
-        email: "tested_dj_update@ggmail.com",
-        phone: "3452523784",
-        website: "djtest.djtest_update.gg",
-        bio: "I am a tested d_update_j",
-        profile_pic_url: "cutestcattestcat.com/cat/update_cat"
-      });
-    expect(res.status).toEqual(500);
-    //expect(res.body).toHaveProperty('post')
-    expect(res.body).toBeDefined;
-  });
-});
+//   //--------PUT routes--------\\
+//   //--Tests to see if a DJ can PUT to our backend
+//   //--Test works when you check endpoint 100 and see these values below.
+// describe('PUT Endpoint for a DJ', () => {
+//     it('Should update an existing DJ', async function() {
+//       const res = await request(server)
+//         .put('/api/update-dj/100')
+//         .send({
+//           id: 100,
+//           username: 'test_update_dj_username',
+//           password: 'djpassword1_update',
+//           name: "tested_dj_update",
+//           email: "tested_dj_update@ggmail.com",
+//           phone: "3452523784",
+//           website: "djtest.djtest_update.gg",
+//           bio: "I am a tested d_update_j",
+//           profile_pic_url: "cutestcattestcat.com/cat/update_cat"
+//         })
+//       expect(res.status).toEqual(200)
+//       //expect(res.body).toHaveProperty('post')
+//       expect(res.body).toBeDefined;
+//     })
+//   })
 
-//--------DELETE routes--------\\
-//--Tests to see if a DJ can be DELETED from our backend -- reading as intended
-describe("Post Endpoint for a DJ", () => {
-  it("Should DELETE an existing DJ", async function() {
-    const res = await request(server)
-      .delete("/api/update-dj/100")
-      .send();
-    expect(res.status).toEqual(404);
-    expect(res.body).toBeDefined;
-  });
-});
+//   //--------DELETE routes--------\\
+//   //--Tests to see if a DJ can be DELETED from our backend -- reading as intended for now
+//   describe('Post Endpoint for a DJ', () => {
+//     it('Should DELETE an existing DJ', async function() {
+//       const res = await request(server)
+//         .delete('/api/update-dj/100')
+//         .send()
+//       expect(res.status).toEqual(404)
+//       expect(res.body).toBeDefined;
+//     })
+//   })

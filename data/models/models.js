@@ -4,6 +4,7 @@ module.exports = {
   getAllDJs,
   getDJsByID,
   addDJ,
+  findById,
   findBy,
   findById,
   updateDJ,
@@ -15,18 +16,23 @@ function getAllDJs() {
   return db("dj-login");
 }
 
-//Get a specific DJ by their id
+//Get a specific DJ by id
+// TODO: These two functions accomplish the same thing.
+// Both have external dependencies!
+// Choose one based on desired behavior and update deps.
+// ----------------------------------------------------
+// Dan
 function getDJsByID(id) {
   return db("dj-login").where({ id });
 }
-
-// TODO: This function duplicates the features of the
-// function above. Choose one or the other.
+// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+// Andrew
 async function findById(id) {
   return await db("dj-login")
     .where({ id })
     .first();
 }
+// ------------------------------------------------------
 
 async function addDJ(info) {
   console.log("Storing info:", info);
@@ -42,19 +48,26 @@ function findBy(filter) {
   return db("dj-login").where(filter);
 }
 
-//Update a DJs info they used at registration
-// function updateDJ(id, changes) {
-//   return db("dj-login")
-//     .where("id", id)
-//     .update(changes)
-//     .then(count => (count > 0 ? this.get(id) : null));
-// }
-
-async function updateDJ(id, djData) {
-  return await db("dj-login")
+// Update DJ
+// --------------------------------------------------------
+//TODO: Choose one of the following 2 functions based
+// on desired behavior.
+// Andrew:
+// async function updateDJ(id, djData) {
+//   return await db("dj-login")
+//     .where({ id })
+//     .update(djData);
+// -- -- -- -- -- -- -- -- -- -- -- -- -- -- --- -- -- -- --
+// Dan
+function updateDJ(id, updatedUser) {
+  return db("dj-login")
     .where({ id })
-    .update(djData);
+    .update(updatedUser)
+    .then(() => {
+      return getDJsByID(id);
+    });
 }
+// --------------------------------------------------------
 
 //completely remove a DJ
 function removeDJ(id) {
