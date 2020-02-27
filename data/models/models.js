@@ -5,6 +5,7 @@ module.exports = {
   getDJsByID,
   addDJ,
   findBy,
+  findById,
   updateDJ,
   removeDJ
 };
@@ -42,11 +43,17 @@ function findBy(filter) {
 }
 
 //Update a DJs info they used at registration
-function updateDJ(id, changes) {
-  return db("dj-login")
-    .where("id", id)
-    .update(changes)
-    .then(count => (count > 0 ? this.get(id) : null));
+// function updateDJ(id, changes) {
+//   return db("dj-login")
+//     .where("id", id)
+//     .update(changes)
+//     .then(count => (count > 0 ? this.get(id) : null));
+// }
+
+async function updateDJ(id, djData) {
+  return await db("dj-login")
+    .where({ id })
+    .update(djData);
 }
 
 //completely remove a DJ

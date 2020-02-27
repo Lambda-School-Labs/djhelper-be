@@ -39,34 +39,20 @@ router.get("/dj/:id", (req, res) => {
     });
 });
 
-//POST add a DJ -- WORKS
-router.post('/register/dj', (req, res, next) => {
-  const body = req.body;
-  db.addDJ(body)
-  .then(info => {
-      res.status(200).json(info)
-  })
-  .catch(err => {
-      res.status(500).json(err)
-  })
-})
-
 // FIXME: Update DJ data -- WORKS BUT READING 500 ERROR <---
-router.put("/update-dj/:id", (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
-  db.updateDJ(id, body)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json(err);
-    });
-});
+// router.put("/update-dj/:id", (req, res) => {
+//   const id = req.params.id;
+//   const body = req.body;
+//   db.updateDJ(id, body)
+//     .then(info => {
+//       res.status(200).json(info);
+//     })
+//     .catch(err => {
+//       res.status(500).json(err);
+//     });
+// });
 
-// DELETE -- WORKS 
+// DELETE -- WORKS
 router.delete("/delete-dj/:id", (req, res) => {
   const id = req.params.id;
   const body = req.body;
