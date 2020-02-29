@@ -7,10 +7,19 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand",
-    "test:coverage": "cross-env DB_ENV=testing jest --coverage"
+    "coverage": "cross-env DB_ENV=testing jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**",
+      "!**/coverage/**",
+      "!**/data/migrations/**",
+      "!**/data/seeds/**"
+    ]
   },
   "repository": {
     "type": "git",
