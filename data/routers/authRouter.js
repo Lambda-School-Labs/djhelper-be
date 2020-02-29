@@ -1,28 +1,28 @@
-const router = require("express").Router();
-const Dj = require("../models/models.js");
+const router = require('express').Router();
+const Dj = require('../models/models.js');
 
-router.get("/", (req, res) => {
-  res.status(200).json({ message: "Auth router is functioning." });
+router.get('/', (req, res) => {
+  res.status(200).json({ message: 'Auth router is functioning.' });
 });
 
 module.exports = router;
 
 // ====================== DJ Routes =========================
 
-router.get("/dj/:id", (req, res) => {
-  res.status(501).json({ message: "DJ get info not implemented." });
+router.get('/dj/:id', (req, res) => {
+  res.status(501).json({ message: 'DJ get info not implemented.' });
 });
 
 // ======= PUT (Update) DJ ===========
-router.put("/dj/:id", (req, res) => {
+router.put('/dj/:id', (req, res) => {
   const { id } = req.params;
   const user = req.body;
 
   if (!id) {
-    res.status(400).json({ message: "DJ ID is required." });
+    res.status(400).json({ message: 'DJ ID is required.' });
   }
   if (user.password) {
-    res.status(400).json({ message: "Passwords may not be changed here." });
+    res.status(400).json({ message: 'Passwords may not be changed here.' });
   }
 
   Dj.findById(id)
@@ -45,13 +45,13 @@ router.put("/dj/:id", (req, res) => {
                   profile_pic_url: data.profile_pic_url
                 })
                 .catch(errMsg => {
-                  res.status(500).json({ message: "Error:", errMsg });
+                  res.status(500).json({ message: 'Error:', errMsg });
                 });
             }); // res.status()
           }) // updateDJ .then
           .catch(error => {
             console.log(error);
-            res.status(500).json({ message: "Error", error });
+            res.status(500).json({ message: 'Error', error });
           }); // updateDJ .catch
       } // if (dj) - user found
       else {
@@ -66,7 +66,7 @@ router.put("/dj/:id", (req, res) => {
 // ========= End PUT DJ =============
 
 // ========= DELETE DJ ==============
-router.delete("/dj/:id", (req, res) => {
+router.delete('/dj/:id', (req, res) => {
   const id = req.params.id;
 
   Dj.findById(id)
@@ -80,7 +80,7 @@ router.delete("/dj/:id", (req, res) => {
           .catch(error => {
             res
               .status(500)
-              .json({ message: "Error removing DJ ${id}: ", error });
+              .json({ message: `Error removing DJ ${id}: `, error });
           });
       } else {
         // -- User ID not found. Send error. --
@@ -88,21 +88,21 @@ router.delete("/dj/:id", (req, res) => {
       }
     }) // .then (findById)
     .catch(errMsg => {
-      res.status(500).json({ message: "Error deleting the DJ:", errMsg });
+      res.status(500).json({ message: 'Error deleting the DJ:', errMsg });
     }); // .catch (findById)
 });
 // ======= End DELETE DJ ============
 
 // ================ Guest Routes ====================
 
-router.get("/guest/:id", (req, res) => {
-  res.status(501).json({ message: "Guest get info not implemented." });
+router.get('/guest/:id', (req, res) => {
+  res.status(501).json({ message: 'Guest get info not implemented.' });
 });
 
-router.put("/guest/:id", (req, res) => {
-  res.status(501).json({ message: "Guest update not implemented." });
+router.put('/guest/:id', (req, res) => {
+  res.status(501).json({ message: 'Guest update not implemented.' });
 });
 
-router.delete("/guest/:id", (req, res) => {
-  res.status(501).json({ message: "Guest delete not implemented." });
+router.delete('/guest/:id', (req, res) => {
+  res.status(501).json({ message: 'Guest delete not implemented.' });
 });

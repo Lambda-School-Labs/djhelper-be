@@ -1,16 +1,17 @@
-const router = require("express").Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../config/secrets");
+/* eslint-disable no-use-before-define */
+const router = require('express').Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { jwtSecret } = require('../config/secrets');
 
-const Dj = require("../models/models.js");
+const Dj = require('../models/models.js');
 
-router.get("/", (req, res) => {
-  res.status(200).json({ message: "Login router is functioning." });
+router.get('/', (req, res) => {
+  res.status(200).json({ message: 'Login router is functioning.' });
 });
 
-router.post("/dj", (req, res) => {
-  let { username, password } = req.body;
+router.post('/dj', (req, res) => {
+  const { username, password } = req.body;
 
   Dj.findBy({ username })
     .first()
@@ -29,7 +30,7 @@ router.post("/dj", (req, res) => {
           token
         });
       } else {
-        res.status(401).json({ message: "Invalid login" });
+        res.status(401).json({ message: 'Invalid login' });
       }
     })
     .catch(err => {
@@ -38,8 +39,8 @@ router.post("/dj", (req, res) => {
     });
 });
 
-router.post("/guest", (req, res) => {
-  res.status(501).json({ message: "Guest login not implemented." });
+router.post('/guest', (req, res) => {
+  res.status(501).json({ message: 'Guest login not implemented.' });
 });
 
 // ========== Helper functions ===========
@@ -50,7 +51,7 @@ function signToken(user) {
     username: user.username
   };
   const options = {
-    expiresIn: "1d"
+    expiresIn: '1d'
   };
   return jwt.sign(payload, jwtSecret, options);
 }

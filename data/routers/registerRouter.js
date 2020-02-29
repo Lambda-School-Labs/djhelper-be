@@ -1,18 +1,18 @@
-const router = require("express").Router();
-const bcrypt = require("bcryptjs");
+const router = require('express').Router();
+const bcrypt = require('bcryptjs');
 
-const Dj = require("../models/models.js");
+const Dj = require('../models/models.js');
 
-router.get("/", (req, res) => {
-  res.status(200).json({ message: "Register router is functioning." });
+router.get('/', (req, res) => {
+  res.status(200).json({ message: 'Register router is functioning.' });
 });
 
 // ================== Register a new DJ ======================
-router.post("/dj", (req, res) => {
-  let user = req.body;
+router.post('/dj', (req, res) => {
+  const user = req.body;
 
   if (!user.username || !user.password || !user.email || !user.name) {
-    res.status(400).json({ message: "Message: Missing required fields." });
+    res.status(400).json({ message: 'Message: Missing required fields.' });
   }
 
   const hash = bcrypt.hashSync(user.password, 10);
@@ -51,8 +51,8 @@ router.post("/dj", (req, res) => {
 });
 
 // ================ Register a new Guest ====================
-router.post("/guest", (req, res) => {
-  res.status(501).json({ message: "Guest registration not implemented." });
+router.post('/guest', (req, res) => {
+  res.status(501).json({ message: 'Guest registration not implemented.' });
 });
 
 module.exports = router;
