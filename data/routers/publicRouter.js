@@ -1,9 +1,9 @@
-const express = require("express");
-const db = require("../models/models.js");
+const express = require('express');
+const db = require('../models/models.js');
 
 const router = express.Router();
 
-/************************************************************
+/* ***********************************************************
   publicRouter
   -----------------------------------------------------------
   This file serves informational routes that
@@ -17,7 +17,7 @@ const router = express.Router();
   ******************************************************** */
 
 // Get ALL DJs -- WORKS
-router.get("/djs", (req, res) => {
+router.get('/djs', (req, res) => {
   db.getAllDJs()
     .then(info => {
       res.status(200).json(info);
@@ -28,7 +28,7 @@ router.get("/djs", (req, res) => {
 });
 
 // Get DJ by ID -- WORKS
-router.get("/dj/:id", (req, res) => {
+router.get('/dj/:id', (req, res) => {
   const id = req.params.id;
   db.getDJsByID(id)
     .then(info => {

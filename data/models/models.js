@@ -1,22 +1,22 @@
-const db = require("../db-config");
+/* eslint-disable no-use-before-define */
+const db = require('../db-config');
 
 module.exports = {
   getAllDJs,
   getDJsByID,
   addDJ,
-  findById,
   findBy,
   findById,
   updateDJ,
   removeDJ
 };
 
-//Get every registered DJ's information
+// Get every registered DJ's information
 function getAllDJs() {
-  return db("dj-login");
+  return db('dj-login');
 }
 
-//Get a specific DJ by id
+// Get a specific DJ by id
 // TODO: These two functions accomplish the same thing.
 // Both have external dependencies!
 // Choose one based on desired behavior and update deps.
@@ -24,34 +24,34 @@ function getAllDJs() {
 //
 // Dan
 function getDJsByID(id) {
-  return db("dj-login").where({ id });
+  return db('dj-login').where({ id });
 }
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 // Andrew
 async function findById(id) {
-  return await db("dj-login")
+  return db('dj-login')
     .where({ id })
     .first();
 }
 // ------------------------------------------------------
 
 async function addDJ(info) {
-  console.log("Storing info:", info);
-  const [id] = await db("dj-login")
-    .returning("id") // This line is REQUIRED for PostgreSQL
+  console.log('Storing info:', info);
+  const [id] = await db('dj-login')
+    .returning('id') // This line is REQUIRED for PostgreSQL
     .insert(info);
   return findById(id);
 }
 
-//Login for a DJ
+// Login for a DJ
 function findBy(filter) {
-  console.log("The filter is", filter);
-  return db("dj-login").where(filter);
+  console.log('The filter is', filter);
+  return db('dj-login').where(filter);
 }
 
 // Update DJ
 // --------------------------------------------------------
-//TODO: Choose one of the following 2 functions based
+// TODO: Choose one of the following 2 functions based
 // on desired behavior.:
 //
 // Andrew:
@@ -62,7 +62,7 @@ function findBy(filter) {
 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- --- -- -- -- --
 // Dan
 function updateDJ(id, updatedUser) {
-  return db("dj-login")
+  return db('dj-login')
     .where({ id })
     .update(updatedUser)
     .then(() => {
@@ -71,9 +71,9 @@ function updateDJ(id, updatedUser) {
 }
 // --------------------------------------------------------
 
-//completely remove a DJ
+// Completely remove a DJ
 function removeDJ(id) {
-  return db("dj-login")
-    .where("id", id)
+  return db('dj-login')
+    .where('id', id)
     .del();
 }
