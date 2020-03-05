@@ -4,9 +4,9 @@
 
 # API Documentation
 
-#### Backend deployed at [AWS]() <br>
+#### Backend deployed at [AWS](https://ec2-18-218-74-229.us-east-2.compute.amazonaws.com) <br>
 
-TODO: Update link above
+Note: We are hoping to change this to https://api.dj-helper.com/
 
 ## Getting started
 
@@ -147,6 +147,7 @@ create a `.env` file that includes the following:
 
 ```
 PORT - optional port number for this app. Defaults to 6000.
+USE_HTTPS - set to "true" if using https. Place SSL/TLS certificate under /cert.
 
 DB_HOSTNAME - e.g. "localhost".
 PG_DATABASE_NAME - Name of the database.
@@ -159,8 +160,11 @@ TODO:
 
 - Separate variables for development, staging, test, and production.
 - Add these fields:
-  _ NODE_ENV - set to "development" until ready for "production"
-  _ JWT*SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-\_=+)') for i in range(50)])
+  - JWT\*SECRET - you can generate this by using a python shell and running
+  ````py
+  import random
+  .join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-\_=+)') for i in range(50)])```
+  ````
 
 ## Contributing
 

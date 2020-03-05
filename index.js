@@ -6,8 +6,8 @@ const server = require('./server.js');
 
 const PORT = process.env.PORT || 8000;
 
-// Add "PRODUCTION_ENVIRONMENT = true" in .env file
-if (process.env.PRODUCTION_ENVIRONMENT) {
+// Add "USE_HTTPS = true" in .env file in production environment.
+if (process.env.USE_HTTPS === 'true') {
   https
     .createServer(
       {
