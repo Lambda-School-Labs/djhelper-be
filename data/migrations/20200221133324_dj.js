@@ -24,11 +24,21 @@ exports.up = function(knex) {
     tbl.text('event_type').notNullable();
     tbl.text('description', 255);
     tbl.text('img_url');
+  })
+  .createTable('locations', tbl => {
+    // creates a primary key called id
+    tbl.increments();
+    tbl.text('address_line_1', 128).notNullable();
+    tbl.text('address_line_2', 128).notNullable();
+    tbl.text('city', 128).notNullable();
+    tbl.text('state', 128).notNullable();
+    tbl.text('zip', 128).notNullable();
   });
 };
 
 exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('dj-login')
-  .dropTableIfExists('events');
+  .dropTableIfExists('events')
+  .dropTableIfExists('locations');
 };

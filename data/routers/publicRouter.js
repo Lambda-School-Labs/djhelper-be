@@ -15,6 +15,7 @@ const router = express.Router();
   The private versions of these routes are located
   under the authRouter endpoints.
   ******************************************************** */
+//---DJ's--\\
 
 // Get ALL DJs -- WORKS
 router.get('/djs', (req, res) => {
@@ -39,6 +40,8 @@ router.get('/dj/:id', (req, res) => {
     });
 });
 
+//---Events--\\
+
 // Get ALL Events -- Not up yet
 router.get('/events', (req, res) => {
   db.getAllEvents()
@@ -54,6 +57,31 @@ router.get('/events', (req, res) => {
 router.get('/event/:id', (req, res) => {
   const id = req.params.id;
   db.getEventsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+//---Locations--\\
+
+// Get ALL Locations -- Not up yet
+router.get('/locations', (req, res) => {
+  db.getAllLocations()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get Location by ID -- Not up yet
+router.get('/location/:id', (req, res) => {
+  const id = req.params.id;
+  db.getLocationsByID(id)
     .then(info => {
       res.status(200).json(info);
     })

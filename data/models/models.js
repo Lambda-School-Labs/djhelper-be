@@ -10,8 +10,12 @@ module.exports = {
   updateDJ,
   removeDJ,
   getAllEvents,
-  getEventsByID
+  getEventsByID,
+  getAllLocations,
+  getLocationsByID
 };
+
+//---DJ's--\\
 
 // Get every registered DJ's information
 function getAllDJs() {
@@ -90,4 +94,16 @@ function getAllEvents() {
 //Events by id
 function getEventsByID(id) {
   return db('events').where({ id });
+}
+
+//---Locations--\\
+
+//All Locations
+function getAllLocations() {
+  return db('locations');
+}
+
+//Locations by id
+function getLocationsByID(id) {
+  return db('locations').where({ id });
 }
