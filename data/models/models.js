@@ -8,7 +8,9 @@ module.exports = {
   findBy,
   findById,
   updateDJ,
-  removeDJ
+  removeDJ,
+  getAllEvents,
+  getEventsByID
 };
 
 // Get every registered DJ's information
@@ -76,4 +78,16 @@ function removeDJ(id) {
   return db('dj-login')
     .where('id', id)
     .del();
+}
+
+//---EVENTS--\\
+
+//All Events
+function getAllEvents() {
+  return db('events');
+}
+
+//Events by id
+function getEventsByID(id) {
+  return db('events').where({ id });
 }

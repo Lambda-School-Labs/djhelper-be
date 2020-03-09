@@ -39,4 +39,27 @@ router.get('/dj/:id', (req, res) => {
     });
 });
 
+// Get ALL Events -- Not up yet
+router.get('/events', (req, res) => {
+  db.getAllEvents()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get Event by ID -- Not up yet
+router.get('/event/:id', (req, res) => {
+  const id = req.params.id;
+  db.getEventsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
