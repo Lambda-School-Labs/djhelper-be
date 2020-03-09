@@ -7,7 +7,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('events').insert([
         {
-          name: "Club LIV Miami", 
+          name: "Miami Nights", 
           date:  "2020-01-12",
           start_time: "12:00:00",
           end_time: "12:30:01",
@@ -17,7 +17,7 @@ exports.seed = function(knex) {
 
         },
         {
-          name: "Zero Gravity Dubai", 
+          name: "Pool Party by the Sea", 
           date:  "2020-02-12",
           start_time: "12:00:00",
           end_time: "12:30:01",
@@ -27,13 +27,13 @@ exports.seed = function(knex) {
 
         },
         {
-          name: "Einstein Lounge Moscow", 
+          name: "Night at Schrödinger's Cat", 
           date:  "2020-02-12",
           start_time: "12:00:00",
           end_time: "12:30:01",
-          event_type: "Hookah",
-          description: "Moscow's hottest night club event of 2020 at Einstein Lounge, book now before we are sold out!",
-          img_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.travelvina.com%2Fwp-content%2Fuploads%2F2017%2F11%2FChilling-Moscow-3.jpg&f=1&nofb=1"
+          event_type: "Bar",
+          description: "Moscow's hottest night club event of 2020 at Schrödinger's cat, book now before we are sold out!",
+          img_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Cvrf8qjMW9ScdMJE32FGOAHaE8%26pid%3DApi&f=1"
 
         }
       ]);
