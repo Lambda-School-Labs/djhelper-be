@@ -33,10 +33,11 @@ exports.up = function(knex) {
     tbl.text('city', 128).notNullable();
     tbl.text('state', 128).notNullable();
     tbl.text('zip', 128).notNullable();
-    tbl.text('name', 128).notNullable();
-    tbl.text('phone', 128).notNullable();
-    tbl.text('website', 128).notNullable();
-    tbl.text('email', 128).notNullable();
+    tbl.text('name', 128);
+    tbl.text('phone', 128);
+    tbl.text('website', 128);
+    tbl.text('email', 128);
+    tbl.text('img_url');
   });
 };
 
