@@ -42,7 +42,7 @@ router.get('/dj/:id', (req, res) => {
 
 //-----------------Events-----------------\\
 
-// Get ALL Events -- Not up yet
+// Get ALL Events -- WORKS
 router.get('/events', (req, res) => {
   db.getAllEvents()
     .then(info => {
@@ -53,7 +53,7 @@ router.get('/events', (req, res) => {
     });
 });
 
-// Get Event by ID -- Not up yet
+// Get Event by ID -- WORKS
 router.get('/event/:id', (req, res) => {
   const id = req.params.id;
   db.getEventsByID(id)
@@ -106,7 +106,7 @@ router.put('/event/:id', (req, res) => {
 
 //-----------------Locations-----------------\\
 
-// Get ALL Locations -- Not up yet
+// Get ALL Locations -- WORKS
 router.get('/locations', (req, res) => {
   db.getAllLocations()
     .then(info => {
@@ -117,7 +117,7 @@ router.get('/locations', (req, res) => {
     });
 });
 
-// Get Location by ID -- Not up yet
+// Get Location by ID -- WORKS
 router.get('/location/:id', (req, res) => {
   const id = req.params.id;
   db.getLocationsByID(id)
@@ -131,7 +131,7 @@ router.get('/location/:id', (req, res) => {
 
 //----- All below will have to be moved to auth if needed 
 
-// POST new location
+// POST new location -- WORKS
 router.post('/location/:id', (req, res) => {
   const body = req.body;
   db.addLocation(body)
@@ -143,7 +143,7 @@ router.post('/location/:id', (req, res) => {
   })
 })
 
-// DEL location
+// DEL location -- WORKS
 router.delete('/location/:id', (req, res) => {
   const id = req.params.id;
   db.removeLocation(id)
@@ -155,7 +155,7 @@ router.delete('/location/:id', (req, res) => {
   })
 })
 
-// PUT update location
+// PUT update location -- WORKS
 router.put('/location/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
