@@ -65,7 +65,44 @@ router.get('/event/:id', (req, res) => {
     });
 });
 
-//---Locations--\\
+//POST new event-- WORKS
+router.post('/event/:id', (req, res) => {
+  const body = req.body;
+  db.addEvent(body)
+  .then(event => {
+      res.status(200).json(event)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
+//DEL event-- WORKS
+router.delete('/event/:id', (req, res) => {
+  const id = req.params.id;
+  db.removeEvent(id)
+  .then(event => {
+      res.status(200).json(event)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
+//PUT update event-- WORKS
+router.put('/event/:id', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.updateEvent(id, body)
+  .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
+
+//---------------Locations--------------------\\
 
 // Get ALL Locations -- Not up yet
 router.get('/locations', (req, res) => {
@@ -89,5 +126,43 @@ router.get('/location/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+//POST new location
+router.post('/location/:id', (req, res) => {
+  const body = req.body;
+  db.addLocation(body)
+  .then(location => {
+      res.status(200).json(location)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
+//DEL location
+router.delete('/location/:id', (req, res) => {
+  const id = req.params.id;
+  db.removeLocation(id)
+  .then(location => {
+      res.status(200).json(location)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
+//PUT update location
+router.put('/location/:id', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.updateLocation(id, body)
+  .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
+
 
 module.exports = router;
