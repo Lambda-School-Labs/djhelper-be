@@ -21,7 +21,7 @@ module.exports = {
   removeLocation
 };
 
-//-----------DJ's-----------\\
+//-----------------DJ's-----------------\\
 
 // Get every registered DJ's information
 function getAllDJs() {
@@ -90,7 +90,7 @@ function removeDJ(id) {
     .del();
 }
 
-//-------------EVENTS-----------\\
+//-----------------EVENTS-----------------\\
 
 //All Events
 function getAllEvents() {
@@ -128,7 +128,7 @@ function removeEvent(id) {
     .del();
 }
 
-//----------Locations-----------\\
+//-----------------Locations-----------------\\
 
 //All Locations
 function getAllLocations() {
