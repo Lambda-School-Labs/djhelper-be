@@ -67,7 +67,7 @@ router.get('/event/:id', (req, res) => {
 
 //-----All below will have to be moved to auth if needed 
 
-//POST new event-- WORKS
+// POST new event-- WORKS
 router.post('/event/:id', (req, res) => {
   const body = req.body;
   db.addEvent(body)
@@ -79,7 +79,7 @@ router.post('/event/:id', (req, res) => {
   })
 })
 
-//DEL event-- WORKS
+// DEL event-- WORKS
 router.delete('/event/:id', (req, res) => {
   const id = req.params.id;
   db.removeEvent(id)
@@ -91,7 +91,7 @@ router.delete('/event/:id', (req, res) => {
   })
 })
 
-//PUT update event-- WORKS
+// PUT update event-- WORKS
 router.put('/event/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
@@ -129,9 +129,9 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
-//-----All below will have to be moved to auth if needed 
+//----- All below will have to be moved to auth if needed 
 
-//POST new location
+// POST new location
 router.post('/location/:id', (req, res) => {
   const body = req.body;
   db.addLocation(body)
@@ -143,7 +143,7 @@ router.post('/location/:id', (req, res) => {
   })
 })
 
-//DEL location
+// DEL location
 router.delete('/location/:id', (req, res) => {
   const id = req.params.id;
   db.removeLocation(id)
@@ -155,7 +155,7 @@ router.delete('/location/:id', (req, res) => {
   })
 })
 
-//PUT update location
+// PUT update location
 router.put('/location/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;

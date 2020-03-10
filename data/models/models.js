@@ -92,17 +92,17 @@ function removeDJ(id) {
 
 //-----------------EVENTS-----------------\\
 
-//All Events
+// All Events
 function getAllEvents() {
   return db('events');
 }
 
-//Events by id
+// Events by id
 function getEventsByID(id) {
   return db('events').where({ id });
 }
 
-//Add an Event
+// Add an Event
 async function addEvent(info) {
   console.log('Storing info:', info);
   const [id] = await db('events')
@@ -111,7 +111,7 @@ async function addEvent(info) {
   return findById(id);
 }
 
-//Update an event
+// Update an event
 function updateEvent(id, updatedEvent) {
   return db('events')
     .where({ id })
@@ -130,17 +130,17 @@ function removeEvent(id) {
 
 //-----------------Locations-----------------\\
 
-//All Locations
+// All Locations
 function getAllLocations() {
   return db('locations');
 }
 
-//Locations by id
+// Locations by id
 function getLocationsByID(id) {
   return db('locations').where({ id });
 }
 
-//Add an Event
+// Add an Event
 async function addLocation(info) {
   console.log('Storing info:', info);
   const [id] = await db('locations')
@@ -149,7 +149,7 @@ async function addLocation(info) {
   return findById(id);
 }
 
-//Update an event
+// Update an event
 function updateLocation(id, updatedLocation) {
   return db('locations')
     .where({ id })
