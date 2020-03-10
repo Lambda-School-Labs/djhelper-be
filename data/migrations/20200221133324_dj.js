@@ -23,6 +23,7 @@ exports.up = function(knex) {
     tbl.time('end_time');
     tbl.text('event_type').notNullable();
     tbl.text('description', 255);
+    //tbl.foreign('location_id').references('id').inTable('locations');
     tbl.text('img_url');
   })
   .createTable('locations', tbl => {
