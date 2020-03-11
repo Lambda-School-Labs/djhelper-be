@@ -49,7 +49,6 @@ exports.up = function(knex) {
        .inTable('locations')
        .onDelete('CASCADE')
        .onUpdate('CASCADE');
-    //tbl.unsigned().references('id').inTable('locations');
     tbl.text('img_url');
   });
 };
