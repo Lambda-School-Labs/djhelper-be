@@ -7,6 +7,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('events').insert([
         {
+          
           name: "Miami Nights", 
           date:  "2020-01-12",
           start_time: "12:00:00",
@@ -17,6 +18,7 @@ exports.seed = function(knex) {
 
         },
         {
+          
           name: "Pool Party by the Sea", 
           date:  "2020-02-12",
           start_time: "12:00:00",
@@ -27,6 +29,7 @@ exports.seed = function(knex) {
 
         },
         {
+          
           name: "Night at Schrödinger's Cat", 
           date:  "2020-02-12",
           start_time: "12:00:00",
