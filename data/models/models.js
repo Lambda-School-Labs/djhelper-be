@@ -8,8 +8,20 @@ module.exports = {
   findBy,
   findById,
   updateDJ,
-  removeDJ
+  removeDJ,
+  getAllEvents,
+  getEventsByID,
+  addEvent,
+  updateEvent,
+  removeEvent,
+  getAllLocations,
+  getLocationsByID,
+  addLocation,
+  updateLocation,
+  removeLocation
 };
+
+//-----------------DJ's-----------------\\
 
 // Get every registered DJ's information
 function getAllDJs() {
@@ -74,6 +86,82 @@ function updateDJ(id, updatedUser) {
 // Completely remove a DJ
 function removeDJ(id) {
   return db('dj-login')
+    .where('id', id)
+    .del();
+}
+
+//-----------------EVENTS-----------------\\
+
+// All Events
+function getAllEvents() {
+  return db('events');
+}
+
+// Events by id
+function getEventsByID(id) {
+  return db('events').where({ id });
+}
+
+// Add an Event
+async function addEvent(info) {
+  console.log('Storing info:', info);
+  const [id] = await db('events')
+    .returning('id') //Required PostgreSQL line <---
+    .insert(info);
+  return findById(id);
+}
+
+// Update an event
+function updateEvent(id, updatedEvent) {
+  return db('events')
+    .where({ id })
+    .update(updatedEvent)
+    .then(() => {
+      return getEventsByID(id);
+    });
+}
+
+// Completely remove an event
+function removeEvent(id) {
+  return db('events')
+    .where('id', id)
+    .del();
+}
+
+//-----------------Locations-----------------\\
+
+// All Locations
+function getAllLocations() {
+  return db('locations');
+}
+
+// Locations by id
+function getLocationsByID(id) {
+  return db('locations').where({ id });
+}
+
+// Add an Location
+async function addLocation(info) {
+  console.log('Storing info:', info);
+  const [id] = await db('locations')
+    .returning('id') //Required PostgreSQL line <---
+    .insert(info);
+  return findById(id);
+}
+
+// Update an Location
+function updateLocation(id, updatedLocation) {
+  return db('locations')
+    .where({ id })
+    .update(updatedLocation)
+    .then(() => {
+      return getLocationsByID(id);
+    });
+}
+
+// Completely remove an event
+function removeLocation(id) {
+  return db('locations')
     .where('id', id)
     .del();
 }
