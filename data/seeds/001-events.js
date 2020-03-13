@@ -13,12 +13,12 @@ exports.seed = function(knex) {
           date: '2020-04-10',
           start_time: '14:00',
           end_time: '20:00',
-          location_id: 1,
+          //location_id: 1,
           img_url:
             'https://images.unsplash.com/photo-1508219803418-5f1f89469b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
-          location_id: 2,
+          //location_id: 2,
           name: 'Ellie and Mona',
           event_type: 'wedding',
           description: 'A more modern, fun wedding.',
@@ -33,8 +33,8 @@ exports.seed = function(knex) {
           event_type: 'wedding',
           description: 'A senior wedding.',
           date: '2020-03-30',
-          location_id: 3,
-          imgUrl:
+          //location_id: 3,
+          img_url:
             'https://images.unsplash.com/photo-1532329683184-6ffd13057d1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -42,12 +42,12 @@ exports.seed = function(knex) {
           event_type: 'wedding',
           description: 'Very atmospheric and sentimental wedding.',
           date: '2020-06-10',
-          location_id: 4,
+          //location_id: 4,
           img_url:
             'https://images.unsplash.com/photo-1494859632785-32abaf5241f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
-          location_id: 5,
+          //location_id: 5,
           name: "Elsa's 50th Birthday Gala",
           event_type: 'birthday',
           description:
@@ -61,7 +61,7 @@ exports.seed = function(knex) {
           event_type: 'game night',
           description: 'All-Night Extreme Game Night',
           date: '2020-05-20',
-          location_id: 6,
+          //location_id: 6,
           img_url:
             'https://images.unsplash.com/photo-1570303345338-e1f0eddf4946?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
         },
@@ -72,8 +72,8 @@ exports.seed = function(knex) {
           date: '2019-12-10',
           start_time: '19:00',
           end_time: '23:59',
-          location_id: 10,
-          image_url:
+          //location_id: 10,
+          img_url:
             'https://images.unsplash.com/photo-1545826394-68be0015475b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -83,8 +83,8 @@ exports.seed = function(knex) {
           date: '2019-01-10',
           start_time: '11:00',
           end_time: '16:00',
-          location_id: 11,
-          image_url:
+          //location_id: 11,
+          img_url:
             'https://images.unsplash.com/photo-1549335223-c89505707f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -92,8 +92,8 @@ exports.seed = function(knex) {
           event_type: 'dance',
           description: "Semi-formal, girls' choice dance",
           date: '2020-02-05',
-          location_id: 12,
-          image_url:
+          //location_id: 12,
+          img_url:
             'https://images.unsplash.com/photo-1565734777784-6e89609ed871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -101,8 +101,8 @@ exports.seed = function(knex) {
           event_type: 'quinceañera',
           description: "Feast and dance in honor of Dora's 15th birthday!",
           date: '2020-03-01',
-          location_id: 13,
-          image_url:
+          //location_id: 13,
+          img_url:
             'https://images.unsplash.com/photo-1549981118-d720d448ab86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -111,8 +111,8 @@ exports.seed = function(knex) {
           description:
             'Couple is fairly young, so audience may consist of primarily young friends and older family members.',
           date: '2019-05-05',
-          location_id: 14,
-          image_url:
+          //location_id: 14,
+          img_url:
             'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -120,8 +120,8 @@ exports.seed = function(knex) {
           event_type: 'party',
           description: 'Late night full moon celebration party',
           date: '2020-03-05',
-          location_id: 15,
-          image_url:
+          //location_id: 15,
+          img_url:
             'https://images.unsplash.com/photo-1558317751-bc3ed6f85f72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
       
@@ -130,18 +130,18 @@ exports.seed = function(knex) {
           event_type: 'dance',
           description: 'Semi-formal event with an Under-the-Sea theme',
           date: '2019-10-01',
-          location_id: 16,
-          image_url:
+          //location_id: 16,
+          img_url:
             'https://images.unsplash.com/photo-1516970739312-08b075784b71?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
           name: "Kristina & Bryce's Wedding",
-          type: 'wedding',
+          event_type: 'wedding',
           description:
             'Couple is fairly young, so audience may consist of primarily young friends and older family members.',
           date: '2019-02-28',
-          location_id: 11,
-          image_url:
+          //location_id: 11,
+          img_url:
             'https://images.unsplash.com/photo-1459259191495-52eccde892c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
@@ -151,8 +151,8 @@ exports.seed = function(knex) {
           date: '2020-01-24',
           start_time: '13:00',
           end_time: '18:00',
-          location_id: 17,
-          image_url:
+          //location_id: 17,
+          img_url:
             'https://images.unsplash.com/photo-1500900173725-e0978c945e23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
         {
