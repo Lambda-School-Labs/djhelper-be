@@ -68,7 +68,7 @@ router.get('/event/:id', (req, res) => {
 //-----All below will have to be moved to auth if needed 
 
 // POST new event-- WORKS
-router.post('/event/:id', (req, res) => {
+router.post('/event/', (req, res) => {
   const body = req.body;
   db.addEvent(body)
   .then(event => {
@@ -132,7 +132,7 @@ router.get('/location/:id', (req, res) => {
 //----- All below will have to be moved to auth if needed 
 
 // POST new location -- WORKS
-router.post('/location/:id', (req, res) => {
+router.post('/location/', (req, res) => {
   const body = req.body;
   db.addLocation(body)
   .then(location => {

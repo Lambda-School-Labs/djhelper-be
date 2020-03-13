@@ -140,7 +140,7 @@ function getLocationsByID(id) {
   return db('locations').where({ id });
 }
 
-// Add an Event
+// Add an Location
 async function addLocation(info) {
   console.log('Storing info:', info);
   const [id] = await db('locations')
@@ -149,7 +149,7 @@ async function addLocation(info) {
   return findById(id);
 }
 
-// Update an event
+// Update an Location
 function updateLocation(id, updatedLocation) {
   return db('locations')
     .where({ id })
