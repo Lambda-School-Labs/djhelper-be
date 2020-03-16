@@ -131,17 +131,54 @@ router.get('/location/:id', (req, res) => {
 
 //----- All below will have to be moved to auth if needed 
 
-// POST new location -- WORKS
+//POST new location -- WORKS
 router.post('/location/', (req, res) => {
   const body = req.body;
   db.addLocation(body)
-  .then(location => {
-      res.status(200).json(location)
+  .then(data => {
+      res.status(200).json({
+        id: body.id,
+        address_line_1: body.address_line_1,
+        address_line_2: body.address_line_2,
+        city: body.city,
+        state: body.state,
+        zip: body.zip,
+        name: body.name,
+        phone: body.phone,
+        website: body.website,
+        email: body.email,
+        img_url: body.img_url,
+      })
   })
   .catch(err => {
-      res.status(500).json(err)
+      res.status(500).json({ err })
   })
 })
+// router.post('/dj', (req, res) => {
+//   const id = req.params.id;
+//   const body = req.body;
+//   db.findByLoc(id)
+//     .first()
+//     .then(data => {
+//         res.status(200).json({
+//           id: data.id,
+//           address_line_1: data.address_line_1,
+//           city: data.city,
+//           address_line_2: data.address_line_2,
+//           zip: data.zip,
+//           state: data.state,
+//           phone: data.phone,
+//           name: data.name,
+//           email: data.email,
+//           website: data.website,
+//           img_url: data.img_url,
+//         });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 // DEL location -- WORKS
 router.delete('/location/:id', (req, res) => {

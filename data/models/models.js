@@ -18,7 +18,8 @@ module.exports = {
   getLocationsByID,
   addLocation,
   updateLocation,
-  removeLocation
+  removeLocation,
+  findByLoc
 };
 
 //-----------------DJ's-----------------\\
@@ -129,6 +130,11 @@ function removeEvent(id) {
 }
 
 //-----------------Locations-----------------\\
+
+function findByLoc(filter) {
+  console.log('The filter is', filter);
+  return db('locations').where(filter);
+}
 
 // All Locations
 function getAllLocations() {
