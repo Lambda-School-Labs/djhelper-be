@@ -72,10 +72,21 @@ router.post('/event/', (req, res) => {
   const body = req.body;
   db.addEvent(body)
   .then(event => {
-      res.status(200).json(event)
+      res.status(200).json({
+        id: body.id,
+        dj_id: body.dj_id,
+        name: body.name,
+        date: body.date,
+        start_time: body.start_time,
+        end_time: body.end_time,
+        event_type: body.event_type,
+        description: body.description,
+        location_id: body.location_id,
+        img_url: body.location_id
+      })
   })
   .catch(err => {
-      res.status(500).json(err)
+      res.status(500).json({ err })
   })
 })
 
