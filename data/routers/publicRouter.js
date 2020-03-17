@@ -15,7 +15,7 @@ const router = express.Router();
   The private versions of these routes are located
   under the authRouter endpoints.
   ******************************************************** */
-//-----------------DJ's-----------------\\
+// -----------------DJ's----------------- \\
 
 // Get ALL DJs -- WORKS
 router.get('/djs', (req, res) => {
@@ -30,7 +30,7 @@ router.get('/djs', (req, res) => {
 
 // Get DJ by ID -- WORKS
 router.get('/dj/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.getDJsByID(id)
     .then(info => {
       res.status(200).json(info);
@@ -40,9 +40,9 @@ router.get('/dj/:id', (req, res) => {
     });
 });
 
-//-----------------Events-----------------\\
+// -----------------Events----------------- \\
 
-// Get ALL Events -- WORKS
+// TODO: Remove?
 router.get('/events', (req, res) => {
   db.getAllEvents()
     .then(info => {
@@ -53,9 +53,9 @@ router.get('/events', (req, res) => {
     });
 });
 
-// Get Event by ID -- WORKS
+// TODO: Remove?
 router.get('/event/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.getEventsByID(id)
     .then(info => {
       res.status(200).json(info);
@@ -65,11 +65,11 @@ router.get('/event/:id', (req, res) => {
     });
 });
 
-//-----All below will have to be moved to auth if needed
+// -----All below will have to be moved to auth if needed
 
-// POST new event-- WORKS
+// TODO: Remove
 router.post('/event/', (req, res) => {
-  const body = req.body;
+  const { body } = req;
   db.addEvent(body)
     .then(event => {
       res.status(200).json(event);
@@ -79,9 +79,9 @@ router.post('/event/', (req, res) => {
     });
 });
 
-// DEL event-- WORKS
+// TODO: Remove
 router.delete('/event/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.removeEvent(id)
     .then(event => {
       res.status(200).json(event);
@@ -91,10 +91,10 @@ router.delete('/event/:id', (req, res) => {
     });
 });
 
-// PUT update event-- WORKS
+// TODO: Remove
 router.put('/event/:id', (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
+  const { id } = req.params;
+  const { body } = req;
   db.updateEvent(id, body)
     .then(event => {
       res.status(200).json(event);
@@ -104,9 +104,9 @@ router.put('/event/:id', (req, res) => {
     });
 });
 
-//-----------------Locations-----------------\\
+// -----------------Locations----------------- \\
 
-// Get ALL Locations -- WORKS
+// TODO: Remove?
 router.get('/locations', (req, res) => {
   db.getAllLocations()
     .then(info => {
@@ -117,9 +117,9 @@ router.get('/locations', (req, res) => {
     });
 });
 
-// Get Location by ID -- WORKS
+// TODO: Remove?
 router.get('/location/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.getLocationsByID(id)
     .then(info => {
       res.status(200).json(info);
@@ -129,12 +129,12 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
-//----- All below will have to be moved to auth if needed
+// ----- All below will have to be moved to auth if needed
 
 // FIXME: Highest priority
-// POST new location -- WORKS
+// TODO: Remove
 router.post('/location/', (req, res) => {
-  const body = req.body;
+  const { body } = req;
   db.addLocation(body)
     .then(location => {
       res.status(200).json(location);
@@ -144,9 +144,9 @@ router.post('/location/', (req, res) => {
     });
 });
 
-// DEL location -- WORKS
+// TODO: Remove
 router.delete('/location/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.removeLocation(id)
     .then(location => {
       res.status(200).json(location);
@@ -156,10 +156,10 @@ router.delete('/location/:id', (req, res) => {
     });
 });
 
-// PUT update location -- WORKS
+// TODO: Remove
 router.put('/location/:id', (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
+  const { id } = req.params;
+  const { body } = req;
   db.updateLocation(id, body)
     .then(location => {
       res.status(200).json(location);

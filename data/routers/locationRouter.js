@@ -1,25 +1,62 @@
 const router = require('express').Router();
+const db = require('../models/models.js');
 
+// Gets all locations
+// TODO: Check front end for plural (/location vs /locations)
 router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Location router is functioning.' });
+  db.getAllLocations()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 // ================= Location Routes =====================
 
 router.post('/', (req, res) => {
-  res.status(501).json({ message: 'New location not implemented.' });
+  const { body } = req;
+  db.addLocation(body)
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 router.get('/:id', (req, res) => {
-  res.status(501).json({ message: 'Location get info not implemented.' });
+  const { id } = req.params;
+  db.getLocationsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
-  res.status(501).json({ message: 'Location update not implemented.' });
+  const { id } = req.params;
+  db.removeLocation(id)
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
-  res.status(501).json({ message: 'Location delete not implemented.' });
+  const { id } = req.params.id;
+  db.removeLocation(id)
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

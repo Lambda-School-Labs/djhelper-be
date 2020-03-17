@@ -1,25 +1,63 @@
 const router = require('express').Router();
+const db = require('../models/models.js');
 
+// Get all events
+// TODO: Is this a necessary duplicate?
 router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Event router is functioning.' });
+  db.getAllEvents()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 // ================== Event Routes ======================
 
 router.post('/', (req, res) => {
-  res.status(501).json({ message: 'New event not implemented.' });
+  const { body } = req;
+  db.addEvent(body)
+    .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 router.get('/:id', (req, res) => {
-  res.status(501).json({ message: 'Event get info not implemented.' });
+  const { id } = req.params;
+  db.getEventsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
-  res.status(501).json({ message: 'Event update not implemented.' });
+  const { id } = req.params;
+  const { body } = req;
+  db.updateEvent(id, body)
+    .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
-  res.status(501).json({ message: 'Event delete not implemented.' });
+  const { id } = req.params;
+  db.removeEvent(id)
+    .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
