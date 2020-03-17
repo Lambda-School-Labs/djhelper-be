@@ -65,44 +65,44 @@ router.get('/event/:id', (req, res) => {
     });
 });
 
-//-----All below will have to be moved to auth if needed 
+//-----All below will have to be moved to auth if needed
 
 // POST new event-- WORKS
 router.post('/event/', (req, res) => {
   const body = req.body;
   db.addEvent(body)
-  .then(event => {
-      res.status(200).json(event)
-  })
-  .catch(err => {
-      res.status(500).json(err)
-  })
-})
+    .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 // DEL event-- WORKS
 router.delete('/event/:id', (req, res) => {
   const id = req.params.id;
   db.removeEvent(id)
-  .then(event => {
-      res.status(200).json(event)
-  })
-  .catch(err => {
-      res.status(500).json(err)
-  })
-})
+    .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 // PUT update event-- WORKS
 router.put('/event/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
   db.updateEvent(id, body)
-  .then(event => {
+    .then(event => {
       res.status(200).json(event);
     })
     .catch(err => {
       res.status(500).json(err);
     });
-})
+});
 
 //-----------------Locations-----------------\\
 
@@ -129,44 +129,44 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
-//----- All below will have to be moved to auth if needed 
+//----- All below will have to be moved to auth if needed
 
+// FIXME: Highest priority
 // POST new location -- WORKS
 router.post('/location/', (req, res) => {
   const body = req.body;
   db.addLocation(body)
-  .then(location => {
-      res.status(200).json(location)
-  })
-  .catch(err => {
-      res.status(500).json(err)
-  })
-})
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 // DEL location -- WORKS
 router.delete('/location/:id', (req, res) => {
   const id = req.params.id;
   db.removeLocation(id)
-  .then(location => {
-      res.status(200).json(location)
-  })
-  .catch(err => {
-      res.status(500).json(err)
-  })
-})
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 // PUT update location -- WORKS
 router.put('/location/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
   db.updateLocation(id, body)
-  .then(location => {
+    .then(location => {
       res.status(200).json(location);
     })
     .catch(err => {
       res.status(500).json(err);
     });
-})
-
+});
 
 module.exports = router;
