@@ -28,6 +28,14 @@ exports.up = function(knex) {
     tbl.text('email', 128);
     tbl.text('img_url');
   })
+  .createTable('playlists', tbl => {
+    // creates a primary key called id
+    tbl.increments();
+  })
+  .createTable('request_list', tbl => {
+    // creates a primary key called id
+    tbl.increments();
+  })
   .createTable('events', tbl => {
     // creates a primary key called id
     tbl.increments();
@@ -35,6 +43,18 @@ exports.up = function(knex) {
        .unsigned()
        .references('id')
        .inTable('dj-login')
+       .onDelete('CASCADE')
+       .onUpdate('CASCADE');
+    tbl.integer('playlists_id')
+       .unsigned()
+       .references('id')
+       .inTable('playlists')
+       .onDelete('CASCADE')
+       .onUpdate('CASCADE');
+    tbl.integer('request_id')
+       .unsigned()
+       .references('id')
+       .inTable('request_list')
        .onDelete('CASCADE')
        .onUpdate('CASCADE');
     tbl.text('name', 128).notNullable();
@@ -57,5 +77,7 @@ exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('events')
   .dropTableIfExists('dj-login')
+  .dropTableIfExists('playlists')
+  .dropTableIfExists('request_list')
   .dropTableIfExists('locations');
 };
