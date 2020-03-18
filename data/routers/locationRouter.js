@@ -2,7 +2,8 @@ const router = require('express').Router();
 const db = require('../models/models.js');
 
 // Gets all locations
-// TODO: Check front end for plural (/location vs /locations)
+// TODO: Leave this here as "/location", eliminate it,
+//       or use something like "location/all"?
 router.get('/', (req, res) => {
   db.getAllLocations()
     .then(info => {
@@ -28,7 +29,7 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.getLocationsByID(id)
+  db.findLocationByID(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -37,6 +38,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// TODO: Check the behavior of this when it fails.
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   db.removeLocation(id)
@@ -48,6 +50,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// TODO: Check failure behavior.
 router.delete('/:id', (req, res) => {
   const { id } = req.params.id;
   db.removeLocation(id)

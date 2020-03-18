@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Dj = require('../models/models.js');
 
 router.get('/', (req, res) => {
   res.status(200).json({ message: 'DJ router is functioning.' });
@@ -22,13 +23,13 @@ router.put('/:id', (req, res) => {
     res.status(400).json({ message: 'Passwords may not be changed here.' });
   }
 
-  Dj.findById(id)
+  Dj.findDjById(id)
     .then(dj => {
       if (dj) {
         // ------- User ID found. Continue. -----------
         Dj.updateDJ(id, user) // Update the DJ
           .then(() => {
-            Dj.findById(id).then(data => {
+            Dj.findDjById(id).then(data => {
               res
                 .status(200)
                 .json({
@@ -66,7 +67,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
 
-  Dj.findById(id)
+  Dj.findDjById(id)
     .then(dj => {
       if (dj) {
         // -- User ID found. Continue. -------
@@ -83,10 +84,10 @@ router.delete('/:id', (req, res) => {
         // -- User ID not found. Send error. --
         res.status(400).json({ message: `DJ ${id} not found.` });
       }
-    }) // .then (findById)
+    }) // .then (findDjById)
     .catch(errMsg => {
       res.status(500).json({ message: 'Error deleting the DJ:', errMsg });
-    }); // .catch (findById)
+    }); // .catch (findDjById)
 });
 
 module.exports = router;

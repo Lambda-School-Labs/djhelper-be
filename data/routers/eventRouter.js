@@ -16,10 +16,18 @@ router.get('/', (req, res) => {
 // ================== Event Routes ======================
 
 router.post('/', (req, res) => {
-  const { body } = req;
-  db.addEvent(body)
-    .then(event => {
-      res.status(200).json(event);
+  const event = req.body;
+
+  // TODO: Which fields are required?
+  if (!event.name || !event.date) {
+    res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  // Check for duplicates here if we need to.
+
+  db.addEvent(event)
+    .then(saved => {
+      res.status(200).json(saved);
     })
     .catch(err => {
       res.status(500).json(err);
@@ -28,7 +36,7 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.getEventsByID(id)
+  db.findEventById(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -37,6 +45,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// TODO: Check failure modes. Enure ID exists first.
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { body } = req;
@@ -49,6 +58,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// TODO: Check failure modes.
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   db.removeEvent(id)
