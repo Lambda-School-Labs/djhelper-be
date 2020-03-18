@@ -1,5 +1,6 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('dj-login', tbl => {
+  return knex.schema
+  .createTable('dj-login', tbl => {
     // creates a primary key called id
     tbl.increments();
     tbl

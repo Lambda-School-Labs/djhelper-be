@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('dj-login')
-    .delete()
+    .del()
     .then(function() {
       // Inserts seed entries
       return knex('dj-login').insert([
