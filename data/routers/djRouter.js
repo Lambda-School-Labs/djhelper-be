@@ -23,13 +23,13 @@ router.put('/:id', (req, res) => {
     res.status(400).json({ message: 'Passwords may not be changed here.' });
   }
 
-  Dj.findDjById(id)
+  Dj.findDJById(id)
     .then(dj => {
       if (dj) {
         // ------- User ID found. Continue. -----------
         Dj.updateDJ(id, user) // Update the DJ
           .then(() => {
-            Dj.findDjById(id).then(data => {
+            Dj.findDJById(id).then(data => {
               res
                 .status(200)
                 .json({
@@ -65,9 +65,9 @@ router.put('/:id', (req, res) => {
 
 // ========= DELETE DJ ==============
 router.delete('/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
-  Dj.findDjById(id)
+  Dj.findDJById(id)
     .then(dj => {
       if (dj) {
         // -- User ID found. Continue. -------
@@ -84,10 +84,10 @@ router.delete('/:id', (req, res) => {
         // -- User ID not found. Send error. --
         res.status(400).json({ message: `DJ ${id} not found.` });
       }
-    }) // .then (findDjById)
+    }) // .then (findDJById)
     .catch(errMsg => {
       res.status(500).json({ message: 'Error deleting the DJ:', errMsg });
-    }); // .catch (findDjById)
+    }); // .catch (findDJById)
 });
 
 module.exports = router;

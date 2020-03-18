@@ -15,9 +15,10 @@ const router = express.Router();
   The private versions of these routes are located
   under the authRouter endpoints.
   ******************************************************** */
-// -----------------DJ's----------------- \\
 
-// Get ALL DJs -- WORKS
+// ----------------- DJs -----------------
+
+// Get all DJs
 router.get('/djs', (req, res) => {
   db.getAllDJs()
     .then(info => {
@@ -31,7 +32,7 @@ router.get('/djs', (req, res) => {
 // Get DJ by ID -- WORKS
 router.get('/dj/:id', (req, res) => {
   const { id } = req.params;
-  db.getDJsByID(id)
+  db.findDJById(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -40,9 +41,7 @@ router.get('/dj/:id', (req, res) => {
     });
 });
 
-// -----------------Events----------------- \\
-
-// TODO: Remove?
+// ----------------- Events -----------------
 router.get('/events', (req, res) => {
   db.getAllEvents()
     .then(info => {
@@ -53,10 +52,9 @@ router.get('/events', (req, res) => {
     });
 });
 
-// TODO: Remove?
 router.get('/event/:id', (req, res) => {
   const { id } = req.params;
-  db.getEventsByID(id)
+  db.findEventById(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -65,48 +63,8 @@ router.get('/event/:id', (req, res) => {
     });
 });
 
-// -----All below will have to be moved to auth if needed
-
-// TODO: Remove
-router.post('/event/', (req, res) => {
-  const { body } = req;
-  db.addEvent(body)
-    .then(event => {
-      res.status(200).json(event);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// TODO: Remove
-router.delete('/event/:id', (req, res) => {
-  const { id } = req.params;
-  db.removeEvent(id)
-    .then(event => {
-      res.status(200).json(event);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// TODO: Remove
-router.put('/event/:id', (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
-  db.updateEvent(id, body)
-    .then(event => {
-      res.status(200).json(event);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// -----------------Locations----------------- \\
-
-// TODO: Remove?
+// ----------------- Locations -----------------
+// Get all locations
 router.get('/locations', (req, res) => {
   db.getAllLocations()
     .then(info => {
@@ -117,52 +75,12 @@ router.get('/locations', (req, res) => {
     });
 });
 
-// TODO: Remove?
+// Get a single location
 router.get('/location/:id', (req, res) => {
   const { id } = req.params;
-  db.getLocationsByID(id)
+  db.findLocationById(id)
     .then(info => {
       res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// ----- All below will have to be moved to auth if needed
-
-// FIXME: Highest priority
-// TODO: Remove
-router.post('/location/', (req, res) => {
-  const { body } = req;
-  db.addLocation(body)
-    .then(location => {
-      res.status(200).json(location);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// TODO: Remove
-router.delete('/location/:id', (req, res) => {
-  const { id } = req.params;
-  db.removeLocation(id)
-    .then(location => {
-      res.status(200).json(location);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// TODO: Remove
-router.put('/location/:id', (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
-  db.updateLocation(id, body)
-    .then(location => {
-      res.status(200).json(location);
     })
     .catch(err => {
       res.status(500).json(err);

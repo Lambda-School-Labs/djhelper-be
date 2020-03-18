@@ -3,10 +3,9 @@ const db = require('../db-config');
 
 module.exports = {
   getAllDJs,
-  getDJsByID,
   addDJ,
   findBy,
-  findDjById,
+  findDJById,
   updateDJ,
   removeDJ,
   getAllEvents,
@@ -19,7 +18,7 @@ module.exports = {
   removeLocation
 };
 
-// ----------------- DJ's -----------------
+// ----------------- DJs -----------------
 
 // Get every registered DJ's information
 function getAllDJs() {
@@ -27,13 +26,7 @@ function getAllDJs() {
 }
 
 // Get a specific DJ by id
-// TODO: Consider merging this duplicate function
-function getDJsByID(id) {
-  return db('dj-login').where({ id });
-}
-
-// Get a specific DJ by id
-async function findDjById(id) {
+async function findDJById(id) {
   return db('dj-login')
     .where({ id })
     .first();
@@ -44,7 +37,7 @@ async function addDJ(info) {
   const [id] = await db('dj-login')
     .returning('id') // This line is REQUIRED for PostgreSQL
     .insert(info);
-  return findDjById(id);
+  return findDJById(id);
 }
 
 // Login for a DJ
@@ -59,7 +52,7 @@ function updateDJ(id, updatedUser) {
     .where({ id })
     .update(updatedUser)
     .then(() => {
-      return getDJsByID(id);
+      return findDJById(id);
     });
 }
 
@@ -70,7 +63,7 @@ function removeDJ(id) {
     .del();
 }
 
-// ----------------- EVENTS -----------------
+// ----------------- Events -----------------
 
 // All Events
 function getAllEvents() {
@@ -79,13 +72,12 @@ function getAllEvents() {
 
 // Get a specific Event by id
 async function findEventById(id) {
-  return db('event') // TODO: Check
+  return db('events')
     .where({ id })
     .first();
 }
 
 // Add an Event
-// TODO: Add playlist... Here or in the router.
 async function addEvent(info) {
   console.log('Storing info:', info);
   const [id] = await db('events')
@@ -95,7 +87,7 @@ async function addEvent(info) {
 }
 
 // Update an event
-function updateEvent(id, updatedEvent) {
+async function updateEvent(id, updatedEvent) {
   return db('events')
     .where({ id })
     .update(updatedEvent)
@@ -105,13 +97,13 @@ function updateEvent(id, updatedEvent) {
 }
 
 // Completely remove an event
-function removeEvent(id) {
+async function removeEvent(id) {
   return db('events')
     .where({ id })
     .del();
 }
 
-// -----------------Locations----------------- \\
+// ----------------- Locations -----------------
 
 // All Locations
 function getAllLocations() {
@@ -134,8 +126,8 @@ async function addLocation(info) {
   return findLocationById(id);
 }
 
-// Update an Location
-function updateLocation(id, updatedLocation) {
+// Update a Location
+async function updateLocation(id, updatedLocation) {
   return db('locations')
     .where({ id })
     .update(updatedLocation)
@@ -144,9 +136,11 @@ function updateLocation(id, updatedLocation) {
     });
 }
 
-// Completely remove an event
-function removeLocation(id) {
+// Completely remove a location
+async function removeLocation(id) {
   return db('locations')
     .where('id', id)
     .del();
 }
+
+// -------------- Playlists --------------

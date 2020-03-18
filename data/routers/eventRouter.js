@@ -1,20 +1,7 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
 
-// Get all events
-// TODO: Is this a necessary duplicate?
-router.get('/', (req, res) => {
-  db.getAllEvents()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// ================== Event Routes ======================
-
+// ----------- POST Event -------------
 router.post('/', (req, res) => {
   const event = req.body;
 
@@ -25,6 +12,8 @@ router.post('/', (req, res) => {
 
   // Check for duplicates here if we need to.
 
+  // TODO: Create a new playlist here.
+
   db.addEvent(event)
     .then(saved => {
       res.status(200).json(saved);
@@ -34,6 +23,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// ------------- GET Single Event -------------
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   db.findEventById(id)
@@ -45,6 +35,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// -------------- PUT (modify) Event ----------
 // TODO: Check failure modes. Enure ID exists first.
 router.put('/:id', (req, res) => {
   const { id } = req.params;
@@ -58,6 +49,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// ------------- DELETE Event ---------------
 // TODO: Check failure modes.
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
