@@ -55,7 +55,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
+  .dropTableIfExists('events')
   .dropTableIfExists('dj-login')
-  .dropTableIfExists('locations')
-  .dropTableIfExists('events');
+  .dropTableIfExists('locations');
 };
