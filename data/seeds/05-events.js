@@ -1,9 +1,7 @@
-
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
   return knex('events')
     .truncate()
-    .then(function () {
+    .then(function() {
       // Inserts seed entries
       return knex('events').insert([
         {
@@ -67,7 +65,7 @@ exports.seed = function(knex) {
           event_type: 'birthday',
           description:
             'Lots of friends and family to celebrate a very important lady',
-            location_id: 5,
+          location_id: 5,
           img_url:
             'https://images.unsplash.com/photo-1567768823253-c4fe2bf7143e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
@@ -104,7 +102,8 @@ exports.seed = function(knex) {
           name: "Jess and Roman's Wedding",
           date: '2019-01-10',
           event_type: 'wedding',
-          description: 'Come and celebrate with family, friends, and festivities.',
+          description:
+            'Come and celebrate with family, friends, and festivities.',
           location_id: 8,
           img_url:
             'https://images.unsplash.com/photo-1549335223-c89505707f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
@@ -158,7 +157,6 @@ exports.seed = function(knex) {
           img_url:
             'https://images.unsplash.com/photo-1558317751-bc3ed6f85f72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         },
-      
         {
           dj_id: 1,
           playlists_id: 3,
@@ -202,60 +200,61 @@ exports.seed = function(knex) {
           dj_id: 4,
           playlists_id: 4,
           request_id: 4,
-          name: "Miami Nights", 
-          date:  "2020-01-12",
-          start_time: "12:00:00",
-          end_time: "12:30:01",
-          event_type: "Club",
-          description: "Miami's hottest night club event of 2020 at Club LIV, book now before we are sold out!",
+          name: 'Miami Nights',
+          date: '2020-01-12',
+          start_time: '12:00:00',
+          end_time: '12:30:01',
+          event_type: 'Club',
+          description:
+            "Miami's hottest night club event of 2020 at Club LIV, book now before we are sold out!",
           location_id: 16,
-          img_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Funitedwaymiami.org%2Fwp-content%2Fuploads%2F2017%2F02%2Fpic-of-liv-nightclub-confetti.jpg&f=1&nofb=1"
-
+          img_url:
+            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Funitedwaymiami.org%2Fwp-content%2Fuploads%2F2017%2F02%2Fpic-of-liv-nightclub-confetti.jpg&f=1&nofb=1'
         },
         {
           dj_id: 3,
           playlists_id: 4,
           request_id: 4,
-          name: "Pool Party by the Sea", 
-          date:  "2020-02-12",
-          start_time: "12:00:00",
-          end_time: "12:30:01",
-          event_type: "Pool",
-          description: "Dubai's hottest beach club event of 2020 at Zero Gravity, book now before we are sold out!",
+          name: 'Pool Party by the Sea',
+          date: '2020-02-12',
+          start_time: '12:00:00',
+          end_time: '12:30:01',
+          event_type: 'Pool',
+          description:
+            "Dubai's hottest beach club event of 2020 at Zero Gravity, book now before we are sold out!",
           location_id: 17,
-          img_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FagXbcf4xu0w%2Fmaxresdefault.jpg&f=1&nofb=1"
-
+          img_url:
+            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FagXbcf4xu0w%2Fmaxresdefault.jpg&f=1&nofb=1'
         },
-        { 
+        {
           dj_id: 2,
           playlists_id: 4,
           request_id: 4,
-          name: "Night at Schrödinger's Cat", 
-          date:  "2020-02-12",
-          start_time: "12:00:00",
-          end_time: "12:30:01",
-          event_type: "Bar",
-          description: "Moscow's hottest night club event of 2020 at Schrödinger's cat, book now before we are sold out!",
+          name: "Night at Schrödinger's Cat",
+          date: '2020-02-12',
+          start_time: '12:00:00',
+          end_time: '12:30:01',
+          event_type: 'Bar',
+          description:
+            "Moscow's hottest night club event of 2020 at Schrödinger's cat, book now before we are sold out!",
           location_id: 18,
-          img_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Cvrf8qjMW9ScdMJE32FGOAHaE8%26pid%3DApi&f=1"
-
+          img_url:
+            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Cvrf8qjMW9ScdMJE32FGOAHaE8%26pid%3DApi&f=1'
         }
       ]);
     });
 };
 
-
- // {
-        //     date: '2020-04-10',
-        //     description: 'A traditional, peaceful wedding.',
-        //     dj_id: 4,
-        //     end_time: '20:00',
-        //     event_type: 'wedding',
-        //     img_url:'https://images.unsplash.com/photo-1508219803418-5f1f89469b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        //     location_id: 1,
-        //     name: 'Bill and Grace',
-        //     playlists_id: 1,
-        //     request_id: 1,
-        //     start_time: '14:00',
-            
-        //   }
+// {
+//     date: '2020-04-10',
+//     description: 'A traditional, peaceful wedding.',
+//     dj_id: 4,
+//     end_time: '20:00',
+//     event_type: 'wedding',
+//     img_url:'https://images.unsplash.com/photo-1508219803418-5f1f89469b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+//     location_id: 1,
+//     name: 'Bill and Grace',
+//     playlists_id: 1,
+//     request_id: 1,
+//     start_time: '14:00',
+//   }

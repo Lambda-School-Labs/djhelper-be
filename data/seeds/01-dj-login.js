@@ -1,7 +1,6 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
   return knex('dj-login')
-    .del()
+    .truncate() // FIXME: Truncate
     .then(function() {
       // Inserts seed entries
       return knex('dj-login').insert([
@@ -39,14 +38,16 @@ exports.seed = function(knex) {
           profile_pic_url: ''
         },
         {
-          username: "fox6",
-          password: "$2a$10$NsLm.MLxDS/llVJOQIj0/eHrQnacAe4se.gTwOdKhA4WdxvBwu0Cy",
-          name: "DJ Fox 6",
-          email: "fox6@gmail.com",
-          phone: "",
-          website: "",
-          bio: "",
-          profile_pic_url: "https://images.unsplash.com/photo-1582280516732-87e776e3cafd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+          username: 'fox6',
+          password:
+            '$2a$10$NsLm.MLxDS/llVJOQIj0/eHrQnacAe4se.gTwOdKhA4WdxvBwu0Cy',
+          name: 'DJ Fox 6',
+          email: 'fox6@gmail.com',
+          phone: '',
+          website: '',
+          bio: '',
+          profile_pic_url:
+            'https://images.unsplash.com/photo-1582280516732-87e776e3cafd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
         }
       ]);
     });
