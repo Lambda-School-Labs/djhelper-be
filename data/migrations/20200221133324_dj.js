@@ -29,6 +29,12 @@ exports.up = function(knex) {
     tbl.text('email', 128);
     tbl.text('img_url');
   })
+  .createTable('songs', tbl => {
+    // creates a primary key called id
+    tbl.increments();
+    tbl.text('name', 128);
+    tbl.text('spotify_id', 255);
+  })
   .createTable('playlists', tbl => {
     // creates a primary key called id
     tbl.increments();
@@ -36,6 +42,22 @@ exports.up = function(knex) {
   .createTable('request_list', tbl => {
     // creates a primary key called id
     tbl.increments();
+  })
+  .createTable('song_playlist_connections', tbl => {
+    // creates a primary key called id
+    tbl.increments();
+    tbl.integer('playlists_id')
+       .unsigned()
+       .references('id')
+       .inTable('playlists')
+       .onDelete('CASCADE')
+       .onUpdate('CASCADE');
+    tbl.integer('songs_id')
+       .unsigned()
+       .references('id')
+       .inTable('songs')
+       .onDelete('CASCADE')
+       .onUpdate('CASCADE');
   })
   .createTable('events', tbl => {
     // creates a primary key called id
@@ -77,8 +99,10 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('events')
+  .dropTableIfExists('song_playlist_connections')
   .dropTableIfExists('dj-login')
   .dropTableIfExists('playlists')
   .dropTableIfExists('request_list')
-  .dropTableIfExists('locations');
+  .dropTableIfExists('locations')
+  .dropTableIfExists('songs');
 };

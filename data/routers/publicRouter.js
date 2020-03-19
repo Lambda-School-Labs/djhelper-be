@@ -239,5 +239,165 @@ router.put('/location/:id', (req, res) => {
     });
 })
 
+//-----------------Songs-----------------\\
+
+// Get ALL Songs -- WORKS
+router.get('/songs', (req, res) => {
+  db.getAllSongs()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get Song by ID -- WORKS
+router.get('/song/:id', (req, res) => {
+  const id = req.params.id;
+  db.getSongsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+//-----All below will have to be moved to auth if needed 
+
+// POST new Song-- WORKS
+router.post('/song/', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.addSong(body)
+  .then(event => {
+      res.status(200).json({
+        id: body.id,
+        name: body.name,
+        spotify_id: body.spotify_id
+      })
+  })
+  .catch(err => {
+      res.status(500).json({ err })
+  })
+})
+
+// DEL Song-- WORKS
+router.delete('/song/:id', (req, res) => {
+  const id = req.params.id;
+  db.removeSong(id)
+  .then(event => {
+      res.status(200).json(event)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
+// PUT update Song-- WORKS
+router.put('/song/:id', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.updateSong(id, body)
+  .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
+
+//-----------------Playlists-----------------\\
+
+// Get ALL Playlists -- WORKS
+router.get('/playlists', (req, res) => {
+  db.getAllPlaylists()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get Playlists by ID -- WORKS
+router.get('/playlist/:id', (req, res) => {
+  const id = req.params.id;
+  db.getPlaylistsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+//-----All below will have to be moved to auth if needed 
+
+// POST new Playlists-- WORKS
+router.post('/playlist/', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.addPlaylists(body)
+  .then(event => {
+      res.status(200).json(event)
+  })
+  .catch(err => {
+      res.status(500).json({ err })
+  })
+})
+
+// DEL Playlists-- WORKS
+router.delete('/playlist/:id', (req, res) => {
+  const id = req.params.id;
+  db.removePlaylist(id)
+  .then(event => {
+      res.status(200).json(event)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+})
+
+// PUT update Playlists-- WORKS
+router.put('/playlist/:id', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.updatePlaylists(id, body)
+  .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
+
+//-----------------Playlist Connections-----------------\\
+
+// Get ALL Playlist Connections -- WORKS
+router.get('/playlistconnects', (req, res) => {
+  db.getAllPlaylistConnects()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get Playlist Connections by ID -- WORKS
+router.get('/playlistconnect/:id', (req, res) => {
+  const id = req.params.id;
+  db.getPlaylistConnectsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+
 
 module.exports = router;
