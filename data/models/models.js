@@ -9,12 +9,14 @@ module.exports = {
   findById,
   updateDJ,
   removeDJ,
+
   getAllEvents,
   findByIdEvent,
   getEventsByID,
   addEvent,
   updateEvent,
   removeEvent,
+
   getAllLocations,
   findByIdLocation,
   getLocationsByID,
@@ -22,19 +24,24 @@ module.exports = {
   updateLocation,
   removeLocation,
   findByLoc,
+
   getAllSongs,
   findByIdSong,
   getSongsByID,
   addSong,
   updateSong,
   removeSong,
+
   getAllPlaylists,
   getPlaylistsByID,
   addPlaylists,
   updatePlaylists,
   removePlaylist,
+
   getAllPlaylistConnects,
-  getPlaylistConnectsByID
+  getPlaylistConnectsByID,
+  findByIdPlaylistConnects,
+  addPlaylistConnects
 
 };
 
@@ -297,7 +304,23 @@ function getAllPlaylistConnects() {
   return db('song_playlist_connections');
 }
 
+async function findByIdPlaylistConnects(id) {
+  return db('song_playlist_connections')
+    .where({ id })
+    .first();
+}
+
 // Playlists by id
 function getPlaylistConnectsByID(id) {
   return db('song_playlist_connections').where({ id });
+}
+
+
+// Add an Playlist
+async function addPlaylistConnects(info) {
+  console.log('Storing info:', info);
+  const [id] = await db('song_playlist_connections')
+    .returning('id') //Required PostgreSQL line <---
+    .insert(info);
+  return findByIdPlaylistConnects(id);
 }

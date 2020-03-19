@@ -398,6 +398,19 @@ router.get('/playlistconnect/:id', (req, res) => {
     });
 });
 
+// POST new Playlist Connections-- WORKS
+router.post('/playlistconnect/', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.addPlaylistConnects(body)
+  .then(event => {
+      res.status(200).json(event)
+  })
+  .catch(err => {
+      res.status(500).json({ err })
+  })
+})
+
 
 
 module.exports = router;
