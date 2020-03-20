@@ -4,7 +4,7 @@ const db = require('../models/models.js');
 //-----------------Playlists-----------------\\
 
 // Get ALL Playlists 
-router.get('/playlists', (req, res) => {
+router.get('/', (req, res) => {
     db.getAllPlaylists()
       .then(info => {
         res.status(200).json(info);
@@ -15,7 +15,7 @@ router.get('/playlists', (req, res) => {
   });
   
   // Get Playlists by ID 
-  router.get('/playlist/:id', (req, res) => {
+  router.get('/:id', (req, res) => {
     const id = req.params.id;
     db.getPlaylistsByID(id)
       .then(info => {
@@ -27,20 +27,19 @@ router.get('/playlists', (req, res) => {
   });
   
   // POST new Playlists
-  router.post('/playlist/', (req, res) => {
-    const id = req.params.id;
+  router.post('/', (req, res) => {
     const body = req.body;
     db.addPlaylists(body)
-    .then(event => {
-        res.status(200).json(event)
+    .then(data => {
+        res.status(200).json(body)
     })
     .catch(err => {
         res.status(500).json({ err })
     })
-  })
+  });
   
   // DEL Playlists
-  router.delete('/playlist/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     const id = req.params.id;
     db.removePlaylist(id)
     .then(event => {
@@ -52,7 +51,7 @@ router.get('/playlists', (req, res) => {
   })
   
   // PUT update Playlists
-  router.put('/playlist/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
     db.updatePlaylists(id, body)

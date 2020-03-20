@@ -4,7 +4,7 @@ const db = require('../models/models.js');
 // Gets all locations
 // TODO: Leave this here as "/location", eliminate it,
 //       or use something like "location/all"?
-router.get('/locations', (req, res) => {
+router.get('/', (req, res) => {
   db.getAllLocations()
     .then(info => {
       res.status(200).json(info);
@@ -15,7 +15,7 @@ router.get('/locations', (req, res) => {
 });
 
 // Get a single location
-router.get('/location/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const { id } = req.params;
   db.findLocationById(id)
     .then(info => {
@@ -29,7 +29,7 @@ router.get('/location/:id', (req, res) => {
 // ================= Location Routes =====================
 
 //POST new location 
-router.post('/location/', (req, res) => {
+router.post('/', (req, res) => {
   const body = req.body;
   db.addLocation(body)
   .then(data => {
@@ -40,21 +40,10 @@ router.post('/location/', (req, res) => {
   })
 });
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  db.findLocationByID(id)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
 // TODO: Check the behavior of this when it fails.
 
 // DEL location 
-router.delete('/location/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id;
   db.removeLocation(id)
   .then(location => {
@@ -66,7 +55,7 @@ router.delete('/location/:id', (req, res) => {
 });
 
 // PUT update location 
-router.put('/location/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id;
   const body = req.body;
   db.updateLocation(id, body)

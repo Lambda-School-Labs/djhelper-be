@@ -4,7 +4,7 @@ const db = require('../models/models.js');
 //-----------------Playlist Connections-----------------\\
 
 // Get ALL Playlist Connections
-router.get('/playlistconnects', (req, res) => {
+router.get('/', (req, res) => {
     db.getAllPlaylistConnects()
       .then(info => {
         res.status(200).json(info);
@@ -15,7 +15,7 @@ router.get('/playlistconnects', (req, res) => {
   });
   
   // Get Playlist Connections by ID
-  router.get('/playlistconnect/:id', (req, res) => {
+  router.get('/:id', (req, res) => {
     const id = req.params.id;
     db.getPlaylistConnectsByID(id)
       .then(info => {
@@ -27,20 +27,19 @@ router.get('/playlistconnects', (req, res) => {
   });
   
   // POST new Playlist Connections
-  router.post('/playlistconnect/', (req, res) => {
-    const id = req.params.id;
+  router.post('/', (req, res) => {
     const body = req.body;
     db.addPlaylistConnects(body)
-    .then(event => {
-        res.status(200).json(event)
+    .then(data => {
+        res.status(200).json(body)
     })
     .catch(err => {
         res.status(500).json({ err })
     })
-  })
+  });
   
   // DEL Playlists
-  router.delete('/playlistconnect/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     const id = req.params.id;
     db.removePlaylistConnects(id)
     .then(event => {
@@ -52,7 +51,7 @@ router.get('/playlistconnects', (req, res) => {
   })
   
   // PUT update Playlists
-  router.put('/playlistconnect/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
     db.updatePlaylistsConnects(id, body)

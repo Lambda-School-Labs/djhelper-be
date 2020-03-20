@@ -1,7 +1,9 @@
+const router = require('express').Router();
+const db = require('../models/models.js');
 //-----------------Songs-----------------\\
 
 // Get ALL Songs 
-router.get('/songs', (req, res) => {
+router.get('/', (req, res) => {
     db.getAllSongs()
       .then(info => {
         res.status(200).json(info);
@@ -12,7 +14,7 @@ router.get('/songs', (req, res) => {
   });
   
   // Get Song by ID 
-  router.get('/song/:id', (req, res) => {
+  router.get('/:id', (req, res) => {
     const id = req.params.id;
     db.getSongsByID(id)
       .then(info => {
@@ -24,27 +26,19 @@ router.get('/songs', (req, res) => {
   });
   
   // POST new Song
-  router.post('/song/', (req, res) => {
-const router = require('express').Router();
-const db = require('../models/models.js');
-    
-    const id = req.params.id;
+  router.post('/', (req, res) => {
     const body = req.body;
     db.addSong(body)
-    .then(event => {
-        res.status(200).json({
-          id: body.id,
-          name: body.name,
-          spotify_id: body.spotify_id
-        })
+    .then(data => {
+        res.status(200).json(body)
     })
     .catch(err => {
         res.status(500).json({ err })
     })
-  })
+  });
   
   // DEL Song
-  router.delete('/song/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     const id = req.params.id;
     db.removeSong(id)
     .then(event => {
@@ -56,7 +50,7 @@ const db = require('../models/models.js');
   })
   
   // PUT update Song
-  router.put('/song/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
     db.updateSong(id, body)
