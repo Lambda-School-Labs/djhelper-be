@@ -3,6 +3,7 @@ const request = require('supertest');
 const db = require('../db-config.js');
 
 const authRouter = './authRouter.js';
+const authenticate = require('../../middleware/auth-jest.js');
 
 describe('authRouter', function() {
   test('runs the tests', async function() {
