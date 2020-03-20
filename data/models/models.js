@@ -15,7 +15,6 @@ module.exports = {
   removeEvent,
 
   getAllLocations,
-  findByIdLocation,
   findLocationById,
   addLocation,
   updateLocation,
@@ -134,12 +133,6 @@ async function removeEvent(id) {
 function findByLoc(filter) {
   console.log('The filter is', filter);
   return db('locations').where(filter);
-}
-
-async function findByIdLocation(id) {
-  return db('locations')
-    .where({ id })
-    .first();
 }
 
 // All Locations
