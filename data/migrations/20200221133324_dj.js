@@ -19,7 +19,7 @@ exports.up = function(knex) {
     // creates a primary key called id
     tbl.increments();
     tbl.text('address_line_1', 128).notNullable();
-    tbl.text('address_line_2', 128).notNullable();
+    tbl.text('address_line_2', 128);
     tbl.text('city', 128).notNullable();
     tbl.text('state', 128).notNullable();
     tbl.text('zip', 128).notNullable();
