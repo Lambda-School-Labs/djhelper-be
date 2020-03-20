@@ -8,14 +8,39 @@ module.exports = {
   findDJById,
   updateDJ,
   removeDJ,
+
   getAllEvents,
   addEvent,
   updateEvent,
   removeEvent,
+
   getAllLocations,
+  findLocationById,
   addLocation,
   updateLocation,
-  removeLocation
+  removeLocation,
+  findByLoc,
+
+  getAllSongs,
+  findByIdSong,
+  getSongsByID,
+  addSong,
+  updateSong,
+  removeSong,
+
+  getAllPlaylists,
+  getPlaylistsByID,
+  addPlaylists,
+  updatePlaylists,
+  removePlaylist,
+
+  getAllPlaylistConnects,
+  getPlaylistConnectsByID,
+  findByIdPlaylistConnects,
+  addPlaylistConnects,
+  updatePlaylistsConnects,
+  removePlaylistConnects
+
 };
 
 // ----------------- DJs -----------------
@@ -105,6 +130,11 @@ async function removeEvent(id) {
 
 // ----------------- Locations -----------------
 
+function findByLoc(filter) {
+  console.log('The filter is', filter);
+  return db('locations').where(filter);
+}
+
 // All Locations
 function getAllLocations() {
   return db('locations');
@@ -143,4 +173,135 @@ async function removeLocation(id) {
     .del();
 }
 
-// -------------- Playlists --------------
+//-----------------Songs-----------------\\
+
+// All Songs
+function getAllSongs() {
+  return db('songs');
+}
+
+async function findByIdSong(id) {
+  return db('songs')
+    .where({ id })
+    .first();
+}
+
+// Songs by id
+function getSongsByID(id) {
+  return db('songs').where({ id });
+}
+
+// Add an Songs
+async function addSong(info) {
+  console.log('Storing info:', info);
+  const [id] = await db('songs')
+    .returning('id') //Required PostgreSQL line <---
+    .insert(info);
+  return findByIdSong(id);
+}
+
+// Update an songs
+function updateSong(id, updatedSong) {
+  return db('songs')
+    .where({ id })
+    .update(updatedSong)
+    .then(() => {
+      return getSongsByID(id);
+    });
+}
+
+// Completely remove an songs
+function removeSong(id) {
+  return db('songs')
+    .where('id', id)
+    .del();
+}
+
+//-----------------Playlists-----------------\\
+
+// All Playlists
+function getAllPlaylists() {
+  return db('playlists');
+}
+
+async function findByIdPlaylist(id) {
+  return db('playlists')
+    .where({ id })
+    .first();
+}
+
+// Playlists by id
+function getPlaylistsByID(id) {
+  return db('playlists').where({ id });
+}
+
+// Add an Playlist
+async function addPlaylists(info) {
+  console.log('Storing info:', info);
+  const [id] = await db('playlists')
+    .returning('id') //Required PostgreSQL line <---
+    .insert(info);
+  return findByIdPlaylist(id);
+}
+
+// Update an Playlist
+function updatePlaylists(id, updatedPlaylist) {
+  return db('playlists')
+    .where({ id })
+    .update(updatedPlaylist)
+    .then(() => {
+      return getPlaylistsByID(id);
+    });
+}
+
+// Completely remove an Playlist
+function removePlaylist(id) {
+  return db('playlists')
+    .where('id', id)
+    .del();
+}
+
+//-----------------Playlist Connections-----------------\\
+
+// All Playlists
+function getAllPlaylistConnects() {
+  return db('song_playlist_connections');
+}
+
+async function findByIdPlaylistConnects(id) {
+  return db('song_playlist_connections')
+    .where({ id })
+    .first();
+}
+
+// Playlists by id
+function getPlaylistConnectsByID(id) {
+  return db('song_playlist_connections').where({ id });
+}
+
+
+// Add an Playlist
+async function addPlaylistConnects(info) {
+  console.log('Storing info:', info);
+  const [id] = await db('song_playlist_connections')
+    .returning('id') //Required PostgreSQL line <---
+    .insert(info);
+  return findByIdPlaylistConnects(id);
+}
+
+// Update an Playlist
+function updatePlaylistsConnects(id, updatedPlaylist) {
+  return db('song_playlist_connections')
+    .where({ id })
+    .update(updatedPlaylist)
+    .then(() => {
+      return getPlaylistsByID(id);
+    });
+}
+
+// Completely remove an Playlist
+function removePlaylistConnects(id) {
+  return db('song_playlist_connections')
+    .where('id', id)
+    .del();
+}

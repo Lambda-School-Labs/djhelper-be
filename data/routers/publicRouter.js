@@ -64,7 +64,10 @@ router.get('/event/:id', (req, res) => {
 });
 
 // ----------------- Locations -----------------
-// Get all locations
+
+// In Locations File
+
+// get all Locations
 router.get('/locations', (req, res) => {
   db.getAllLocations()
     .then(info => {
@@ -87,4 +90,37 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
+//-----------------Songs-----------------\\
+// Get ALL Songs 
+router.get('/songs', (req, res) => {
+  db.getAllSongs()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get Song by ID 
+router.get('/song/:id', (req, res) => {
+  const id = req.params.id;
+  db.getSongsByID(id)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Get ALL Songs 
+
+//-----------------Playlists-----------------\\
+
+// In Playlists File
+
+//-----------------Playlist Connections-----------------\\
+
+// In Plsylists Connection File
 module.exports = router;

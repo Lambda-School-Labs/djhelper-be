@@ -14,22 +14,10 @@ router.get('/', (req, res) => {
     });
 });
 
-// ================= Location Routes =====================
-
-router.post('/', (req, res) => {
-  const { body } = req;
-  db.addLocation(body)
-    .then(location => {
-      res.status(200).json(location);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
+// Get a single location
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.findLocationByID(id)
+  db.findLocationById(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -38,28 +26,46 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// TODO: Check the behavior of this when it fails.
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  db.removeLocation(id)
-    .then(location => {
-      res.status(200).json(location);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
+// ================= Location Routes =====================
+
+//POST new location 
+router.post('/', (req, res) => {
+  const body = req.body;
+  db.addLocation(body)
+  .then(data => {
+      res.status(200).json(body)
+  })
+  .catch(err => {
+      res.status(500).json({ err })
+  })
 });
 
-// TODO: Check failure behavior.
+// TODO: Check the behavior of this when it fails.
+
+// DEL location 
 router.delete('/:id', (req, res) => {
-  const { id } = req.params.id;
+  const id = req.params.id;
   db.removeLocation(id)
-    .then(location => {
+  .then(location => {
+      res.status(200).json(location)
+  })
+  .catch(err => {
+      res.status(500).json(err)
+  })
+});
+
+// PUT update location 
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  db.updateLocation(id, body)
+  .then(location => {
       res.status(200).json(location);
     })
     .catch(err => {
       res.status(500).json(err);
-    });
-});
+    })
+  });
+
 
 module.exports = router;
