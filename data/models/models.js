@@ -16,6 +16,7 @@ module.exports = {
 
   getAllLocations,
   findByIdLocation,
+  findLocationById,
   addLocation,
   updateLocation,
   removeLocation,
