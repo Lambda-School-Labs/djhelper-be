@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
 
-// ----------- POST Event -------------
+// ----------- POST Event --------------
 router.post('/', (req, res) => {
   const event = req.body;
 
