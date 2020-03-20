@@ -13,7 +13,8 @@ module.exports = {
   addEvent,
   updateEvent,
   removeEvent,
-
+  findEventById,
+  
   getAllLocations,
   findLocationById,
   addLocation,
