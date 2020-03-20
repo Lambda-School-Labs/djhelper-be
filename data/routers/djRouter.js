@@ -30,21 +30,16 @@ router.put('/:id', (req, res) => {
         Dj.updateDJ(id, user) // Update the DJ
           .then(() => {
             Dj.findDJById(id).then(data => {
-              res
-                .status(200)
-                .json({
-                  id: data.id,
-                  username: data.username,
-                  name: data.name,
-                  email: data.email,
-                  phone: data.phone,
-                  website: data.website,
-                  bio: data.bio,
-                  profile_pic_url: data.profile_pic_url
-                })
-                .catch(errMsg => {
-                  res.status(500).json({ message: 'Error:', errMsg });
-                });
+              res.status(200).json({
+                id: data.id,
+                username: data.username,
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                website: data.website,
+                bio: data.bio,
+                profile_pic_url: data.profile_pic_url
+              });
             }); // res.status()
           }) // updateDJ .then
           .catch(error => {
