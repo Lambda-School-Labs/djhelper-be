@@ -29,13 +29,30 @@ exports.up = function(knex) {
       tbl.text('email', 128);
       tbl.text('img_url');
     })
-    .createTable('playlists', tbl => {
-      // ------------------- Playlist Table ---------------------
+    .createTable('songs', tbl => {
+      // ------------------- Songs Table ----------------------
       tbl.increments();
+      tbl.text('name', 128);
+      tbl.text('spotify_id', 255);
     })
-    .createTable('request_list', tbl => {
-      // ----------------- Request List Table -------------------
+    .createTable('song_playlist_connections', tbl => {
+      // ----------------- Playlist Connections Table ----------------
       tbl.increments();
+      tbl
+        .integer('event_id')
+        .unsigned()
+        .references('id')
+        .inTable('events')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+      tbl
+        .integer('song_id')
+        .unsigned()
+        .references('id')
+        .inTable('songs')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+      tbl.integer('queue_num');
     })
     .createTable('events', tbl => {
       // ------------------- Events Table ---------------------
@@ -78,44 +95,13 @@ exports.up = function(knex) {
     });
 };
 
-/*
-I Created these tables we can add them in when you are ready to deal with knex having a fuss:
-
-.createTable('songs', tbl => {
-    // creates a primary key called id
-    tbl.increments();
-    tbl.text('name', 128);
-    tbl.text('spotify_id', 255);
-  })
-  .createTable('song_playlist_connections', tbl => {
-    // creates a primary key called id
-    tbl.increments();
-    tbl.integer('playlists_id')
-      .unsigned()
-      .references('id')
-      .inTable('playlists')
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE');
-    tbl.integer('songs_id')
-      .unsigned()
-      .references('id')
-      .inTable('songs')
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE');
-    tbl.integer('queue_num');
-  })
-
-*/
-
 exports.down = function(knex) {
-  return (
-    knex.schema
-      .dropTableIfExists('events')
-      //.dropTableIfExists('song_playlist_connections')
-      .dropTableIfExists('dj-login')
-      .dropTableIfExists('playlists')
-      .dropTableIfExists('request_list')
-      .dropTableIfExists('locations');
-      //.dropTableIfExists('songs');
-  );
+  return knex.schema
+    .dropTableIfExists('events')
+    .dropTableIfExists('song_playlist_connections')
+    .dropTableIfExists('dj-login')
+    .dropTableIfExists('playlists')
+    .dropTableIfExists('request_list')
+    .dropTableIfExists('locations')
+    .dropTableIfExists('songs');
 };
