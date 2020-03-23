@@ -1,5 +1,6 @@
 exports.seed = function(knex) {
-  return knex('playlists') // .truncate()
+  return knex('playlists')
+    .truncate()
     .then(function() {
       // Inserts seed entries
       return knex('playlists').insert([

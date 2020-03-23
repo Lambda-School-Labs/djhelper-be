@@ -14,7 +14,7 @@ module.exports = {
   updateEvent,
   removeEvent,
   findEventById,
-  
+
   getAllLocations,
   findLocationById,
   addLocation,
@@ -41,7 +41,6 @@ module.exports = {
   addPlaylistConnects,
   updatePlaylistsConnects,
   removePlaylistConnects
-
 };
 
 // ----------------- DJs -----------------
@@ -174,7 +173,7 @@ async function removeLocation(id) {
     .del();
 }
 
-//-----------------Songs-----------------\\
+// -----------------Songs----------------- \\
 
 // All Songs
 function getAllSongs() {
@@ -196,7 +195,7 @@ function getSongsByID(id) {
 async function addSong(info) {
   console.log('Storing info:', info);
   const [id] = await db('songs')
-    .returning('id') //Required PostgreSQL line <---
+    .returning('id') // Required PostgreSQL line <---
     .insert(info);
   return findByIdSong(id);
 }
@@ -218,7 +217,7 @@ function removeSong(id) {
     .del();
 }
 
-//-----------------Playlists-----------------\\
+// -----------------Playlists----------------- \\
 
 // All Playlists
 function getAllPlaylists() {
@@ -240,7 +239,7 @@ function getPlaylistsByID(id) {
 async function addPlaylists(info) {
   console.log('Storing info:', info);
   const [id] = await db('playlists')
-    .returning('id') //Required PostgreSQL line <---
+    .returning('id') // Required PostgreSQL line <---
     .insert(info);
   return findByIdPlaylist(id);
 }
@@ -262,7 +261,7 @@ function removePlaylist(id) {
     .del();
 }
 
-//-----------------Playlist Connections-----------------\\
+// -----------------Playlist Connections----------------- \\
 
 // All Playlists
 function getAllPlaylistConnects() {
@@ -280,12 +279,11 @@ function getPlaylistConnectsByID(id) {
   return db('song_playlist_connections').where({ id });
 }
 
-
 // Add an Playlist
 async function addPlaylistConnects(info) {
   console.log('Storing info:', info);
   const [id] = await db('song_playlist_connections')
-    .returning('id') //Required PostgreSQL line <---
+    .returning('id') // Required PostgreSQL line <---
     .insert(info);
   return findByIdPlaylistConnects(id);
 }

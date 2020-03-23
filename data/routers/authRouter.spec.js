@@ -1,5 +1,6 @@
-const server = require('../../server.js');
 const request = require('supertest');
+const server = require('../../server.js');
+
 const db = require('../db-config.js');
 
 const authRouter = './authRouter.js';
@@ -32,5 +33,3 @@ describe('authRouter', function() {
   // 1. Delete an entry that exists -> 200
   // 2. Try to delete an entry that doesn't -> 400
 });
-
-// TODO: Copy tests from publicRouter into here.

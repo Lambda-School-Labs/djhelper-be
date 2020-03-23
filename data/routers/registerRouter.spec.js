@@ -1,12 +1,13 @@
-const server = require('../../server.js');
 const request = require('supertest');
+const jwt = require('jsonwebtoken');
+const server = require('../../server.js');
+
 const db = require('../db-config.js');
 
-const registerRouter = './registerRouter.js';
-
-const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secrets');
 const authenticate = require('../../middleware/auth-jest.js');
+
+const registerRouter = './registerRouter.js';
 
 describe('registerRouter', function() {
   test('runs the tests', async function() {

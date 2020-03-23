@@ -1,11 +1,10 @@
 const router = require('express').Router();
-const Dj = require('../models/models.js');
 const djRouter = require('./djRouter.js');
 const guestRouter = require('./guestRouter.js');
 const eventRouter = require('./eventRouter.js');
 const locationRouter = require('./locationRouter.js');
 const playlistsRouter = require('./playlistsRouter');
-const playlistsConnects = require('./playlistsConnectionRouter.js');
+const playlistsConnects = require('./playlistsConnectionRouter.js'); // TODO: Remove
 const songRouter = require('./songRouter.js');
 
 router.use('/dj', djRouter);
