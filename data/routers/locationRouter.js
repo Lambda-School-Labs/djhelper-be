@@ -28,44 +28,43 @@ router.get('/:id', (req, res) => {
 
 // ================= Location Routes =====================
 
-//POST new location 
+// POST new location
 router.post('/', (req, res) => {
-  const body = req.body;
+  const { body } = req;
   db.addLocation(body)
-  .then(data => {
-      res.status(200).json(data)
-  })
-  .catch(err => {
-      res.status(500).json({ err })
-  })
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => {
+      res.status(500).json({ err });
+    });
 });
 
 // TODO: Check the behavior of this when it fails.
 
-// DEL location 
+// DEL location
 router.delete('/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.removeLocation(id)
-  .then(location => {
-      res.status(200).json(location)
-  })
-  .catch(err => {
-      res.status(500).json(err)
-  })
-});
-
-// PUT update location 
-router.put('/:id', (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
-  db.updateLocation(id, body)
-  .then(location => {
+    .then(location => {
       res.status(200).json(location);
     })
     .catch(err => {
       res.status(500).json(err);
-    })
-  });
+    });
+});
 
+// PUT update location
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  db.updateLocation(id, body)
+    .then(location => {
+      res.status(200).json(location);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
