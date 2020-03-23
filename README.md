@@ -1,12 +1,8 @@
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be completed by. Make sure to delete the numbers by the end of Labs.
+# DJ-Helper API Documentation
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+[![Maintainability](https://api.codeclimate.com/v1/badges/ddd6e13e9136c40345b9/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/djhelper-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/ddd6e13e9136c40345b9/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/djhelper-be/test_coverage)
 
-# API Documentation
-
-#### Backend deployed at [AWS](https://ec2-18-218-74-229.us-east-2.compute.amazonaws.com) <br>
-
-Note: We are hoping to change this to https://api.dj-helper.com/
+#### Backend deployed at [api.dj-helper.com](https://api.dj-helper.com/)
 
 ## Getting started
 
@@ -29,7 +25,7 @@ The server requires a PostgreSQL database to be running and configured in a `.en
 - Point Three
 - Point Four
 
-## 2️⃣ Endpoints
+## Endpoints
 
 #### Onboarding Routes
 
@@ -58,6 +54,32 @@ These routes do **_not_** require a JSON token in the header.
 | PUT    | `/auth/dj/:id` | owners, supervisors | Returns all users for an organization. |
 | DELETE | `/auth/dj/:id` | owners, supervisors | Returns info for a single user.        |
 
+#### Event Routes
+
+| Method | Endpoint          | Access Control      | Description                            |
+| ------ | ----------------- | ------------------- | -------------------------------------- |
+| POST   | `/auth/event/:id` | all users           | Returns info for the logged in DJ.     |
+| PUT    | `/auth/event/:id` | owners, supervisors | Returns all users for an organization. |
+| DELETE | `/auth/event/:id` | owners, supervisors | Returns info for a single user.        |
+
+#### Playlist Routes
+
+[ ] TODO: Fix this section.
+
+| Method | Endpoint       | Access Control      | Description                            |
+| ------ | -------------- | ------------------- | -------------------------------------- |
+| GET    | `/auth/dj/:id` | all users           | Returns info for the logged in DJ.     |
+| PUT    | `/auth/dj/:id` | owners, supervisors | Returns all users for an organization. |
+| DELETE | `/auth/dj/:id` | owners, supervisors | Returns info for a single user.        |
+
+#### Song Routes
+
+| Method | Endpoint         | Access Control      | Description                            |
+| ------ | ---------------- | ------------------- | -------------------------------------- |
+| POST   | `/auth/song/`    | all users           | Returns info for the logged in DJ.     |
+| PUT    | `/auth/song/:id` | owners, supervisors | Returns all users for an organization. |
+| DELETE | `/auth/song/:id` | owners, supervisors | Returns info for a single user.        |
+
 # Data Model
 
 #### DJs
@@ -78,22 +100,7 @@ These routes do **_not_** require a JSON token in the header.
 }
 ```
 
-#### Guests
-
----
-
-```
-{
-  id: INTEGER
-  username: STRING
-  password: STRING
-  email: STRING
-}
-```
-
 #### Events
-
-TODO: Update this section
 
 ---
 
@@ -113,7 +120,32 @@ TODO: Update this section
 }
 ```
 
-## 2️⃣ Actions
+#### Songs
+
+---
+
+```
+{
+  id: INTEGER
+  name: STRING
+  spotify_id: STRING
+}
+```
+
+#### Guests
+
+---
+
+```
+{
+  id: INTEGER
+  username: STRING
+  password: STRING
+  email: STRING
+}
+```
+
+## Actions
 
 🚫 This is an example, replace this with the actions that pertain to your backend
 
@@ -128,7 +160,7 @@ TODO: Update this section
 `deleteOrg(orgId)` -> Delete an organization by ID
 <br>
 <br>
-<br>
+
 `getUsers(orgId)` -> if no param all users
 
 `getUser(userId)` -> Returns a single user by user ID
@@ -139,14 +171,14 @@ TODO: Update this section
 
 `deleteUser(userId)` -> deletes everything dependent on the user
 
-## 3️⃣ Environment Variables
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a `.env` file that includes the following:
 
 ```
-PORT - optional port number for this app. Defaults to 6000.
+PORT - optional port number for this app. Defaults to 8000.
 USE_HTTPS - set to "true" if using https. Place SSL/TLS certificate under /cert.
 
 DB_HOSTNAME - e.g. "localhost".
