@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   return knex('dj-login')
-    .truncate() // FIXME: Truncate
+    .truncate()
     .then(function() {
       // Inserts seed entries
       return knex('dj-login').insert([

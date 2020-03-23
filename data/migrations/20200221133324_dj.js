@@ -91,17 +91,17 @@ I Created these tables we can add them in when you are ready to deal with knex h
     // creates a primary key called id
     tbl.increments();
     tbl.integer('playlists_id')
-       .unsigned()
-       .references('id')
-       .inTable('playlists')
-       .onDelete('CASCADE')
-       .onUpdate('CASCADE');
+      .unsigned()
+      .references('id')
+      .inTable('playlists')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
     tbl.integer('songs_id')
-       .unsigned()
-       .references('id')
-       .inTable('songs')
-       .onDelete('CASCADE')
-       .onUpdate('CASCADE');
+      .unsigned()
+      .references('id')
+      .inTable('songs')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
     tbl.integer('queue_num');
   })
 
@@ -115,7 +115,7 @@ exports.down = function(knex) {
       .dropTableIfExists('dj-login')
       .dropTableIfExists('playlists')
       .dropTableIfExists('request_list')
-      .dropTableIfExists('locations')
+      .dropTableIfExists('locations');
+      //.dropTableIfExists('songs');
   );
-  //.dropTableIfExists('songs');
 };

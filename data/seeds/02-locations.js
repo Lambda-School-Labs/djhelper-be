@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   return knex('locations')
-    .truncate() // FIXME: Truncate
+    .truncate()
     .then(function() {
       // Inserts seed entries
       return knex('locations').insert([
