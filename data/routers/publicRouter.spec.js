@@ -55,3 +55,19 @@ describe('Public Router tests', function() {
     expect(res.type).toMatch(/json/i);
   });
 });
+
+// -- Tests to see if /song route is running
+describe('song router Get all', function() {
+  test('get /api/songs should return all events', async function() {
+    const res = await request(server).get('/api/songs');
+    expect(res.status).toBe(200);
+    expect(res.type).toMatch(/json/i);
+  });
+
+// -- Tests to see if /song/:id route is running
+  test('get /api/songs/1 should return song with ID 1', async function() {
+    const res = await request(server).get('/api/songs/1');
+    expect(res.status).toBe(200);
+    expect(res.type).toMatch(/json/i);
+  });
+});

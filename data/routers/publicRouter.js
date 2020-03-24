@@ -103,7 +103,7 @@ router.get('/songs', (req, res) => {
 });
 
 // Get Song by ID 
-router.get('/song/:id', (req, res) => {
+router.get('/songs/:id', (req, res) => {
   const id = req.params.id;
   db.getSongsByID(id)
     .then(info => {
