@@ -47,19 +47,19 @@ module.exports = {
 
 // Get every registered DJ's information
 function getAllDJs() {
-  return db('dj-login');
+  return db('djs');
 }
 
 // Get a specific DJ by id
 async function findDJById(id) {
-  return db('dj-login')
+  return db('djs')
     .where({ id })
     .first();
 }
 
 async function addDJ(info) {
   console.log('Storing info:', info);
-  const [id] = await db('dj-login')
+  const [id] = await db('djs')
     .returning('id') // This line is REQUIRED for PostgreSQL
     .insert(info);
   return findDJById(id);
@@ -68,12 +68,12 @@ async function addDJ(info) {
 // Login for a DJ
 function findBy(filter) {
   console.log('The filter is', filter);
-  return db('dj-login').where(filter);
+  return db('djs').where(filter);
 }
 
 // Update DJ
 function updateDJ(id, updatedUser) {
-  return db('dj-login')
+  return db('djs')
     .where({ id })
     .update(updatedUser)
     .then(() => {
@@ -83,7 +83,7 @@ function updateDJ(id, updatedUser) {
 
 // Completely remove a DJ
 function removeDJ(id) {
-  return db('dj-login')
+  return db('djs')
     .where('id', id)
     .del();
 }

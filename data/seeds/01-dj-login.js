@@ -1,9 +1,9 @@
 exports.seed = function(knex) {
-  return knex('dj-login')
+  return knex('djs')
     .truncate()
     .then(function() {
       // Inserts seed entries
-      return knex('dj-login').insert([
+      return knex('djs').insert([
         {
           username: 'andy2',
           password:
