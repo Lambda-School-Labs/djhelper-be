@@ -64,7 +64,7 @@ describe('song router Get all', function() {
     expect(res.type).toMatch(/json/i);
   });
 
-// -- Tests to see if /song/:id route is running
+// -- Tests to see if /songs/:id route is running
   test('get /api/songs/1 should return song with ID 1', async function() {
     const res = await request(server).get('/api/songs/1');
     expect(res.status).toBe(200);
