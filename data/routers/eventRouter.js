@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
+const playlistRouter = require('./playlistRouter');
+
+router.use('/playlist', playlistRouter);
 
 // ----------- POST Event --------------
 router.post('/', (req, res) => {

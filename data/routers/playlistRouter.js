@@ -1,13 +1,11 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
 
-// TODO: Delete this file
+// -----------------Playlists----------------- \\
 
-// -----------------Playlist Connections-----------------\\
-
-// Get ALL Playlist Connections
+// Get ALL Playlists
 router.get('/', (req, res) => {
-  db.getAllPlaylistConnects()
+  db.getAllPlaylists()
     .then(info => {
       res.status(200).json(info);
     })
@@ -16,10 +14,10 @@ router.get('/', (req, res) => {
     });
 });
 
-// Get Playlist Connections by ID
+// Get Playlist by ID
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.getPlaylistConnectsByID(id)
+  db.getPlaylistsByID(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -28,22 +26,23 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// POST new Playlist Connections
+// POST new Playlist
 router.post('/', (req, res) => {
   const { body } = req;
-  db.addPlaylistConnects(body)
+  db.addPlaylists(body)
     .then(data => {
-      res.status(200).json(data);
+      res.status(200).json(body); // FIXME: This sends back the same data and doesn't include the ID.
     })
     .catch(err => {
       res.status(500).json({ err });
     });
 });
 
-// DEL Playlists
-router.delete('/:id', (req, res) => {
+// PUT update Playlist
+router.put('/:id', (req, res) => {
   const { id } = req.params;
-  db.removePlaylistConnects(id)
+  const { body } = req;
+  db.updatePlaylists(id, body)
     .then(event => {
       res.status(200).json(event);
     })
@@ -52,11 +51,10 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-// PUT update Playlists
-router.put('/:id', (req, res) => {
+// DELETE Playlist
+router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  const { body } = req;
-  db.updatePlaylistsConnects(id, body)
+  db.removePlaylist(id)
     .then(event => {
       res.status(200).json(event);
     })

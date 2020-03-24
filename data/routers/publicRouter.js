@@ -90,8 +90,8 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
-//-----------------Songs-----------------\\
-// Get ALL Songs 
+// ----------------- Songs ----------------- \\
+// Get ALL Songs
 router.get('/songs', (req, res) => {
   db.getAllSongs()
     .then(info => {
@@ -102,9 +102,9 @@ router.get('/songs', (req, res) => {
     });
 });
 
-// Get Song by ID 
+// Get Song by ID
 router.get('/song/:id', (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.getSongsByID(id)
     .then(info => {
       res.status(200).json(info);
@@ -114,13 +114,12 @@ router.get('/song/:id', (req, res) => {
     });
 });
 
-// Get ALL Songs 
+// Get ALL Songs
 
-//-----------------Playlists-----------------\\
-
+// ----------------- Playlists ----------------- \\
 // In Playlists File
 
-//-----------------Playlist Connections-----------------\\
+// ----------------- Playlist Connections ----------------- \\
+// In Playlists Connection File
 
-// In Plsylists Connection File
 module.exports = router;
