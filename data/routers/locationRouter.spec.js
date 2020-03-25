@@ -70,3 +70,4 @@ describe('Put a location', function() {
     expect(res.status).toBe(200);
   });
 });
+

@@ -65,8 +65,6 @@ router.get('/event/:id', (req, res) => {
 
 // ----------------- Locations -----------------
 
-// In Locations File
-
 // get all Locations
 router.get('/locations', (req, res) => {
   db.getAllLocations()
@@ -114,13 +112,9 @@ router.get('/songs/:id', (req, res) => {
     });
 });
 
-// Get ALL Songs 
 
 //-----------------Playlists-----------------\\
 
 // In Playlists File
 
-//-----------------Playlist Connections-----------------\\
-
-// In Plsylists Connection File
 module.exports = router;
