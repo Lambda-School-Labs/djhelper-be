@@ -1,21 +1,18 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
-const playlistRouter = require('./playlistRouter');
+// TODO: Remove const playlistRouter = require('./playlistRouter');
 
-router.use('/playlist', playlistRouter);
+// TODO: Remove router.use('/:event_id/playlist', playlistRouter);
 
 // ----------- POST Event --------------
 router.post('/', (req, res) => {
   const event = req.body;
 
-  // TODO: Which fields are required?
-  if (!event.name || !event.date) {
+  if (!event.name || !event.date || !event.event_type || !event.description) {
     res.status(400).json({ message: 'Missing required fields' });
   }
 
   // Check for duplicates here if we need to.
-
-  // TODO: Create a new playlist here.
 
   db.addEvent(event)
     .then(saved => {
@@ -39,7 +36,7 @@ router.get('/:id', (req, res) => {
 });
 
 // -------------- PUT (modify) Event ----------
-// TODO: Check failure modes. Enure ID exists first.
+// TODO: Check failure modes. Ensure ID exists first.
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { body } = req;

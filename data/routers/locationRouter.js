@@ -30,6 +30,7 @@ router.get('/:id', (req, res) => {
 
 // POST new location
 router.post('/', (req, res) => {
+  // TODO: Require addressline_1, city, state, zip
   const { body } = req;
   db.addLocation(body)
     .then(data => {

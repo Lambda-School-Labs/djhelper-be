@@ -1,23 +1,35 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
 
-// -----------------Playlists----------------- \\
+/* *********************************************************
+  In this implementation, each event has exactly one playlist
+  associated with it. These endpoints are located under /event.
+  
+  They update a single table only, and therefore do not have
+  all CRUD operations.
+  ******************************************************** */
 
+// FIXME: Not a useful endpoint
 // Get ALL Playlists
+// router.get('/', (req, res) => {
+//   db.getAllPlaylists()
+//     .then(info => {
+//       res.status(200).json(info);
+//     })
+//     .catch(err => {
+//       res.status(500).json(err);
+//     });
+// });
+
 router.get('/', (req, res) => {
-  db.getAllPlaylists()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
+  const { query } = req;
+  res.status(200).json({ request: query });
 });
 
 // Get Playlist by ID
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.getPlaylistsByID(id)
+  db.getPlaylistsByID(id) // FIXME: Singular/plural
     .then(info => {
       res.status(200).json(info);
     })
@@ -26,6 +38,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// FIXME: Not a useful endpoint.
 // POST new Playlist
 router.post('/', (req, res) => {
   const { body } = req;
@@ -38,6 +51,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// TODO: Refactor to add/remove songs.
 // PUT update Playlist
 router.put('/:id', (req, res) => {
   const { id } = req.params;
@@ -51,6 +65,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// TODO: This may be useful: Remove all playlist entries.
 // DELETE Playlist
 router.delete('/:id', (req, res) => {
   const { id } = req.params;

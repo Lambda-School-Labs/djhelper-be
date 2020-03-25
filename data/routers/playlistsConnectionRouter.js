@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 });
 
 // Get Playlist Connections by ID
+// TODO: Modify to return playlist using same features.
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   db.getPlaylistConnectsByID(id)

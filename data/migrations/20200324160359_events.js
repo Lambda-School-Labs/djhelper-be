@@ -3,7 +3,7 @@ exports.up = function(knex) {
     // ------------------- Events Table ---------------------
     tbl.increments();
     tbl
-      .integer('dj_id') // FK
+      .integer('dj_id')
       .unsigned()
       .references('id')
       .inTable('djs')
@@ -23,6 +23,7 @@ exports.up = function(knex) {
     tbl.time('end_time');
     tbl.text('event_type').notNullable();
     tbl.text('description', 255);
+    tbl.text('notes', 1024);
   });
 };
 
