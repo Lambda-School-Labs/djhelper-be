@@ -40,3 +40,19 @@ describe('Post a song', function() {
       expect(res.status).toBe(200);
     });
  });
+
+ // -------- Put route -------- \\
+describe('Put a song', function() {
+  test('A song works if this posts', async function() {
+    const res = await request(server)
+      .put('/api/auth/songs/1')
+      .send({
+          name: "PUT Song Name",
+        spotify_id: "7lidXGPXPYLNThITAOTlkK"
+
+      });
+    expect(res.status).toBe(200);
+  });
+});
+
+
