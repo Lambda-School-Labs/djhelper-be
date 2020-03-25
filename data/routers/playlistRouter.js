@@ -9,27 +9,22 @@ const db = require('../models/models.js');
   all CRUD operations.
   ******************************************************** */
 
-// FIXME: Not a useful endpoint
-// Get ALL Playlists
+// Test endpoint
 // router.get('/', (req, res) => {
-//   db.getAllPlaylists()
-//     .then(info => {
-//       res.status(200).json(info);
-//     })
-//     .catch(err => {
-//       res.status(500).json(err);
-//     });
+//   const { query } = req;
+//   res.status(200).json({ request: query });
 // });
 
+// Get Full playlist by event ID
+// Returns array of songs that match the "event" parameter
 router.get('/', (req, res) => {
-  const { query } = req;
-  res.status(200).json({ request: query });
-});
+  const { event } = req.query;
 
-// Get Playlist by ID
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  db.getPlaylistsByID(id) // FIXME: Singular/plural
+  if (!event) {
+    res.status(400).json({ message: 'No event ID specified' });
+  }
+
+  db.getPlaylistByEventID(event)
     .then(info => {
       res.status(200).json(info);
     })
@@ -38,25 +33,37 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// FIXME: Not a useful endpoint.
-// POST new Playlist
+// Add a song to a playlist
 router.post('/', (req, res) => {
+  const { event } = req.query;
   const { body } = req;
-  db.addPlaylists(body)
+
+  if (!event) {
+    res.status(400).json({ message: 'No event ID specified' });
+  }
+  if (!body.event_id || !body.song_id) {
+    res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  db.addPlaylistEntry(body)
     .then(data => {
-      res.status(200).json(body); // FIXME: This sends back the same data and doesn't include the ID.
+      res.status(200).json(data);
     })
     .catch(err => {
-      res.status(500).json({ err });
+      res.status(500).json(err);
     });
+
+  // TODO: Add the actual thing.
 });
 
-// TODO: Refactor to add/remove songs.
 // PUT update Playlist
-router.put('/:id', (req, res) => {
+router.put('/entry/:id', (req, res) => {
   const { id } = req.params;
   const { body } = req;
-  db.updatePlaylists(id, body)
+
+  // TODO: Only allow queue order to be changed here
+
+  db.updatePlaylistEntry(id, body)
     .then(event => {
       res.status(200).json(event);
     })
@@ -65,11 +72,10 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// TODO: This may be useful: Remove all playlist entries.
-// DELETE Playlist
-router.delete('/:id', (req, res) => {
+// DELETE Playlist entry
+router.delete('/entry/:id', (req, res) => {
   const { id } = req.params;
-  db.removePlaylist(id)
+  db.removePlaylistEntry(id)
     .then(event => {
       res.status(200).json(event);
     })

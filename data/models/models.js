@@ -31,9 +31,9 @@ module.exports = {
 
   getPlaylistEntry,
   getPlaylistByEventID,
-  addSongToPlaylist,
+  addPlaylistEntry,
   updatePlaylistEntry,
-  removeSongFromPlaylist
+  removePlaylistEntry
 };
 
 // ----------------- DJs -----------------
@@ -224,7 +224,7 @@ async function getPlaylistByEventID(id) {
   return db('song_playlist_conn').where({ event_id: id });
 }
 
-async function addSongToPlaylist(songInfo) {
+async function addPlaylistEntry(songInfo) {
   console.log('Storing song to playlist', songInfo);
   const [id] = await db('song_playlist_conn')
     .returning('id') // Required PostgreSQL line
@@ -242,7 +242,7 @@ function updatePlaylistEntry(id, updatedPlaylist) {
     });
 }
 
-function removeSongFromPlaylist(id) {
+function removePlaylistEntry(id) {
   return db('song_playlist_conn')
     .where('id', id)
     .del();
