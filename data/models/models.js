@@ -20,15 +20,15 @@ module.exports = {
   addLocation,
   updateLocation,
   removeLocation,
-  findByLoc,
+  findByLoc, // This file only
 
   getAllSongs,
-  getSongById,
+  getSongById, // This file only
   addSong,
   updateSong,
   removeSong,
 
-  getPlaylistEntry,
+  getPlaylistEntry, // This file only
   getPlaylistByEventID,
   addPlaylistEntry,
   updatePlaylistEntry,
@@ -253,3 +253,7 @@ function removePlaylistEntry(id) {
 //     .where({ id })
 //     .del();
 // }
+
+// TODO? ------------------ Song Cleanup --------------------
+
+// Remove all songs that aren't referenced in any playlists.

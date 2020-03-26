@@ -121,16 +121,10 @@ router.get('/song/:id', (req, res) => {
 // ----------------- Playlists ----------------- \\
 
 // Get playlist by event ID
-// Returns array of songs that match the "event" parameter
-// TODO: Switch back to using "/:event_id" instead of "/?event=n"?
-router.get('/playlist/', (req, res) => {
-  const { event } = req.query;
+router.get('/playlist/:event_id', (req, res) => {
+  const eventId = req.params.id;
 
-  if (!event) {
-    res.status(400).json({ message: 'No event ID specified' });
-  }
-
-  db.getPlaylistByEventID(event)
+  db.getPlaylistByEventID(eventId)
     .then(info => {
       res.status(200).json(info);
     })
