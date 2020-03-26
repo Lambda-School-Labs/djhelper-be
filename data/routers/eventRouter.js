@@ -1,8 +1,5 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
-// TODO: Remove const playlistRouter = require('./playlistRouter');
-
-// TODO: Remove router.use('/:event_id/playlist', playlistRouter);
 
 // ----------- POST Event --------------
 router.post('/', (req, res) => {
