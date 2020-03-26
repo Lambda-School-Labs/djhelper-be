@@ -43,11 +43,11 @@ These routes do **_not_** require a JSON token in the header.
 These routes do **_not_** require a JSON token in the header.
 | Method | Endpoint | Access Control | Description |
 | ------ | -------- | -------------- | ----------- |
-| GET | `/dj/:id` | none | Get public information about a DJ. |
-| GET | `/djs` | none | Get list of all DJs. |
-| GET | `/event/:id` | none | Get public information about an event. |
-| GET | `/events` | none | Get list of all events. |
-| GET | `/location/:id` | none | Get public information about a location. |
+| GET | `/dj/:id` | none | Get _public_ information about a DJ. |
+| GET | `/djs` | none | Get list of all DJs (public info). |
+| GET | `/event/:id` | none | Get _public_ information about an event. |
+| GET | `/events` | none | Get list of all events (public info). |
+| GET | `/location/:id` | none | Get _public_ information about a location. |
 | GET | `/locations` | none | Get list of all locations. |
 | GET | `/song/:id` | none | Get a single song by ID. |
 | GET | `/songs` | none | Get list of all songs. |
@@ -55,36 +55,33 @@ These routes do **_not_** require a JSON token in the header.
 
 #### DJ Routes
 
-| Method | Endpoint       | Access Control | Description                |
-| ------ | -------------- | -------------- | -------------------------- |
-| GET    | `/auth/dj/:id` | DJs            | Returns ALL info for a DJ. |
-| PUT    | `/auth/dj/:id` | DJs            | Updates a DJ's info.       |
-| DELETE | `/auth/dj/:id` | DJs            | Deletes a DJ.              |
+| Method | Endpoint       | Access Control | Description                  |
+| ------ | -------------- | -------------- | ---------------------------- |
+| GET    | `/auth/dj/:id` | DJs            | Returns _all_ info for a DJ. |
+| PUT    | `/auth/dj/:id` | DJs            | Updates a DJ's info.         |
+| DELETE | `/auth/dj/:id` | DJs            | Deletes a DJ.                |
 
 #### Event Routes
 
-| Method | Endpoint          | Access Control | Description                 |
-| ------ | ----------------- | -------------- | --------------------------- |
-| GET    | `/auth/event/:id` | DJs            | Gets ALL info for an event. |
-| POST   | `/auth/event/:id` | DJs            | Adds a new event.           |
-| PUT    | `/auth/event/:id` | DJs            | Modifies an event.          |
-| DELETE | `/auth/event/:id` | DJs            | Deletes an event.           |
+| Method | Endpoint          | Access Control | Description                   |
+| ------ | ----------------- | -------------- | ----------------------------- |
+| GET    | `/auth/event/:id` | DJs            | Gets _all_ info for an event. |
+| POST   | `/auth/event/:id` | DJs            | Adds a new event.             |
+| PUT    | `/auth/event/:id` | DJs            | Modifies an event.            |
+| DELETE | `/auth/event/:id` | DJs            | Deletes an event.             |
 
 #### Location Routes
 
-| Method | Endpoint             | Access Control | Description                         |
-| ------ | -------------------- | -------------- | ----------------------------------- |
-| GET    | `/auth/location`     | DJs            | Returns all locations.              |
-| GET    | `/auth/location/:id` | DJs            | Returns info for a single location. |
-| POST   | `/auth/location/:id` | DJs            | Adds a new location.                |
-| PUT    | `/auth/location/:id` | DJs            | Updates a location's info.          |
-| DELETE | `/auth/location/:id` | DJs            | Removes a location.                 |
+| Method | Endpoint             | Access Control | Description                |
+| ------ | -------------------- | -------------- | -------------------------- |
+| POST   | `/auth/location/:id` | DJs            | Adds a new location.       |
+| PUT    | `/auth/location/:id` | DJs            | Updates a location's info. |
+| DELETE | `/auth/location/:id` | DJs            | Removes a location.        |
 
 #### Playlist Routes
 
 | Method | Endpoint                   | Access Control | Description                                  |
 | ------ | -------------------------- | -------------- | -------------------------------------------- |
-| GET    | `/auth/playlist?event=n`   | DJs            | Returns all songs in a playlist.             |
 | POST   | `/auth/playlist?event=n`   | DJs            | Adds a song from the database to a playlist. |
 | PUT    | `/auth/playlist/entry/:id` | DJs            | Updates queue order for a playlist entry.    |
 | DELETE | `/auth/playlist/entry/:id` | DJs            | Removes a song from a playlist.              |
@@ -93,7 +90,6 @@ These routes do **_not_** require a JSON token in the header.
 
 | Method | Endpoint         | Access Control | Description                            |
 | ------ | ---------------- | -------------- | -------------------------------------- |
-| GET    | `/auth/song/`    | DJs            | Returns all songs from the database    |
 | POST   | `/auth/song/`    | DJs            | Adds a song to the database            |
 | PUT    | `/auth/song/:id` | DJs            | Returns all users for an organization. |
 | DELETE | `/auth/song/:id` | DJs            | Returns info for a single user.        |

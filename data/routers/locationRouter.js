@@ -1,37 +1,14 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
 
-// Gets all locations
-// TODO: Leave this here as "/location", eliminate it,
-//       or use something like "location/all"?
-router.get('/', (req, res) => {
-  db.getAllLocations()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// Get a single location
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  db.findLocationById(id)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// ================= Location Routes =====================
-
 // POST new location
 router.post('/', (req, res) => {
-  // TODO: Require addressline_1, city, state, zip
   const { body } = req;
+
+  if (!body.address_line_1 || !body.city || !body.state || !body.zip) {
+    res.status(400).json({ message: 'Missing required fields' });
+  }
+
   db.addLocation(body)
     .then(data => {
       res.status(200).json(data);

@@ -1,29 +1,6 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
 
-// Get ALL Songs
-router.get('/', (req, res) => {
-  db.getAllSongs()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// Get Song by ID
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  db.getSongById(id)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
 // POST new Song
 router.post('/', (req, res) => {
   const { body } = req;

@@ -17,6 +17,8 @@ const router = express.Router();
   ******************************************************** */
 
 // ----------------- DJs -----------------
+// TODO: Filter out private information
+// (Username, Password)
 
 // Get all DJs
 router.get('/djs', (req, res) => {
@@ -42,6 +44,8 @@ router.get('/dj/:id', (req, res) => {
 });
 
 // ----------------- Events -----------------
+// TODO: Filter out private information (notes)
+
 router.get('/events', (req, res) => {
   db.getAllEvents()
     .then(info => {
@@ -64,8 +68,7 @@ router.get('/event/:id', (req, res) => {
 });
 
 // ----------------- Locations -----------------
-
-// In Locations File
+// TODO: Filter out private information?
 
 // get all Locations
 router.get('/locations', (req, res) => {
@@ -90,7 +93,7 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
-// ----------------- Songs ----------------- \\
+// ----------------- Songs -----------------
 // Get ALL Songs
 // TODO: Consider pagination
 router.get('/songs', (req, res) => {
@@ -116,7 +119,24 @@ router.get('/song/:id', (req, res) => {
 });
 
 // ----------------- Playlists ----------------- \\
-// In Playlists File
-// TODO: Add specific playlist here.
+
+// Get playlist by event ID
+// Returns array of songs that match the "event" parameter
+// TODO: Switch back to using "/:event_id" instead of "/?event=n"?
+router.get('/playlist/', (req, res) => {
+  const { event } = req.query;
+
+  if (!event) {
+    res.status(400).json({ message: 'No event ID specified' });
+  }
+
+  db.getPlaylistByEventID(event)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;

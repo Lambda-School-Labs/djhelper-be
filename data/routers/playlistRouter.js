@@ -9,31 +9,8 @@ const db = require('../models/models.js');
   all CRUD operations.
   ******************************************************** */
 
-// Test endpoint
-// router.get('/', (req, res) => {
-//   const { query } = req;
-//   res.status(200).json({ request: query });
-// });
-
-// Get Full playlist by event ID
-// Returns array of songs that match the "event" parameter
-router.get('/', (req, res) => {
-  const { event } = req.query;
-
-  if (!event) {
-    res.status(400).json({ message: 'No event ID specified' });
-  }
-
-  db.getPlaylistByEventID(event)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
 // Add a song to a playlist
+// Event ID must be included in URL (...playlist?event=n)
 router.post('/', (req, res) => {
   const { event } = req.query;
   const { body } = req;
