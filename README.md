@@ -2,7 +2,9 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ddd6e13e9136c40345b9/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/djhelper-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/ddd6e13e9136c40345b9/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/djhelper-be/test_coverage)
 
-#### Backend deployed at [api.dj-helper.com](https://api.dj-helper.com/)
+#### This backend is deployed at [api.dj-helper.com](https://api.dj-helper.com/)
+
+#### (Frontend deployed at [dj-helper.com](https://dj-helper.com))
 
 ## Getting started
 
@@ -13,17 +15,15 @@ To get the server running locally:
 - `npm server` to start the local server
 - `npm test` to start server using testing environment
 
-The server requires a PostgreSQL database to be running and configured in a `.env` file.
+The server requires a PostgreSQL database to be running and configured in a `.env` file (details below).
 
-### Backend framework goes here
+### Framework Details
 
-🚫 Why did you choose this framework?
-(npm, NodeJS, express, PostgreSQL...)?
-
-- Point One
-- Point Two
-- Point Three
-- Point Four
+- NodeJS: The entire API is built in JavaScript.
+- npm: The Node Package Manager - manages all project components.
+- Express: Simple API server package for NodeJS
+- Knex: Database interface. Easily adaptable for different database variants.
+- PostgreSQL: Open source relational database.
 
 ## Endpoints
 
@@ -42,43 +42,57 @@ These routes do **_not_** require a JSON token in the header.
 
 These routes do **_not_** require a JSON token in the header.
 | Method | Endpoint | Access Control | Description |
-| ------ | ------------ | -------------- | ------------------------------- |
-| GET | `/dj/:id` | none | Get information about a DJ. |
-| GET | `/event/:id` | none | Get information about an event. |
+| ------ | -------- | -------------- | ----------- |
+| GET | `/dj/:id` | none | Get _public_ information about a DJ. |
+| GET | `/djs` | none | Get list of all DJs (public info). |
+| GET | `/event/:id` | none | Get _public_ information about an event. |
+| GET | `/events` | none | Get list of all events (public info). |
+| GET | `/location/:id` | none | Get _public_ information about a location. |
+| GET | `/locations` | none | Get list of all locations. |
+| GET | `/song/:id` | none | Get a single song by ID. |
+| GET | `/songs` | none | Get list of all songs. |
+| GET | `/playlist/:event_id` | none | Get a specific playlist. |
 
 #### DJ Routes
 
-| Method | Endpoint       | Access Control      | Description                            |
-| ------ | -------------- | ------------------- | -------------------------------------- |
-| GET    | `/auth/dj/:id` | all users           | Returns info for the logged in DJ.     |
-| PUT    | `/auth/dj/:id` | owners, supervisors | Returns all users for an organization. |
-| DELETE | `/auth/dj/:id` | owners, supervisors | Returns info for a single user.        |
+| Method | Endpoint       | Access Control | Description                  |
+| ------ | -------------- | -------------- | ---------------------------- |
+| GET    | `/auth/dj/:id` | DJs            | Returns _all_ info for a DJ. |
+| PUT    | `/auth/dj/:id` | DJs            | Updates a DJ's info.         |
+| DELETE | `/auth/dj/:id` | DJs            | Deletes a DJ.                |
 
 #### Event Routes
 
-| Method | Endpoint          | Access Control      | Description                            |
-| ------ | ----------------- | ------------------- | -------------------------------------- |
-| POST   | `/auth/event/:id` | all users           | Returns info for the logged in DJ.     |
-| PUT    | `/auth/event/:id` | owners, supervisors | Returns all users for an organization. |
-| DELETE | `/auth/event/:id` | owners, supervisors | Returns info for a single user.        |
+| Method | Endpoint          | Access Control | Description                   |
+| ------ | ----------------- | -------------- | ----------------------------- |
+| GET    | `/auth/event/:id` | DJs            | Gets _all_ info for an event. |
+| POST   | `/auth/event/:id` | DJs            | Adds a new event.             |
+| PUT    | `/auth/event/:id` | DJs            | Modifies an event.            |
+| DELETE | `/auth/event/:id` | DJs            | Deletes an event.             |
+
+#### Location Routes
+
+| Method | Endpoint             | Access Control | Description                |
+| ------ | -------------------- | -------------- | -------------------------- |
+| POST   | `/auth/location/:id` | DJs            | Adds a new location.       |
+| PUT    | `/auth/location/:id` | DJs            | Updates a location's info. |
+| DELETE | `/auth/location/:id` | DJs            | Removes a location.        |
 
 #### Playlist Routes
 
-[ ] TODO: Fix this section.
-
-| Method | Endpoint       | Access Control      | Description                            |
-| ------ | -------------- | ------------------- | -------------------------------------- |
-| GET    | `/auth/dj/:id` | all users           | Returns info for the logged in DJ.     |
-| PUT    | `/auth/dj/:id` | owners, supervisors | Returns all users for an organization. |
-| DELETE | `/auth/dj/:id` | owners, supervisors | Returns info for a single user.        |
+| Method | Endpoint                   | Access Control | Description                                  |
+| ------ | -------------------------- | -------------- | -------------------------------------------- |
+| POST   | `/auth/playlist?event=n`   | DJs            | Adds a song from the database to a playlist. |
+| PUT    | `/auth/playlist/entry/:id` | DJs            | Updates queue order for a playlist entry.    |
+| DELETE | `/auth/playlist/entry/:id` | DJs            | Removes a song from a playlist.              |
 
 #### Song Routes
 
-| Method | Endpoint         | Access Control      | Description                            |
-| ------ | ---------------- | ------------------- | -------------------------------------- |
-| POST   | `/auth/song/`    | all users           | Returns info for the logged in DJ.     |
-| PUT    | `/auth/song/:id` | owners, supervisors | Returns all users for an organization. |
-| DELETE | `/auth/song/:id` | owners, supervisors | Returns info for a single user.        |
+| Method | Endpoint         | Access Control | Description                       |
+| ------ | ---------------- | -------------- | --------------------------------- |
+| POST   | `/auth/song/`    | DJs            | Adds a song to the database.      |
+| PUT    | `/auth/song/:id` | DJs            | Updates a song's info.            |
+| DELETE | `/auth/song/:id` | DJs            | Deletes a song from the database. |
 
 # Data Model
 
@@ -132,7 +146,20 @@ These routes do **_not_** require a JSON token in the header.
 }
 ```
 
-#### Guests
+#### Playlists
+
+---
+
+```
+{
+  id: INTEGER
+  event_id: INTEGER
+  song_id: INTEGER
+  queue_num: INTEGER
+}
+```
+
+#### Guests (not yet implemented)
 
 ---
 
@@ -147,29 +174,69 @@ These routes do **_not_** require a JSON token in the header.
 
 ## Actions
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+#### DJs
 
-`getOrgs()` -> Returns all organizations
+`getAllDJs` -> Returns array of all DJs
 
-`getOrg(orgId)` -> Returns a single organization by ID
+`addDJ` -> Create a DJ. Returns new DJ, including ID.
 
-`addOrg(org)` -> Returns the created org
+`findBy` -> Filter list of DJs by any field. Returns array.
 
-`updateOrg(orgId)` -> Update an organization by ID
+`findDJById` -> Returns DJ matching ID field.
 
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
+`updateDJ` -> Updates DJ info. Returns new DJ object.
 
-`getUsers(orgId)` -> if no param all users
+`removeDJ` -> Deletes a DJ. Returns 0 or 1.
 
-`getUser(userId)` -> Returns a single user by user ID
+#### Events
 
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+`getAllEvents` -> Returns array of all events.
 
-`updateUser(userId, changes object)` -> Updates a single user by ID.
+`findEventById` -> Returns event matching ID.
 
-`deleteUser(userId)` -> deletes everything dependent on the user
+`addEvent` -> Adds an event. Returns new event, including ID.
+
+`updateEvent` -> Updates event details. Returns modified event.
+
+`removeEvent` -> Deletes event. Returns 0 or 1.
+
+#### Locations
+
+`getAllLocations` -> Returns array of all locations.
+
+`findLocationsBy` -> Returns array of locations matching any field.
+
+`findLocationById` -> Returns playlist matching an ID.
+
+`addLocation` -> Creates location. Returns new location, including ID.
+
+`updateLocation` -> Updates location details. Returns new location object.
+
+`removeLocation` -> Remove location. Returns 0 or 1.
+
+#### Songs
+
+`getAllSongs` -> Returns array of all songs.
+
+`getSongById` -> Returns song matching an ID.
+
+`addSong` -> Adds song. Returns new song, including ID.
+
+`updateSong` -> Updates a song. Note: this is currently only useful for updating a title. Returns updated song.
+
+`removeSong` -> Delete song. Returns 0 or 1.
+
+#### Playlists
+
+`getPlaylistEntry` -> Returns a single playlist entry, including queue order number.
+
+`getPlaylistByEventId` -> Returns array of all entries in a playlist (specified by the _event_ ID).
+
+`addPlaylistEntry` -> Adds a new song to a playlist. The song must already exist in the database.
+
+`updatePlaylistEntry` -> Update playlist entry details. Note: this is only useful for upating the `queue_num` field.
+
+`removePlaylistEntry` -> Remove a song from a playlist. The song will remain in the database.
 
 ## Environment Variables
 
@@ -179,7 +246,7 @@ create a `.env` file that includes the following:
 
 ```
 PORT - optional port number for this app. Defaults to 8000.
-USE_HTTPS - set to "true" if using https. Place SSL/TLS certificate under /cert.
+USE_HTTPS - set to "true" if using https. Place SSL/TLS certificate under /cert. (Note: Not applicable to the current hosting environment.)
 
 DB_HOSTNAME - e.g. "localhost".
 PG_DATABASE_NAME - Name of the database.

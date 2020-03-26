@@ -36,7 +36,7 @@ describe('registerRouter', function() {
     // like PUT requests.
     // beforeEach(async () => {
     //   // Reset database between runs
-    //   await db("dj-login").truncate();
+    //   await db("djs").truncate();
     // });
 
     test('valid registration returns status 201', async function() {

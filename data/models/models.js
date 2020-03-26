@@ -17,49 +17,41 @@ module.exports = {
 
   getAllLocations,
   findLocationById,
+  findLocationsBy, // This file only
   addLocation,
   updateLocation,
   removeLocation,
-  findByLoc,
 
   getAllSongs,
-  findByIdSong,
-  getSongsByID,
+  getSongById, // This file only
   addSong,
   updateSong,
   removeSong,
 
-  getAllPlaylists,
-  getPlaylistsByID,
-  addPlaylists,
-  updatePlaylists,
-  removePlaylist,
-
-  getAllPlaylistConnects,
-  getPlaylistConnectsByID,
-  findByIdPlaylistConnects,
-  addPlaylistConnects,
-  updatePlaylistsConnects,
-  removePlaylistConnects
+  getPlaylistEntry, // This file only
+  getPlaylistByEventID,
+  addPlaylistEntry,
+  updatePlaylistEntry,
+  removePlaylistEntry
 };
 
 // ----------------- DJs -----------------
 
 // Get every registered DJ's information
 function getAllDJs() {
-  return db('dj-login');
+  return db('djs');
 }
 
 // Get a specific DJ by id
 async function findDJById(id) {
-  return db('dj-login')
+  return db('djs')
     .where({ id })
     .first();
 }
 
 async function addDJ(info) {
   console.log('Storing info:', info);
-  const [id] = await db('dj-login')
+  const [id] = await db('djs')
     .returning('id') // This line is REQUIRED for PostgreSQL
     .insert(info);
   return findDJById(id);
@@ -68,12 +60,12 @@ async function addDJ(info) {
 // Login for a DJ
 function findBy(filter) {
   console.log('The filter is', filter);
-  return db('dj-login').where(filter);
+  return db('djs').where(filter);
 }
 
 // Update DJ
 function updateDJ(id, updatedUser) {
-  return db('dj-login')
+  return db('djs')
     .where({ id })
     .update(updatedUser)
     .then(() => {
@@ -83,7 +75,7 @@ function updateDJ(id, updatedUser) {
 
 // Completely remove a DJ
 function removeDJ(id) {
-  return db('dj-login')
+  return db('djs')
     .where('id', id)
     .del();
 }
@@ -130,7 +122,7 @@ async function removeEvent(id) {
 
 // ----------------- Locations -----------------
 
-function findByLoc(filter) {
+function findLocationsBy(filter) {
   console.log('The filter is', filter);
   return db('locations').where(filter);
 }
@@ -142,7 +134,7 @@ function getAllLocations() {
 
 // Get a specific Location by id
 async function findLocationById(id) {
-  return db('locations') // TODO: Check
+  return db('locations')
     .where({ id })
     .first();
 }
@@ -180,37 +172,33 @@ function getAllSongs() {
   return db('songs');
 }
 
-async function findByIdSong(id) {
+// Song by id
+function getSongById(id) {
   return db('songs')
     .where({ id })
     .first();
 }
 
-// Songs by id
-function getSongsByID(id) {
-  return db('songs').where({ id });
-}
-
-// Add an Songs
+// Add a song
 async function addSong(info) {
   console.log('Storing info:', info);
   const [id] = await db('songs')
     .returning('id') // Required PostgreSQL line <---
     .insert(info);
-  return findByIdSong(id);
+  return getSongById(id);
 }
 
-// Update an songs
+// Update a song
 function updateSong(id, updatedSong) {
   return db('songs')
     .where({ id })
     .update(updatedSong)
     .then(() => {
-      return getSongsByID(id);
+      return getSongById(id);
     });
 }
 
-// Completely remove an songs
+// Completely remove a song
 function removeSong(id) {
   return db('songs')
     .where('id', id)
@@ -219,88 +207,53 @@ function removeSong(id) {
 
 // -----------------Playlists----------------- \\
 
-// All Playlists
-function getAllPlaylists() {
-  return db('playlists');
-}
-
-async function findByIdPlaylist(id) {
-  return db('playlists')
+// Get a single entry from the playlist connection table.
+function getPlaylistEntry(id) {
+  return db('song_playlist_conn')
     .where({ id })
     .first();
 }
 
-// Playlists by id
-function getPlaylistsByID(id) {
-  return db('playlists').where({ id });
+// Get all songs in a playlist by event id.
+async function getPlaylistByEventID(id) {
+  return db('song_playlist_conn').where({ event_id: id });
 }
 
-// Add an Playlist
-async function addPlaylists(info) {
-  console.log('Storing info:', info);
-  const [id] = await db('playlists')
-    .returning('id') // Required PostgreSQL line <---
-    .insert(info);
-  return findByIdPlaylist(id);
+async function addPlaylistEntry(songInfo) {
+  console.log('Storing song to playlist', songInfo);
+  const [id] = await db('song_playlist_conn')
+    .returning('id') // Required PostgreSQL line
+    .insert(songInfo);
+  return getPlaylistEntry(id);
 }
 
-// Update an Playlist
-function updatePlaylists(id, updatedPlaylist) {
-  return db('playlists')
+// Update a playlist entry
+// Note: This is really only useful for changing the queue order
+function updatePlaylistEntry(id, updatedPlaylist) {
+  return db('song_playlist_conn')
     .where({ id })
     .update(updatedPlaylist)
     .then(() => {
-      return getPlaylistsByID(id);
+      return getPlaylistEntry(id);
     });
 }
 
-// Completely remove an Playlist
-function removePlaylist(id) {
-  return db('playlists')
+function removePlaylistEntry(id) {
+  return db('song_playlist_conn')
     .where('id', id)
     .del();
 }
 
-// -----------------Playlist Connections----------------- \\
+// TODO? ----------------- Playlist Cleanup ----------------
 
-// All Playlists
-function getAllPlaylistConnects() {
-  return db('song_playlist_connections');
-}
+// Remove all entries for a playlist from the connections table
+// This should only be run to cleanup after an event is deleted
+// function removePlaylist(id) {
+//   return db('song_playlist_conn')
+//     .where({ id })
+//     .del();
+// }
 
-async function findByIdPlaylistConnects(id) {
-  return db('song_playlist_connections')
-    .where({ id })
-    .first();
-}
+// TODO? ------------------ Song Cleanup --------------------
 
-// Playlists by id
-function getPlaylistConnectsByID(id) {
-  return db('song_playlist_connections').where({ id });
-}
-
-// Add an Playlist
-async function addPlaylistConnects(info) {
-  console.log('Storing info:', info);
-  const [id] = await db('song_playlist_connections')
-    .returning('id') // Required PostgreSQL line <---
-    .insert(info);
-  return findByIdPlaylistConnects(id);
-}
-
-// Update an Playlist
-function updatePlaylistsConnects(id, updatedPlaylist) {
-  return db('song_playlist_connections')
-    .where({ id })
-    .update(updatedPlaylist)
-    .then(() => {
-      return getPlaylistsByID(id);
-    });
-}
-
-// Completely remove an Playlist
-function removePlaylistConnects(id) {
-  return db('song_playlist_connections')
-    .where('id', id)
-    .del();
-}
+// Remove all songs that aren't referenced in any playlists.
