@@ -250,6 +250,6 @@ function removePlaylistEntry(id) {
 // This should only be run to cleanup after an event is deleted
 // function removePlaylist(id) {
 //   return db('song_playlist_conn')
-//     .where('id', id)
+//     .where({ id })
 //     .del();
 // }

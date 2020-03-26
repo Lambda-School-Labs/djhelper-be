@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const db = require('../models/models.js');
-// -----------------Songs----------------- \\
 
 // Get ALL Songs
 router.get('/', (req, res) => {
