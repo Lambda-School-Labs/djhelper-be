@@ -3,7 +3,6 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.text('name', 128);
     tbl.text('spotify_id', 255);
-    tbl.integer('queue_num');
   });
 };
 

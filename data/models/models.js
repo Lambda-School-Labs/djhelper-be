@@ -23,8 +23,7 @@ module.exports = {
   findByLoc,
 
   getAllSongs,
-  findByIdSong,
-  getSongsByID,
+  getSongById,
   addSong,
   updateSong,
   removeSong,
@@ -173,15 +172,11 @@ function getAllSongs() {
   return db('songs');
 }
 
-async function findByIdSong(id) {
+// Songs by id
+function getSongById(id) {
   return db('songs')
     .where({ id })
     .first();
-}
-
-// Songs by id
-function getSongsByID(id) {
-  return db('songs').where({ id });
 }
 
 // Add a song
@@ -190,7 +185,7 @@ async function addSong(info) {
   const [id] = await db('songs')
     .returning('id') // Required PostgreSQL line <---
     .insert(info);
-  return findByIdSong(id);
+  return getSongById(id);
 }
 
 // Update a song
@@ -199,7 +194,7 @@ function updateSong(id, updatedSong) {
     .where({ id })
     .update(updatedSong)
     .then(() => {
-      return getSongsByID(id);
+      return getSongById(id);
     });
 }
 
@@ -233,6 +228,7 @@ async function addPlaylistEntry(songInfo) {
 }
 
 // Update a playlist entry
+// Note: This is really only useful for changing the queue order
 function updatePlaylistEntry(id, updatedPlaylist) {
   return db('song_playlist_conn')
     .where({ id })

@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 // Get Song by ID
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.getSongsByID(id) // FIXME: Plural
+  db.getSongById(id)
     .then(info => {
       res.status(200).json(info);
     })
