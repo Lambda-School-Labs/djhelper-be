@@ -34,8 +34,7 @@ describe('Post an event', function() {
         .post('/api/auth/event')
         .send({
             dj_id: "1",
-            playlists_id: "1",
-            name: "Bill and ghjghjGrace",
+            name: "Bill and Grace!",
             date: "2020-04-10",
             start_time: "14:00",
             end_time: "20:00",
@@ -51,20 +50,12 @@ describe('Post an event', function() {
 
  // -------- PUT route -------- \\
 describe('Put an event', function() {
-  test('An event works if this posts', async function() {
+  test('An event works if this puts', async function() {
     const res = await request(server)
       .put('/api/auth/event/1')
       .send({
-          dj_id: "1",
-          playlists_id: "1",
-          name: "Puuuuuut",
-          date: "2020-04-10",
-          start_time: "14:00",
-          end_time: "20:00",
-          event_type: "Put",
-          description: "A traditional, peaceful wedding.",
-          location_id: "1",
-          img_url: "https://images.unsplash.com/photo-1508219803418-5f1f89469b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+          
+          description: "A traditional, peaceful wedding!",
 
       });
     expect(res.status).toBe(200);

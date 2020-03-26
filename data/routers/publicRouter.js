@@ -17,6 +17,8 @@ const router = express.Router();
   ******************************************************** */
 
 // ----------------- DJs -----------------
+// TODO: Filter out private information
+// (Username, Password)
 
 // Get all DJs
 router.get('/djs', (req, res) => {
@@ -29,7 +31,7 @@ router.get('/djs', (req, res) => {
     });
 });
 
-// Get DJ by ID -- WORKS
+// Get DJ by ID
 router.get('/dj/:id', (req, res) => {
   const { id } = req.params;
   db.findDJById(id)
@@ -42,6 +44,8 @@ router.get('/dj/:id', (req, res) => {
 });
 
 // ----------------- Events -----------------
+// TODO: Filter out private information (notes)
+
 router.get('/events', (req, res) => {
   db.getAllEvents()
     .then(info => {
@@ -64,6 +68,7 @@ router.get('/event/:id', (req, res) => {
 });
 
 // ----------------- Locations -----------------
+// TODO: Filter out private information?
 
 // get all Locations
 router.get('/locations', (req, res) => {
@@ -88,8 +93,9 @@ router.get('/location/:id', (req, res) => {
     });
 });
 
-//-----------------Songs-----------------\\
-// Get ALL Songs 
+// ----------------- Songs -----------------
+// Get ALL Songs
+// TODO: Consider pagination
 router.get('/songs', (req, res) => {
   db.getAllSongs()
     .then(info => {
@@ -100,10 +106,10 @@ router.get('/songs', (req, res) => {
     });
 });
 
-// Get Song by ID 
-router.get('/songs/:id', (req, res) => {
-  const id = req.params.id;
-  db.getSongsByID(id)
+// Get Song by ID
+router.get('/song/:id', (req, res) => {
+  const { id } = req.params;
+  db.getSongById(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -112,9 +118,19 @@ router.get('/songs/:id', (req, res) => {
     });
 });
 
+// ----------------- Playlists ----------------- \\
 
-//-----------------Playlists-----------------\\
+// Get playlist by event ID
+router.get('/playlist/:event_id', (req, res) => {
+  const eventId = req.params.event_id;
 
-// In Playlists File
+  db.getPlaylistByEventID(eventId)
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;

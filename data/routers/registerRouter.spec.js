@@ -1,12 +1,13 @@
-const server = require('../../server.js');
 const request = require('supertest');
+const jwt = require('jsonwebtoken');
+const server = require('../../server.js');
+
 const db = require('../db-config.js');
 
-const registerRouter = './registerRouter.js';
-
-const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secrets');
 const authenticate = require('../../middleware/auth-jest.js');
+
+const registerRouter = './registerRouter.js';
 
 describe('registerRouter', function() {
   test('runs the tests', async function() {
@@ -35,7 +36,7 @@ describe('registerRouter', function() {
     // like PUT requests.
     // beforeEach(async () => {
     //   // Reset database between runs
-    //   await db("dj-login").truncate();
+    //   await db("djs").truncate();
     // });
 
     test('valid registration returns status 201', async function() {

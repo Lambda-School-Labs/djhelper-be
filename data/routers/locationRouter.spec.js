@@ -13,15 +13,15 @@ describe('locationRouter', function() {
 // -------- GET routes -------- \\
 // -- Tests to see if /location route is running
 describe('Location router Get all', function() {
-  test('get /api/auth/location should return all locations', async function() {
-    const res = await request(server).get('/api/auth/location');
+  test('get /api/location should return all locations', async function() {
+    const res = await request(server).get('/api/locations');
     expect(res.status).toBe(200);
     expect(res.type).toMatch(/json/i);
   });
 
 // -- Tests to see if /location/:id route is running
-  test('get /api/auth/location/1 should return event with ID 1', async function() {
-    const res = await request(server).get('/api/auth/location/1');
+  test('get /api/location/1 should return event with ID 1', async function() {
+    const res = await request(server).get('/api/location/1');
     expect(res.status).toBe(200);
     expect(res.type).toMatch(/json/i);
   });
