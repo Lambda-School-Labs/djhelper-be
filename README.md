@@ -43,8 +43,15 @@ These routes do **_not_** require a JSON token in the header.
 These routes do **_not_** require a JSON token in the header.
 | Method | Endpoint | Access Control | Description |
 | ------ | -------- | -------------- | ----------- |
-| GET | `/dj/:id` | none | Get PUBLIC information about a DJ. |
-| GET | `/event/:id` | none | Get PUBLIC information about an event. |
+| GET | `/dj/:id` | none | Get public information about a DJ. |
+| GET | `/djs` | none | Get list of all DJs. |
+| GET | `/event/:id` | none | Get public information about an event. |
+| GET | `/events` | none | Get list of all events. |
+| GET | `/location/:id` | none | Get public information about a location. |
+| GET | `/locations` | none | Get list of all locations. |
+| GET | `/song/:id` | none | Get a single song by ID. |
+| GET | `/songs` | none | Get list of all songs. |
+| GET | `/playlist/:event_id` | none | Get a specific playlist. |
 
 #### DJ Routes
 

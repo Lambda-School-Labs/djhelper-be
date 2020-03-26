@@ -29,7 +29,7 @@ router.get('/djs', (req, res) => {
     });
 });
 
-// Get DJ by ID -- WORKS
+// Get DJ by ID
 router.get('/dj/:id', (req, res) => {
   const { id } = req.params;
   db.findDJById(id)
@@ -92,6 +92,7 @@ router.get('/location/:id', (req, res) => {
 
 // ----------------- Songs ----------------- \\
 // Get ALL Songs
+// TODO: Consider pagination
 router.get('/songs', (req, res) => {
   db.getAllSongs()
     .then(info => {
@@ -114,12 +115,8 @@ router.get('/song/:id', (req, res) => {
     });
 });
 
-// Get ALL Songs
-
 // ----------------- Playlists ----------------- \\
 // In Playlists File
-
-// ----------------- Playlist Connections ----------------- \\
-// In Playlists Connection File
+// TODO: Add specific playlist here.
 
 module.exports = router;
