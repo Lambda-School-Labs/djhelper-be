@@ -174,29 +174,69 @@ These routes do **_not_** require a JSON token in the header.
 
 ## Actions
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+#### DJs
 
-`getOrgs()` -> Returns all organizations
+`getAllDJs` -> Returns array of all DJs
 
-`getOrg(orgId)` -> Returns a single organization by ID
+`addDJ` -> Create a DJ. Returns new DJ, including ID.
 
-`addOrg(org)` -> Returns the created org
+`findBy` -> Filter list of DJs by any field. Returns array.
 
-`updateOrg(orgId)` -> Update an organization by ID
+`findDJById` -> Returns DJ matching ID field.
 
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
+`updateDJ` -> Updates DJ info. Returns new DJ object.
 
-`getUsers(orgId)` -> if no param all users
+`removeDJ` -> Deletes a DJ. Returns 0 or 1.
 
-`getUser(userId)` -> Returns a single user by user ID
+#### Events
 
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+`getAllEvents` -> Returns array of all events.
 
-`updateUser(userId, changes object)` -> Updates a single user by ID.
+`findEventById` -> Returns event matching ID.
 
-`deleteUser(userId)` -> deletes everything dependent on the user
+`addEvent` -> Adds an event. Returns new event, including ID.
+
+`updateEvent` -> Updates event details. Returns modified event.
+
+`removeEvent` -> Deletes event. Returns 0 or 1.
+
+#### Locations
+
+`getAllLocations` -> Returns array of all locations.
+
+`findLocationsBy` -> Returns array of locations matching any field.
+
+`findLocationById` -> Returns playlist matching an ID.
+
+`addLocation` -> Creates location. Returns new location, including ID.
+
+`updateLocation` -> Updates location details. Returns new location object.
+
+`removeLocation` -> Remove location. Returns 0 or 1.
+
+#### Songs
+
+`getAllSongs` -> Returns array of all songs.
+
+`getSongById` -> Returns song matching an ID.
+
+`addSong` -> Adds song. Returns new song, including ID.
+
+`updateSong` -> Updates a song. Note: this is currently only useful for updating a title. Returns updated song.
+
+`removeSong` -> Delete song. Returns 0 or 1.
+
+#### Playlists
+
+`getPlaylistEntry` -> Returns a single playlist entry, including queue order number.
+
+`getPlaylistByEventId` -> Returns array of all entries in a playlist (specified by the _event_ ID).
+
+`addPlaylistEntry` -> Adds a new song to a playlist. The song must already exist in the database.
+
+`updatePlaylistEntry` -> Update playlist entry details. Note: this is only useful for upating the `queue_num` field.
+
+`removePlaylistEntry` -> Remove a song from a playlist. The song will remain in the database.
 
 ## Environment Variables
 

@@ -17,10 +17,10 @@ module.exports = {
 
   getAllLocations,
   findLocationById,
+  findLocationsBy, // This file only
   addLocation,
   updateLocation,
   removeLocation,
-  findByLoc, // This file only
 
   getAllSongs,
   getSongById, // This file only
@@ -122,7 +122,7 @@ async function removeEvent(id) {
 
 // ----------------- Locations -----------------
 
-function findByLoc(filter) {
+function findLocationsBy(filter) {
   console.log('The filter is', filter);
   return db('locations').where(filter);
 }
