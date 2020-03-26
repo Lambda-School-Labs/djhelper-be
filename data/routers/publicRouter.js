@@ -109,7 +109,7 @@ router.get('/songs', (req, res) => {
 // Get Song by ID
 router.get('/song/:id', (req, res) => {
   const { id } = req.params;
-  db.getSongsByID(id)
+  db.getSongById(id)
     .then(info => {
       res.status(200).json(info);
     })
@@ -122,7 +122,7 @@ router.get('/song/:id', (req, res) => {
 
 // Get playlist by event ID
 router.get('/playlist/:event_id', (req, res) => {
-  const eventId = req.params.id;
+  const eventId = req.params.event_id;
 
   db.getPlaylistByEventID(eventId)
     .then(info => {

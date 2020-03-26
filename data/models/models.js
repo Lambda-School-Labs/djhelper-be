@@ -172,7 +172,7 @@ function getAllSongs() {
   return db('songs');
 }
 
-// Songs by id
+// Song by id
 function getSongById(id) {
   return db('songs')
     .where({ id })

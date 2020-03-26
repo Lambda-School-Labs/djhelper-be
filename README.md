@@ -88,11 +88,11 @@ These routes do **_not_** require a JSON token in the header.
 
 #### Song Routes
 
-| Method | Endpoint         | Access Control | Description                            |
-| ------ | ---------------- | -------------- | -------------------------------------- |
-| POST   | `/auth/song/`    | DJs            | Adds a song to the database            |
-| PUT    | `/auth/song/:id` | DJs            | Returns all users for an organization. |
-| DELETE | `/auth/song/:id` | DJs            | Returns info for a single user.        |
+| Method | Endpoint         | Access Control | Description                       |
+| ------ | ---------------- | -------------- | --------------------------------- |
+| POST   | `/auth/song/`    | DJs            | Adds a song to the database.      |
+| PUT    | `/auth/song/:id` | DJs            | Updates a song's info.            |
+| DELETE | `/auth/song/:id` | DJs            | Deletes a song from the database. |
 
 # Data Model
 
