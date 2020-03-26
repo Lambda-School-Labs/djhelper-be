@@ -37,23 +37,29 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const { event } = req.query;
   const { body } = req;
+  const songId = body.song_id;
+  const queueNum = body.queue_num;
 
   if (!event) {
     res.status(400).json({ message: 'No event ID specified' });
   }
-  if (!body.event_id || !body.song_id) {
+  if (!songId || !queueNum) {
     res.status(400).json({ message: 'Missing required fields' });
   }
 
-  db.addPlaylistEntry(body)
+  const newEntry = {
+    event_id: event,
+    song_id: songId,
+    queue_num: queueNum
+  };
+
+  db.addPlaylistEntry(newEntry)
     .then(data => {
       res.status(200).json(data);
     })
     .catch(err => {
       res.status(500).json(err);
     });
-
-  // TODO: Add the actual thing.
 });
 
 // PUT update Playlist
