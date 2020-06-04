@@ -5,7 +5,6 @@ exports.seed = function(knex) {
       .then(function() {
         return knex('djs').insert([
           {
-            id: 1,
             username: 'andy2',
             password:
               '$2a$10$LW6zA8Uxkq3Z7AXjZusk6uz0uR2KAA/kDtHIr25FNfaRM4dgZZaYi',
@@ -17,7 +16,6 @@ exports.seed = function(knex) {
             profile_pic_url: ''
           },
           {
-            id: 2,
             username: 'joe3',
             password:
               '$2a$10$hsbwUU/M6n/x687QfDORlO4D6XxU83fcpQUKrWbao/IVp/a8E8B0i',
@@ -29,7 +27,6 @@ exports.seed = function(knex) {
             profile_pic_url: ''
           },
           {
-            id: 3,
             username: '5toNy',
             password:
               '$2a$10$.5Y3RDzKb9ZBQlbs.F07Iei//hLmHCRdwlLohxLBlpYMtULT2Foqm',
@@ -41,7 +38,6 @@ exports.seed = function(knex) {
             profile_pic_url: ''
           },
           {
-            id: 4,
             username: 'fox6',
             password:
               '$2a$10$NsLm.MLxDS/llVJOQIj0/eHrQnacAe4se.gTwOdKhA4WdxvBwu0Cy',
