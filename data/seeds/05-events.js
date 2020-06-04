@@ -6,6 +6,7 @@ exports.seed = function(knex) {
         // Inserts seed entries
         return knex('events').insert([
           {
+            id: 1,
             dj_id: 4,
             name: 'Bill and Grace',
             date: '2020-04-10',
@@ -18,6 +19,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1508219803418-5f1f89469b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 2,
             dj_id: 1,
             name: 'Ellie and Mona',
             date: '2020-07-14',
@@ -30,6 +32,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1561928070-590b9c48f0bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 3,
             dj_id: 1,
             name: 'Charles and Elizabeth',
             date: '2020-03-30',
@@ -40,6 +43,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1532329683184-6ffd13057d1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 4,
             dj_id: 2,
             name: 'Chris and Kat',
             date: '2020-06-10',
@@ -50,6 +54,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1494859632785-32abaf5241f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 5,
             dj_id: 3,
             name: "Elsa's 50th Birthday Gala",
             date: '2020-04-18',
@@ -61,6 +66,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1567768823253-c4fe2bf7143e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 6,
             dj_id: 4,
             name: "Devin's D&D Event",
             date: '2020-05-20',
@@ -71,6 +77,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1570303345338-e1f0eddf4946?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 7,
             dj_id: 4,
             name: "Derion and Tariya's Wedding",
             date: '2019-12-10',
@@ -83,6 +90,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1545826394-68be0015475b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 8,
             dj_id: 3,
             name: "Jess and Roman's Wedding",
             date: '2019-01-10',
@@ -94,6 +102,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1549335223-c89505707f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 9,
             dj_id: 3,
             name: 'Timpanogas High School Preference Dance',
             date: '2020-02-05',
@@ -104,6 +113,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1565734777784-6e89609ed871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 10,
             dj_id: 2,
             name: "Dora's Quinceañera",
             date: '2020-03-01',
@@ -114,6 +124,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1549981118-d720d448ab86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 11,
             dj_id: 3,
             name: "Emily & Gael's Taco Party",
             date: '2019-05-05',
@@ -125,6 +136,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 12,
             dj_id: 4,
             name: 'DarkWings Night Club',
             date: '2020-03-05',
@@ -135,6 +147,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1558317751-bc3ed6f85f72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 13,
             dj_id: 1,
             name: 'Soap Lake School Homecoming Dance',
             date: '2019-10-01',
@@ -145,6 +158,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1516970739312-08b075784b71?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 14,
             dj_id: 3,
             name: "Kristina & Bryce's Wedding",
             date: '2019-02-28',
@@ -156,6 +170,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1459259191495-52eccde892c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 15,
             dj_id: 2,
             name: "Amy's Wedding",
             date: '2020-01-24',
@@ -168,6 +183,7 @@ exports.seed = function(knex) {
               'https://images.unsplash.com/photo-1500900173725-e0978c945e23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
           },
           {
+            id: 16,
             dj_id: 4,
             name: 'Miami Nights',
             date: '2020-01-12',
@@ -181,6 +197,7 @@ exports.seed = function(knex) {
               'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Funitedwaymiami.org%2Fwp-content%2Fuploads%2F2017%2F02%2Fpic-of-liv-nightclub-confetti.jpg&f=1&nofb=1'
           },
           {
+            id: 17,
             dj_id: 3,
             name: 'Pool Party by the Sea',
             date: '2020-02-12',
@@ -194,6 +211,7 @@ exports.seed = function(knex) {
               'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FagXbcf4xu0w%2Fmaxresdefault.jpg&f=1&nofb=1'
           },
           {
+            id: 18,
             dj_id: 2,
             name: "Night at Schrödinger's Cat",
             date: '2020-02-12',
