@@ -18,6 +18,8 @@ router.post('/dj', (req, res) => {
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
 
+  console.log('user: ', user);
+
   Dj.findBy({ username: user.username })
     .first()
     .then(dj => {
