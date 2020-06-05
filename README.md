@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ddd6e13e9136c40345b9/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/djhelper-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/ddd6e13e9136c40345b9/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/djhelper-be/test_coverage)
 
-#### This backend is deployed at [api.dj-helper.com](https://api.dj-helper.com/)
+#### This backend is deployed at [api.dj-helper.com](https://dj-helper-be.herokuapp.com/)
 
 #### (Frontend deployed at [dj-helper.com](https://dj-helper.com))
 
