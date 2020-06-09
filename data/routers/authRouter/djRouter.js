@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Dj = require('../models/models.js');
+const Dj = require('../../models/models.js');
 
 router.get('/', (req, res) => {
   res.status(200).json({ message: 'DJ router is functioning.' });

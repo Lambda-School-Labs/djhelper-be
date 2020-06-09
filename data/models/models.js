@@ -123,7 +123,6 @@ async function removeEvent(id) {
 // ----------------- Locations -----------------
 
 function findLocationsBy(filter) {
-  console.log('The filter is', filter);
   return db('locations').where(filter);
 }
 
@@ -141,7 +140,6 @@ async function findLocationById(id) {
 
 // Add a location
 async function addLocation(info) {
-  console.log('Storing info:', info);
   const [id] = await db('locations')
     .returning('id') // Required PostgreSQL line <---
     .insert(info);
@@ -220,7 +218,6 @@ async function getPlaylistByEventID(id) {
 }
 
 async function addPlaylistEntry(songInfo) {
-  console.log('Storing song to playlist', songInfo);
   const [id] = await db('song_playlist_conn')
     .returning('id') // Required PostgreSQL line
     .insert(songInfo);

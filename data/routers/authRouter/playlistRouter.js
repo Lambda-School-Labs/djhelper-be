@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const db = require('../models/models.js');
+const db = require('../../models/models.js');
 
 /* *********************************************************
   In this implementation, each event has exactly one playlist
@@ -12,12 +12,13 @@ const db = require('../models/models.js');
 // Add a song to a playlist
 // Event ID must be included in URL (...playlist?event=n)
 router.post('/', (req, res) => {
-  const { event } = req.query;
+  // const { event } = req.query;
   const { body } = req;
   const songId = body.song_id;
   const queueNum = body.queue_num;
+  const eventId = body.event_id;
 
-  if (!event) {
+  if (!eventId) {
     res.status(400).json({ message: 'No event ID specified' });
   }
   if (!songId || !queueNum) {
@@ -25,7 +26,7 @@ router.post('/', (req, res) => {
   }
 
   const newEntry = {
-    event_id: event,
+    event_id: eventId,
     song_id: songId,
     queue_num: queueNum
   };
