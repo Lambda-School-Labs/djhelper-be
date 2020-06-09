@@ -6,8 +6,8 @@ exports.up = function(knex) {
       .unique()
       .notNullable();
     tbl.text('password', 128).notNullable();
-    tbl.text('name', 128).notNullable();
-    tbl.text('email');
+    tbl.text('name', 128);
+    tbl.text('email').unique();
     tbl.text('phone');
     tbl.text('website');
     tbl.text('bio');

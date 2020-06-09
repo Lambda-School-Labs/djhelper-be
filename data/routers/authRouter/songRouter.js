@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const db = require('../models/models.js');
+const db = require('../../models/models.js');
 
 // POST new Song
 router.post('/', (req, res) => {

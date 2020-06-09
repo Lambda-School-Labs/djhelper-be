@@ -11,19 +11,18 @@ router.get('/', (req, res) => {
 router.post('/dj', (req, res) => {
   const user = req.body;
 
-  if (!user.username || !user.password || !user.email || !user.name) {
+  if (!user.username || !user.password || !user.email) {
     res.status(400).json({ message: 'Message: Missing required fields.' });
   }
 
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
 
-  console.log('user: ', user);
-
   Dj.findBy({ username: user.username })
     .first()
     .then(dj => {
       if (dj) {
+        console.log('my user is: ', dj);
         // Username already exists in the database
         res.status(409).json({ message: `DJ ${user.username} already exists` });
       } else {
