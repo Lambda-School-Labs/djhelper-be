@@ -23,3 +23,5 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema.dropTableIfExists('song_playlist_conn');
 };
+
+// delete this table as per the new design; playlist and event are the same table

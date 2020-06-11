@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 const data = require('../jsonData/result_songs.json');
 
 console.log(data.length);
+=======
+const data = require('../test.json');
+>>>>>>> master
 
 const createSong = song => {
   return {
@@ -24,4 +28,5 @@ exports.seed = async function(knex) {
   data.map(song => songContainer.push(createSong(song)));
 
   await knex.batchInsert('songs', songContainer);
+
 };
