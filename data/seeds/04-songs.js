@@ -24,5 +24,4 @@ exports.seed = async function(knex) {
   data.map(song => songContainer.push(createSong(song)));
 
   await knex.batchInsert('songs', songContainer);
-
 };
