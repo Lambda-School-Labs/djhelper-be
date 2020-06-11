@@ -18,3 +18,5 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema.dropTableIfExists('locations');
 };
+
+// delete this table as per the design, there will not location tied to the event/playlist
