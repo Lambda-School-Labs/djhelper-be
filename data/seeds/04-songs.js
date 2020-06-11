@@ -1,31 +1,27 @@
-exports.seed = function(knex) {
-  return (
-    knex('songs')
-      // .truncate()
-      .then(function() {
-        // Inserts seed entries
-        return knex('songs').insert([
-          {
-            name: 'I Will Always Love You',
-            spotify_id: '4eHbdreAnSOrDDsFfc4Fpm'
-          },
-          {
-            name: 'Cannon in D - Piano (Also, Canon, or Kanon)',
-            spotify_id: '1losfQ1svP9iweY2116Jbr'
-          },
-          {
-            name: 'YMCA',
-            spotify_id: '7Cp69rNBwU0gaFT8zxExlE'
-          },
-          {
-            name: 'Wedding March',
-            spotify_id: '4eE71tR5gGXa2sgmgKnZzs'
-          },
-          {
-            name: 'What a Wonderful World',
-            spotify_id: '6VijsnEgDH9M6ajPlrdLsY'
-          }
-        ]);
-      })
-  );
+const data = require('../jsonData/result_songs.json');
+
+console.log(data.length);
+
+const createSong = song => {
+  return {
+    name: song.track_name,
+    spotify_id: song.track_id,
+    artist_name: song.artist_name,
+    popularity: song.popularity,
+    acousticness: song.acousticness,
+    danceability: song.danceability,
+    energy: song.energy,
+    instrumentalness: song.instrumentalness,
+    liveness: song.liveness,
+    loudness: song.loudness,
+    tempo: song.tempo
+  };
+};
+
+exports.seed = async function(knex) {
+  // song container
+  const songContainer = [];
+  data.map(song => songContainer.push(createSong(song)));
+
+  await knex.batchInsert('songs', songContainer);
 };

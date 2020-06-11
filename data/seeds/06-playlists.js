@@ -1,31 +1,18 @@
-exports.seed = function(knex) {
-  return (
-    knex('song_playlist_conn')
-      // .truncate()
-      .then(function() {
-        // Inserts seed entries
-        return knex('song_playlist_conn').insert([
-          {
-            event_id: 1,
-            song_id: 1,
-            queue_num: 1
-          },
-          {
-            event_id: 2,
-            song_id: 2,
-            queue_num: 2
-          },
-          {
-            event_id: 3,
-            song_id: 3,
-            queue_num: 3
-          },
-          {
-            event_id: 4,
-            song_id: 4,
-            queue_num: 4
-          }
-        ]);
-      })
+const playlistData = require('../jsonData/playlists.json');
+
+const createPlaylist = playlist => {
+  return {
+    event_id: playlist.event_id,
+    song_id: playlist.song_id,
+    queue_num: playlist.queue_num
+  };
+};
+
+exports.seed = async function(knex) {
+  const playlistContainer = [];
+
+  playlistData.map(playlist =>
+    playlistContainer.push(createPlaylist(playlist))
   );
+  await knex('song_playlist_conn').insert(playlistContainer);
 };

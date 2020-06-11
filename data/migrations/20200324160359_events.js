@@ -9,18 +9,11 @@ exports.up = function(knex) {
       .inTable('djs')
       .onUpdate('CASCADE')
       .onDelete('RESTRICT');
-    tbl
-      .integer('location_id')
-      .unsigned()
-      .references('id')
-      .inTable('locations')
-      .onDelete('RESTRICT') // FIXME
-      .onUpdate('CASCADE');
+
     tbl.text('img_url');
     tbl.text('name', 128).notNullable();
-    tbl.date('date').notNullable();
-    tbl.time('start_time');
-    tbl.time('end_time');
+    tbl.string('date').notNullable();
+
     tbl.text('event_type').notNullable();
     tbl.text('description', 255);
     tbl.text('notes', 1024);

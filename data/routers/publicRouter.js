@@ -120,6 +120,17 @@ router.get('/song/:id', (req, res) => {
 
 // ----------------- Playlists ----------------- \\
 
+// Get all playlist
+router.get('/playlists', (req, res) => {
+  db.getAllPlayList()
+    .then(info => {
+      res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 // Get playlist by event ID
 router.get('/playlist/:event_id', (req, res) => {
   const eventId = req.params.event_id;
