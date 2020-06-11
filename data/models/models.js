@@ -28,6 +28,7 @@ module.exports = {
   updateSong,
   removeSong,
 
+  getAllPlayList,
   getPlaylistEntry, // This file only
   getPlaylistByEventID,
   addPlaylistEntry,
@@ -204,6 +205,11 @@ function removeSong(id) {
 }
 
 // -----------------Playlists----------------- \\
+// get all playlist
+
+function getAllPlayList() {
+  return db('song_playlist_conn');
+}
 
 // Get a single entry from the playlist connection table.
 function getPlaylistEntry(id) {
