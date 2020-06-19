@@ -1,6 +1,6 @@
 const data = require('../jsonData/result_songs.json');
 
-console.log(data.length, 'songs being inserted');
+console.log(`${data.length} songs are being inserted`);
 
 const createSong = song => {
   return {
