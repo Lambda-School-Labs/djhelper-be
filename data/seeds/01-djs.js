@@ -1,5 +1,7 @@
 const djData = require('../jsonData/djs.json');
 
+console.log(`${djData.length} DJs are being inserted`);
+
 const createDj = dj => {
   return {
     username: dj.username,

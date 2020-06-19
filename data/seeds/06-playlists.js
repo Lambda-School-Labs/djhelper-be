@@ -1,5 +1,7 @@
 const playlistData = require('../jsonData/playlists.json');
 
+console.log(`${playlistData.length} playLists are being inserted`);
+
 const createPlaylist = playlist => {
   return {
     event_id: playlist.event_id,
