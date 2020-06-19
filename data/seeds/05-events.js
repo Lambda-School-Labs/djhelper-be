@@ -1,6 +1,6 @@
 const eventData = require('../jsonData/events.json');
 
-console.log(eventData.length, 'events being inserted');
+console.log(`${eventData.length} events are being inserted`);
 
 const createEvent = event => {
   return {
