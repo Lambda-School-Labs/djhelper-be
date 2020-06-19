@@ -1,5 +1,7 @@
 const eventData = require('../jsonData/events.json');
 
+console.log(eventData.length, 'events being inserted');
+
 const createEvent = event => {
   return {
     dj_id: event.dj_id,
