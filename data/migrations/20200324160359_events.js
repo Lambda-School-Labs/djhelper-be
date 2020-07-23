@@ -9,13 +9,13 @@ exports.up = function(knex) {
       .inTable('djs')
       .onUpdate('CASCADE')
       .onDelete('RESTRICT');
-
     tbl.text('img_url');
     tbl.text('name', 128).notNullable();
     tbl.string('date').notNullable();
-
-    tbl.text('event_type').notNullable();
-    tbl.text('description', 255);
+    tbl
+      .boolean('isExplicit')
+      .notNullable()
+      .defaultTo('false');
     tbl.text('notes', 1024);
   });
 };
