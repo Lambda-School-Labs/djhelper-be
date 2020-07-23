@@ -7,9 +7,8 @@ const createEvent = event => {
     dj_id: event.dj_id,
     name: event.name,
     date: event.date,
-    event_type: event.event_type,
-    description: event.description,
     img_url: event.img_url,
+    isExplicit: false,
     notes: event.notes
   };
 };
