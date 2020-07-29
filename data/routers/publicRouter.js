@@ -1,4 +1,7 @@
 const express = require('express');
+const axios = require('axios');
+const fetch = require('node-fetch');
+
 const db = require('../models/models.js');
 
 const router = express.Router();
@@ -138,6 +141,21 @@ router.get('/playlist/:event_id', (req, res) => {
   db.getPlaylistByEventID(eventId)
     .then(info => {
       res.status(200).json(info);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// Search Tracks
+
+router.get('/track/:search', (req, res) => {
+  const { search } = req.params;
+
+  fetch(`https://sp-search.herokuapp.com/track_search_ready/${search}`)
+    .then(resTrack => resTrack.json())
+    .then(results => {
+      res.send(results);
     })
     .catch(err => {
       res.status(500).json(err);
