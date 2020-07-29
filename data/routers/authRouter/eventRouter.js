@@ -5,7 +5,7 @@ const db = require('../../models/models.js');
 router.post('/', (req, res) => {
   const event = req.body;
 
-  if (!event.name || !event.date || !event.event_type || !event.description) {
+  if (!event.name || !event.date) {
     res.status(400).json({ message: 'Missing required fields' });
   }
 

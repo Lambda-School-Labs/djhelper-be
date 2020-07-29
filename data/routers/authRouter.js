@@ -2,14 +2,12 @@ const router = require('express').Router();
 const djRouter = require('./authRouter/djRouter.js');
 const guestRouter = require('./authRouter/guestRouter.js');
 const eventRouter = require('./authRouter/eventRouter.js');
-const locationRouter = require('./authRouter/locationRouter.js');
 const playlistRouter = require('./authRouter/playlistRouter');
 const songRouter = require('./authRouter/songRouter.js');
 
 router.use('/dj', djRouter);
 router.use('/guest', guestRouter);
 router.use('/event', eventRouter);
-router.use('/location', locationRouter);
 router.use('/playlist', playlistRouter);
 router.use('/song', songRouter);
 

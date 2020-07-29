@@ -15,13 +15,6 @@ module.exports = {
   removeEvent,
   findEventById,
 
-  getAllLocations,
-  findLocationById,
-  findLocationsBy, // This file only
-  addLocation,
-  updateLocation,
-  removeLocation,
-
   getAllSongs,
   getSongById, // This file only
   addSong,
@@ -118,49 +111,6 @@ async function updateEvent(id, updatedEvent) {
 async function removeEvent(id) {
   return db('events')
     .where({ id })
-    .del();
-}
-
-// ----------------- Locations -----------------
-
-function findLocationsBy(filter) {
-  return db('locations').where(filter);
-}
-
-// All Locations
-function getAllLocations() {
-  return db('locations');
-}
-
-// Get a specific Location by id
-async function findLocationById(id) {
-  return db('locations')
-    .where({ id })
-    .first();
-}
-
-// Add a location
-async function addLocation(info) {
-  const [id] = await db('locations')
-    .returning('id') // Required PostgreSQL line <---
-    .insert(info);
-  return findLocationById(id);
-}
-
-// Update a Location
-async function updateLocation(id, updatedLocation) {
-  return db('locations')
-    .where({ id })
-    .update(updatedLocation)
-    .then(() => {
-      return findLocationById(id);
-    });
-}
-
-// Completely remove a location
-async function removeLocation(id) {
-  return db('locations')
-    .where('id', id)
     .del();
 }
 
