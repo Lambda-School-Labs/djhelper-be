@@ -27,6 +27,14 @@ The server requires a PostgreSQL database to be running and configured in a `.en
 
 ## Endpoints
 
+#### Search Track
+
+| Method | Endpoint             | Access Control | Description |
+| ------ | -------------------- | -------------- | ----------- |
+| GET    | `/api/tract/:search` | none           | Public Open |
+
+\*replace "search" with the name song or artist name
+
 #### Onboarding Routes
 
 These routes do **_not_** require a JSON token in the header.
