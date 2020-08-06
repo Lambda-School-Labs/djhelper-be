@@ -27,13 +27,29 @@ The server requires a PostgreSQL database to be running and configured in a `.en
 
 ## Endpoints
 
+#### Add Track
+
+| Method | Endpoint          | Access Control | Description |
+| ------ | ----------------- | -------------- | ----------- |
+| GET    | `/api/tracks/`    | none           | Public Open |
+| POST   | `/api/tracks/`    | none           | Public Open |
+| DELETE | `/api/tracks/:id` | none           | Public Open |
+
+#### Predict Track
+
+| Method | Endpoint              | Access Control | Description |
+| ------ | --------------------- | -------------- | ----------- |
+| GET    | `/predict/:spotifyId` | none           | Public Open |
+
+\*replace "spotifyId" with the track id from spofity track
+
 #### Search Track
 
 | Method | Endpoint             | Access Control | Description |
 | ------ | -------------------- | -------------- | ----------- |
 | GET    | `/api/tract/:search` | none           | Public Open |
 
-\*replace "search" with the name song or artist name
+\*replace "search" with song or artist name
 
 #### Onboarding Routes
 
