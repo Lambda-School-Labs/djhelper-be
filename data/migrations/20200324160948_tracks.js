@@ -10,6 +10,8 @@ exports.up = function(knex) {
       .boolean('isExplicit')
       .notNullable()
       .defaultTo('false');
+    tbl.text('preview');
+    tbl.text('img');
     tbl
       .integer('event_id')
       .unsigned()
