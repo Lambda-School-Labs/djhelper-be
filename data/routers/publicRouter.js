@@ -162,4 +162,17 @@ router.get('/track/:search', (req, res) => {
     });
 });
 
+router.get('/predict/:spotifyId', (req, res) => {
+  const { spotifyId } = req.params;
+
+  fetch(`https://sp-search.herokuapp.com/predict/${spotifyId}`)
+    .then(predictions => predictions.json())
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;

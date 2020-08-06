@@ -44,7 +44,6 @@ async function findDJById(id) {
 }
 
 async function addDJ(info) {
-  console.log('Storing info:', info);
   const [id] = await db('djs')
     .returning('id') // This line is REQUIRED for PostgreSQL
     .insert(info);
