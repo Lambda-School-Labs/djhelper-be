@@ -4,12 +4,14 @@ const guestRouter = require('./authRouter/guestRouter.js');
 const eventRouter = require('./authRouter/eventRouter.js');
 const playlistRouter = require('./authRouter/playlistRouter');
 const songRouter = require('./authRouter/songRouter.js');
+const trackRouter = require('./authRouter/trackRouter.js');
 
 router.use('/dj', djRouter);
 router.use('/guest', guestRouter);
 router.use('/event', eventRouter);
 router.use('/playlist', playlistRouter);
 router.use('/song', songRouter);
+router.use('/track', trackRouter);
 
 router.get('/', (req, res) => {
   res.status(200).json({ message: 'Auth router is functioning.' });

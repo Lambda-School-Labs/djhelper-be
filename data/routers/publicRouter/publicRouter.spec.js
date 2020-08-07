@@ -1,6 +1,6 @@
 const request = require('supertest');
-const server = require('../../server.js');
-const db = require('../db-config.js');
+const server = require('../../../server.js');
+const db = require('../../db-config.js');
 
 const publicRouter = './publicRouter.js';
 
@@ -64,7 +64,7 @@ describe('song router Get all', function() {
     expect(res.type).toMatch(/json/i);
   });
 
-// -- Tests to see if /songs/:id route is running
+  // -- Tests to see if /songs/:id route is running
   test('get /api/songs/1 should return song with ID 1', async function() {
     const res = await request(server).get('/api/song/1');
     expect(res.status).toBe(200);
