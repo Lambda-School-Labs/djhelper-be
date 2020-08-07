@@ -27,13 +27,21 @@ The server requires a PostgreSQL database to be running and configured in a `.en
 
 ## Endpoints
 
-#### Add Track
+#### Add and Get Playlist
 
-| Method | Endpoint          | Access Control | Description |
-| ------ | ----------------- | -------------- | ----------- |
-| GET    | `/api/tracks/`    | none           | Public Open |
-| POST   | `/api/tracks/`    | none           | Public Open |
-| DELETE | `/api/tracks/:id` | none           | Public Open |
+| Method | Endpoint                       | Access Control | Description   |
+| ------ | ------------------------------ | -------------- | ------------- |
+| GET    | `/api/event/:id/playlist`      | none           | Public Open   |
+| DELETE | `/api/auth/track/playlist/:id` | none           | Authenticated |
+
+#### Add and Get Track
+
+| Method | Endpoint                   | Access Control | Description   |
+| ------ | -------------------------- | -------------- | ------------- |
+| GET    | `/api/event/:id/tracks`    | none           | Public Open   |
+| POST   | `/api/track/`              | none           | Public Open   |
+| DELETE | `/api/auth/track/:id`      | none           | Authenticated |
+| POST   | `/api/auth/track/move/:id` | none           | Authenticated |
 
 #### Predict Track
 
