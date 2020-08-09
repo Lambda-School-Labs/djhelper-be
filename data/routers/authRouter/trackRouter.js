@@ -21,7 +21,7 @@ router.post('/move/:id', (req, res) => {
 
   TrackTbl.moveTrack(id)
     .then(movedTrack => {
-      res.status(200).json({ 'moved track: ': movedTrack });
+      res.json(movedTrack);
     })
     .catch(err => {
       res.status(500).json(err);
