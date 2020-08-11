@@ -18,7 +18,7 @@ exports.up = function(knex) {
       .references('id')
       .inTable('events')
       .onUpdate('CASCADE')
-      .onDelete('RESTRICT');
+      .onDelete('CASCADE');
   });
 };
 
