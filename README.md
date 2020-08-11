@@ -29,19 +29,32 @@ The server requires a PostgreSQL database to be running and configured in a `.en
 
 #### Add and Get Playlist
 
-| Method | Endpoint                       | Access Control | Description   |
-| ------ | ------------------------------ | -------------- | ------------- |
-| GET    | `/api/event/:id/playlist`      | none           | Public Open   |
-| DELETE | `/api/auth/track/playlist/:id` | none           | Authenticated |
+| Method | Endpoint                               | Access Control | Description   |
+| ------ | -------------------------------------- | -------------- | ------------- |
+| GET    | `/api/event/:eventId/playlist`         | none           | Public Open   |
+| DELETE | `/api/auth/track/playlist/:playlistId` | none           | Authenticated |
 
 #### Add and Get Track
 
-| Method | Endpoint                   | Access Control | Description   |
-| ------ | -------------------------- | -------------- | ------------- |
-| GET    | `/api/event/:id/tracks`    | none           | Public Open   |
-| POST   | `/api/track/`              | none           | Public Open   |
-| DELETE | `/api/auth/track/:id`      | none           | Authenticated |
-| POST   | `/api/auth/track/move/:id` | none           | Authenticated |
+| Method | Endpoint                        | Access Control | Description   |
+| ------ | ------------------------------- | -------------- | ------------- |
+| GET    | `/api/event/:eventId/tracks`    | none           | Public Open   |
+| POST   | `/api/track/`                   | none           | Public Open   |
+| DELETE | `/api/auth/track/:trackId`      | none           | Authenticated |
+| POST   | `/api/auth/track/move/:trackId` | none           | Authenticated |
+
+# JSON Format for adding Track from search for POSTING `/api/track/`
+
+{
+spotify_id: spotify_id,
+name: song_name,
+artist_name: artist_name,
+url: external_urls,
+isExplicit: explicit,
+preview: preview,
+img: image,
+event_id: eventId
+};
 
 #### Predict Track
 
