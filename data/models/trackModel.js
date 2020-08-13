@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+
 const db = require('../db-config');
 
 module.exports = {
@@ -16,14 +17,27 @@ function getAllTracks() {
   return db('tracks');
 }
 
-function getEventTracks(eventId) {
-  return db('tracks').where('event_id', eventId);
+async function getEventTracks(eventId) {
+  // return db('tracks as t')
+  //   .leftJoin('votes as v', 'v.track_id', 't.id')
+  //   .count('v.isvoted')
+  //   .select('t.*');
+
+  const { rows } = await db.raw(
+    `select t.*, count(v.isvoted) as votes from tracks as t LEFT JOIN votes as v ON t.id = v.track_id GROUP BY t.id HAVING t.event_id = ${eventId}`
+  );
+  return rows;
 }
 
-function getTrackById(id) {
-  return db('tracks')
-    .where({ id })
-    .first();
+async function getTrackById(id) {
+  // return db('tracks')
+  //   .where({ id })
+  //   .first();
+
+  const { rows } = await db.raw(
+    `select t.*, count(v.isvoted) as votes from tracks as t LEFT JOIN votes as v ON t.id = v.track_id GROUP BY t.id HAVING t.id = ${id} `
+  );
+  return rows[0];
 }
 
 async function addTrack(newTrack) {
@@ -40,10 +54,15 @@ function removeTrack(id) {
     .del();
 }
 
-function getPlaylistById(id) {
-  return db('playlist')
-    .where({ id })
-    .first();
+async function getPlaylistById(id) {
+  // return db('playlist')
+  //   .where({ id })
+  //   .first();
+
+  const { rows } = await db.raw(
+    `select p.*, count(v.isvoted) as votes from playlist as p LEFT JOIN votes as v ON p.id = v.playlist_id GROUP BY p.id HAVING p.id = ${id}`
+  );
+  return rows[0];
 }
 
 async function moveTrack(id) {
@@ -63,15 +82,27 @@ async function moveTrack(id) {
   const [idPlaylist] = await db('playlist')
     .returning('id')
     .insert(track);
-  await removeTrack(id);
 
+  await db('votes')
+    .where('track_id', id)
+    .update({
+      playlist_id: idPlaylist,
+      track_id: null
+    });
+
+  await removeTrack(id);
   return getPlaylistById(idPlaylist);
 }
 
 // get playlist
 
-function getEventPlaylist(eventId) {
-  return db('playlist').where('event_id', eventId);
+async function getEventPlaylist(eventId) {
+  // return db('playlist').where('event_id', eventId);
+
+  const { rows } = await db.raw(
+    `select p.*, count(v.isvoted) as votes from playlist as p LEFT JOIN votes as v ON p.id = v.playlist_id GROUP BY p.id HAVING p.event_id = ${eventId}`
+  );
+  return rows;
 }
 
 function removePlaylist(id) {

@@ -52,7 +52,6 @@ async function addDJ(info) {
 
 // Login for a DJ
 function findBy(filter) {
-  console.log('The filter is', filter);
   return db('djs').where(filter);
 }
 

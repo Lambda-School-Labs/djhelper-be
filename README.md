@@ -27,6 +27,16 @@ The server requires a PostgreSQL database to be running and configured in a `.en
 
 ## Endpoints
 
+#### Endpoint to Vote
+
+| Method | Endpoint         | Access Control | Description   |
+| ------ | ---------------- | -------------- | ------------- |
+| POST   | `/api/auth/vote` | none           | Authenticated |
+
+{
+"trackId": 3
+}
+
 #### Add and Get Playlist
 
 | Method | Endpoint                               | Access Control | Description   |
