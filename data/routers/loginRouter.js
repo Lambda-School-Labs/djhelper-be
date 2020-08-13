@@ -47,7 +47,7 @@ router.post('/guest', (req, res) => {
 
 function signToken(user) {
   const payload = {
-    sub: user.id,
+    djId: user.id,
     username: user.username
   };
   const options = {
