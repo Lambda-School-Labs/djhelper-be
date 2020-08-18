@@ -3,8 +3,6 @@ const router = require('express').Router();
 const VoteTbl = require('../../models/voteModel.js');
 
 router.post('/', (req, res) => {
-  const decoded = req.decodedToken;
-
   const { djId } = req.decodedToken;
   const { trackId } = req.body;
 
@@ -13,18 +11,12 @@ router.post('/', (req, res) => {
       if (existingTrack) {
         VoteTbl.deleteVote(existingTrack.dj_id, existingTrack.track_id)
           .then(deletedVote => {
-            console.log('deletedVote: ', deletedVote);
-<<<<<<< HEAD
-            res.json(`deleted ${deletedVote} vote`);
-=======
             res.json(deletedVote);
->>>>>>> master
           })
           .catch(err => res.status(500).json(err));
       } else {
         VoteTbl.addVote(djId, trackId)
           .then(response => {
-            console.log('res from vote: ', response);
             res.json(response);
           })
           .catch(err => {
