@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
         VoteTbl.deleteVote(existingTrack.dj_id, existingTrack.track_id)
           .then(deletedVote => {
             console.log('deletedVote: ', deletedVote);
-            res.json(`deleted ${deletedVote} vote`);
+            res.json(deletedVote);
           })
           .catch(err => res.status(500).json(err));
       } else {
