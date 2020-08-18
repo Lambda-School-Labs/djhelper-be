@@ -1,38 +1,63 @@
-const router = require('express').Router();
+/* eslint-disable no-use-before-define */
+const db = require('../db-config');
 
-const VoteTbl = require('../../models/voteModel.js');
+module.exports = {
+  getVoteByTrackId,
+  getVoteByPlaylistId,
+  addVote,
+  deleteVote,
+  checkIfVoteExists
+};
 
-router.post('/', (req, res) => {
-  const decoded = req.decodedToken;
+function getVoteByTrackId(trackId) {
+  return db('votes')
+    .count('isvoted as votes')
+    .where('track_id', trackId)
+    .first();
+}
 
-  const { djId } = req.decodedToken;
-  const { trackId } = req.body;
+function getVoteByPlaylistId(playlistId) {
+  return db('votes')
+    .count('isVoted')
+    .where('playlist_id', playlistId);
+}
+async function addVote(djId, trackId) {
+  console.log('being inserted: ', djId);
 
-  VoteTbl.checkIfVoteExists(djId, trackId)
-    .then(existingTrack => {
-      if (existingTrack) {
-        VoteTbl.deleteVote(existingTrack.dj_id, existingTrack.track_id)
-          .then(deletedVote => {
-            console.log('deletedVote: ', deletedVote);
-<<<<<<< HEAD
-            res.json(`deleted ${deletedVote} vote`);
-=======
-            res.json(deletedVote);
->>>>>>> master
-          })
-          .catch(err => res.status(500).json(err));
-      } else {
-        VoteTbl.addVote(djId, trackId)
-          .then(response => {
-            console.log('res from vote: ', response);
-            res.json(response);
-          })
-          .catch(err => {
-            res.status(500).json(err);
-          });
-      }
-    })
-    .catch(err => res.status(500).json(err));
-});
+  const [id] = await db('votes')
+    .returning('id')
+    .insert({
+      dj_id: djId,
+      track_id: trackId,
+      isvoted: 'yes'
+    });
 
-module.exports = router;
+  return getVoteByTrackId(trackId);
+}
+
+// function addVote(djId, trackId) {
+//   console.log('being inserted: ', djId);
+//   return db('votes').insert({
+//     dj_id: djId,
+//     track_id: trackId,
+//     isVoted: 'yes'
+//   });
+// }
+
+async function deleteVote(djId, trackId) {
+  await db('votes')
+    .where('dj_id', djId)
+    .andWhere('track_id', trackId)
+    .del();
+
+  return getVoteByTrackId(trackId);
+}
+
+// check if vote already exists
+
+function checkIfVoteExists(djId, trackId) {
+  return db('votes')
+    .where('dj_id', djId)
+    .andWhere('track_id', trackId)
+    .first();
+}
