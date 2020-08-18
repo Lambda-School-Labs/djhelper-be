@@ -11,11 +11,7 @@ module.exports = {
 
 function getVoteByTrackId(trackId) {
   return db('votes')
-<<<<<<< HEAD
-    .count('isvoted')
-=======
     .count('isvoted as votes')
->>>>>>> master
     .where('track_id', trackId)
     .first();
 }
@@ -48,13 +44,6 @@ async function addVote(djId, trackId) {
 //   });
 // }
 
-<<<<<<< HEAD
-function deleteVote(djId, trackId) {
-  return db('votes')
-    .where('dj_id', djId)
-    .andWhere('track_id', trackId)
-    .del();
-=======
 async function deleteVote(djId, trackId) {
   await db('votes')
     .where('dj_id', djId)
@@ -62,7 +51,6 @@ async function deleteVote(djId, trackId) {
     .del();
 
   return getVoteByTrackId(trackId);
->>>>>>> master
 }
 
 // check if vote already exists
