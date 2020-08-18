@@ -1,63 +1,30 @@
-/* eslint-disable no-use-before-define */
-const db = require('../db-config');
+const router = require('express').Router();
 
-module.exports = {
-  getVoteByTrackId,
-  getVoteByPlaylistId,
-  addVote,
-  deleteVote,
-  checkIfVoteExists
-};
+const VoteTbl = require('../../models/voteModel.js');
 
-function getVoteByTrackId(trackId) {
-  return db('votes')
-    .count('isvoted as votes')
-    .where('track_id', trackId)
-    .first();
-}
+router.post('/', (req, res) => {
+  const { djId } = req.decodedToken;
+  const { trackId } = req.body;
 
-function getVoteByPlaylistId(playlistId) {
-  return db('votes')
-    .count('isVoted')
-    .where('playlist_id', playlistId);
-}
-async function addVote(djId, trackId) {
-  console.log('being inserted: ', djId);
+  VoteTbl.checkIfVoteExists(djId, trackId)
+    .then(existingTrack => {
+      if (existingTrack) {
+        VoteTbl.deleteVote(existingTrack.dj_id, existingTrack.track_id)
+          .then(deletedVote => {
+            res.json(deletedVote);
+          })
+          .catch(err => res.status(500).json(err));
+      } else {
+        VoteTbl.addVote(djId, trackId)
+          .then(response => {
+            res.json(response);
+          })
+          .catch(err => {
+            res.status(500).json(err);
+          });
+      }
+    })
+    .catch(err => res.status(500).json(err));
+});
 
-  const [id] = await db('votes')
-    .returning('id')
-    .insert({
-      dj_id: djId,
-      track_id: trackId,
-      isvoted: 'yes'
-    });
-
-  return getVoteByTrackId(trackId);
-}
-
-// function addVote(djId, trackId) {
-//   console.log('being inserted: ', djId);
-//   return db('votes').insert({
-//     dj_id: djId,
-//     track_id: trackId,
-//     isVoted: 'yes'
-//   });
-// }
-
-async function deleteVote(djId, trackId) {
-  await db('votes')
-    .where('dj_id', djId)
-    .andWhere('track_id', trackId)
-    .del();
-
-  return getVoteByTrackId(trackId);
-}
-
-// check if vote already exists
-
-function checkIfVoteExists(djId, trackId) {
-  return db('votes')
-    .where('dj_id', djId)
-    .andWhere('track_id', trackId)
-    .first();
-}
+module.exports = router;
