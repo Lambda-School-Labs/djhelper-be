@@ -22,8 +22,6 @@ function getVoteByPlaylistId(playlistId) {
     .where('playlist_id', playlistId);
 }
 async function addVote(djId, trackId) {
-  console.log('being inserted: ', djId);
-
   const [id] = await db('votes')
     .returning('id')
     .insert({
@@ -34,15 +32,6 @@ async function addVote(djId, trackId) {
 
   return getVoteByTrackId(trackId);
 }
-
-// function addVote(djId, trackId) {
-//   console.log('being inserted: ', djId);
-//   return db('votes').insert({
-//     dj_id: djId,
-//     track_id: trackId,
-//     isVoted: 'yes'
-//   });
-// }
 
 async function deleteVote(djId, trackId) {
   await db('votes')
