@@ -30,8 +30,6 @@ router.get('/event/:id/tracks', (req, res) => {
 router.get('/event/:id/playlist', (req, res) => {
   const { id } = req.params;
 
-  console.log('id: ', id);
-
   TrackTbl.getEventPlaylist(id)
     .then(data => {
       res.json(data);

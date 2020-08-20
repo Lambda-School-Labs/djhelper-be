@@ -39,10 +39,6 @@ router.post('/dj', (req, res) => {
     });
 });
 
-router.post('/guest', (req, res) => {
-  res.status(501).json({ message: 'Guest login not implemented.' });
-});
-
 // ========== Helper functions ===========
 
 function signToken(user) {

@@ -69,83 +69,6 @@ router.get('/event/:id', (req, res) => {
     });
 });
 
-// ----------------- Locations -----------------
-// TODO: Filter out private information?
-
-// get all Locations
-router.get('/locations', (req, res) => {
-  db.getAllLocations()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// Get a single location
-router.get('/location/:id', (req, res) => {
-  const { id } = req.params;
-  db.findLocationById(id)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// ----------------- Songs -----------------
-// Get ALL Songs
-// TODO: Consider pagination
-router.get('/songs', (req, res) => {
-  db.getAllSongs()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// Get Song by ID
-router.get('/song/:id', (req, res) => {
-  const { id } = req.params;
-  db.getSongById(id)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// ----------------- Playlists ----------------- \\
-
-// Get all playlist
-router.get('/playlists', (req, res) => {
-  db.getAllPlayList()
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// Get playlist by event ID
-router.get('/playlist/:event_id', (req, res) => {
-  const eventId = req.params.event_id;
-
-  db.getPlaylistByEventID(eventId)
-    .then(info => {
-      res.status(200).json(info);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
 // Search Tracks
 
 router.get('/track/:search', (req, res) => {
@@ -160,6 +83,8 @@ router.get('/track/:search', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+// prediction routes
 
 router.get('/predict/:spotifyId', (req, res) => {
   const { spotifyId } = req.params;

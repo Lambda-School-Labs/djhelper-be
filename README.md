@@ -8,6 +8,10 @@
 
 ## Getting started
 
+#### Deployed Backend APP Link
+
+https://dj-helper-be.herokuapp.com
+
 To get the server running locally:
 
 - Clone this repo
@@ -102,8 +106,6 @@ These routes do **_not_** require a JSON token in the header.
 | GET | `/djs` | none | Get list of all DJs (public info). |
 | GET | `/event/:id` | none | Get _public_ information about an event. |
 | GET | `/events` | none | Get list of all events (public info). |
-| GET | `/location/:id` | none | Get _public_ information about a location. |
-| GET | `/locations` | none | Get list of all locations. |
 | GET | `/song/:id` | none | Get a single song by ID. |
 | GET | `/songs` | none | Get list of all songs. |
 | GET | `/playlist/:event_id` | none | Get a specific playlist. |
@@ -124,30 +126,6 @@ These routes do **_not_** require a JSON token in the header.
 | POST   | `/auth/event/:id` | DJs            | Adds a new event.             |
 | PUT    | `/auth/event/:id` | DJs            | Modifies an event.            |
 | DELETE | `/auth/event/:id` | DJs            | Deletes an event.             |
-
-#### Location Routes
-
-| Method | Endpoint             | Access Control | Description                |
-| ------ | -------------------- | -------------- | -------------------------- |
-| POST   | `/auth/location/:id` | DJs            | Adds a new location.       |
-| PUT    | `/auth/location/:id` | DJs            | Updates a location's info. |
-| DELETE | `/auth/location/:id` | DJs            | Removes a location.        |
-
-#### Playlist Routes
-
-| Method | Endpoint                   | Access Control | Description                                  |
-| ------ | -------------------------- | -------------- | -------------------------------------------- |
-| POST   | `/auth/playlist?event=n`   | DJs            | Adds a song from the database to a playlist. |
-| PUT    | `/auth/playlist/entry/:id` | DJs            | Updates queue order for a playlist entry.    |
-| DELETE | `/auth/playlist/entry/:id` | DJs            | Removes a song from a playlist.              |
-
-#### Song Routes
-
-| Method | Endpoint         | Access Control | Description                       |
-| ------ | ---------------- | -------------- | --------------------------------- |
-| POST   | `/auth/song/`    | DJs            | Adds a song to the database.      |
-| PUT    | `/auth/song/:id` | DJs            | Updates a song's info.            |
-| DELETE | `/auth/song/:id` | DJs            | Deletes a song from the database. |
 
 # Data Model
 
@@ -186,31 +164,6 @@ These routes do **_not_** require a JSON token in the header.
   end_time: DATETIME (or int)
   venue_url: STRING
   venue_phone: STRING
-}
-```
-
-#### Songs
-
----
-
-```
-{
-  id: INTEGER
-  name: STRING
-  spotify_id: STRING
-}
-```
-
-#### Playlists
-
----
-
-```
-{
-  id: INTEGER
-  event_id: INTEGER
-  song_id: INTEGER
-  queue_num: INTEGER
 }
 ```
 
@@ -254,44 +207,6 @@ These routes do **_not_** require a JSON token in the header.
 `updateEvent` -> Updates event details. Returns modified event.
 
 `removeEvent` -> Deletes event. Returns 0 or 1.
-
-#### Locations
-
-`getAllLocations` -> Returns array of all locations.
-
-`findLocationsBy` -> Returns array of locations matching any field.
-
-`findLocationById` -> Returns playlist matching an ID.
-
-`addLocation` -> Creates location. Returns new location, including ID.
-
-`updateLocation` -> Updates location details. Returns new location object.
-
-`removeLocation` -> Remove location. Returns 0 or 1.
-
-#### Songs
-
-`getAllSongs` -> Returns array of all songs.
-
-`getSongById` -> Returns song matching an ID.
-
-`addSong` -> Adds song. Returns new song, including ID.
-
-`updateSong` -> Updates a song. Note: this is currently only useful for updating a title. Returns updated song.
-
-`removeSong` -> Delete song. Returns 0 or 1.
-
-#### Playlists
-
-`getPlaylistEntry` -> Returns a single playlist entry, including queue order number.
-
-`getPlaylistByEventId` -> Returns array of all entries in a playlist (specified by the _event_ ID).
-
-`addPlaylistEntry` -> Adds a new song to a playlist. The song must already exist in the database.
-
-`updatePlaylistEntry` -> Update playlist entry details. Note: this is only useful for upating the `queue_num` field.
-
-`removePlaylistEntry` -> Remove a song from a playlist. The song will remain in the database.
 
 ## Environment Variables
 
