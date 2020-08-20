@@ -8,7 +8,7 @@ exports.up = function(knex) {
       .references('id')
       .inTable('djs')
       .onUpdate('CASCADE')
-      .onDelete('RESTRICT');
+      .onDelete('CASCADE');
     tbl.text('img_url');
     tbl.text('name', 128).notNullable();
     tbl.string('date').notNullable();

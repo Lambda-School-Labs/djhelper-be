@@ -20,7 +20,9 @@ server.use(cors());
 
 // Welcome message
 server.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the DJ Helper backend.' });
+  res
+    .status(200)
+    .json({ message: 'Welcome to the DJ Helper backend.', test: 'test' });
 });
 
 // Routes
