@@ -106,9 +106,6 @@ These routes do **_not_** require a JSON token in the header.
 | GET | `/djs` | none | Get list of all DJs (public info). |
 | GET | `/event/:id` | none | Get _public_ information about an event. |
 | GET | `/events` | none | Get list of all events (public info). |
-| GET | `/song/:id` | none | Get a single song by ID. |
-| GET | `/songs` | none | Get list of all songs. |
-| GET | `/playlist/:event_id` | none | Get a specific playlist. |
 
 #### DJ Routes
 
