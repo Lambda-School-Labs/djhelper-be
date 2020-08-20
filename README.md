@@ -107,6 +107,7 @@ These routes do **_not_** require a JSON token in the header.
 | GET | `/event/:id` | none | Get _public_ information about an event. |
 | GET | `/events` | none | Get list of all events (public info). |
 
+
 #### DJ Routes
 
 | Method | Endpoint       | Access Control | Description                  |
