@@ -4,10 +4,6 @@ const server = require('../../server.js');
 
 const db = require('../db-config.js');
 
-const { jwtSecret } = require('../config/secrets');
-const authenticate = require('../../middleware/auth-jest.js');
-const registerRouter = './registerRouter.js';
-
 describe('registration and login router is properly setup', () => {
   const newUser = {
     username: 'raza12233',
@@ -52,6 +48,6 @@ describe('registration and login router is properly setup', () => {
 });
 
 beforeAll(async () => {
-  console.log('befeoreall');
-  await db('djs').truncate();
+  // await db('djs').truncate();
+  return db.raw('truncate table djs cascade');
 });

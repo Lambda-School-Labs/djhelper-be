@@ -34,7 +34,6 @@ async function addTrack(newTrack) {
   const [id] = await db('tracks')
     .returning('id')
     .insert(newTrack);
-
   return getTrackById(id);
 }
 
