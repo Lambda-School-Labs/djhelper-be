@@ -22,7 +22,6 @@ router.post('/dj', (req, res) => {
     .first()
     .then(dj => {
       if (dj) {
-        console.log('my user is: ', dj);
         // Username already exists in the database
         res.status(409).json({ message: `DJ ${user.username} already exists` });
       } else {
@@ -49,11 +48,6 @@ router.post('/dj', (req, res) => {
     .catch(err => {
       res.status(500).json({ err });
     });
-});
-
-// ================ Register a new Guest ====================
-router.post('/guest', (req, res) => {
-  res.status(501).json({ message: 'Guest registration not implemented.' });
 });
 
 module.exports = router;

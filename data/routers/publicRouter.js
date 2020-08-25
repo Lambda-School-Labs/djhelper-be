@@ -7,7 +7,7 @@ router.use('/', publicRouter);
 router.use('/', trackRouter);
 
 router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Auth router is functioning.' });
+  res.status(200).json({ message: 'Public router is functioning.' });
 });
 
 module.exports = router;
